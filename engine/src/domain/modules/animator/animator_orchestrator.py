@@ -7,7 +7,7 @@ from ...value_objects.configs import AnimatorConfig
 if TYPE_CHECKING:
     from typing import Any
 
-    from domain.value_objects.geometry import Vector2
+    from domain.value_objects.geometry import Vector2  # type: ignore[import-not-found]
 
     from ...value_objects.animation.animation_path import AnimationPath
     from ...value_objects.configs import LayerRenderConfig
@@ -41,7 +41,7 @@ def create_animator(
     )
 
 
-def create_animation_path(
+def create_animation_path(  # type: ignore[no-untyped-def]
     target: Vector2,
     viewport_width: int,
     viewport_height: int,
@@ -81,21 +81,21 @@ def create_layer_state_generator(config: LayerRenderConfig) -> LayerStateGenerat
     return _create(config)
 
 
-def get_brush_strategy():
+def get_brush_strategy():  # type: ignore[no-untyped-def]
     """Access Brush Strategy functions."""
     from .strategies import brush_strategy_module
 
     return brush_strategy_module
 
 
-def get_drag_strategy():
+def get_drag_strategy():  # type: ignore[no-untyped-def]
     """Access Drag Strategy functions."""
     from .strategies import drag_strategy_module
 
     return drag_strategy_module
 
 
-def generate_reveal_mask(
+def generate_reveal_mask(  # type: ignore[no-untyped-def]
     layer_size: tuple[int, int], path: AnimationPath, progress: float, brush_size: float, **kwargs
 ) -> Any:
     """

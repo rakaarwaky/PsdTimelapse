@@ -4,7 +4,7 @@ Animation Path Value Object.
 
 from dataclasses import dataclass
 
-from ...geometry import Vector2
+from ..geometry import Vector2
 
 
 @dataclass

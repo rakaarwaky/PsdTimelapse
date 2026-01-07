@@ -57,7 +57,7 @@ class NotificationPort(ABC):
     """
 
     @abstractmethod
-    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:
+    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:  # type: ignore[assignment]
         """
         Publish a domain event.
 
@@ -104,7 +104,7 @@ class InMemoryEventBus(NotificationPort):
     def __init__(self) -> None:
         self._subscribers: dict[DomainEvent, list[EventCallback]] = {}
 
-    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:
+    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:  # type: ignore[assignment]
         """Publish event to all subscribers."""
         import time
 
@@ -141,7 +141,7 @@ class InMemoryEventBus(NotificationPort):
 class NullNotifier(NotificationPort):
     """No-op notifier for testing or silent operation."""
 
-    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:
+    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:  # type: ignore[assignment]
         pass
 
     def subscribe(self, event: DomainEvent, callback: EventCallback) -> None:

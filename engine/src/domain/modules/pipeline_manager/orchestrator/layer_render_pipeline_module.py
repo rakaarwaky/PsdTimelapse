@@ -24,7 +24,7 @@ from ....value_objects.configs import LayerRenderConfig
 from ....value_objects.manifest.layer_manifest_value import LayerManifest
 from ....value_objects.resource.media_output_path_value import MediaOutputPath
 from ...animator.core.animator_controller_module import AnimationController
-from .render_orchestrator_module import FrameOutputPort
+from .render_orchestrator_module import FrameOutputPort  # type: ignore[attr-defined]
 
 
 @dataclass

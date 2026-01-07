@@ -1,6 +1,6 @@
-import networkx as nx
 import os
-import json
+
+import networkx as nx
 
 # 1. Define Plan Structure
 PLAN_DIR = ".agent/doc/plan_smart_director_render_fix"
@@ -12,7 +12,7 @@ tasks = [
     "connect_animator_controller",
     "implement_state_aware_saving",
     "optimize_blank_frame_storage",
-    "verify_animation_render"
+    "verify_animation_render",
 ]
 G.add_nodes_from(tasks)
 
@@ -22,13 +22,48 @@ assert nx.is_directed_acyclic_graph(G), "Circular dependency detected!"
 
 # 4. Define Agent State Machine (Renderer Agent)
 renderer_agent_states = [
-    {"state": "IDLE", "trigger": "Start Render", "next": "INITIALIZING", "action": "Load Config & Assets"},
-    {"state": "INITIALIZING", "trigger": "Setup Complete", "next": "RENDERING_LOOP", "action": "Init AnimationController"},
-    {"state": "RENDERING_LOOP", "trigger": "Frame < Start", "next": "SKIPPING", "action": "Skip Blank Frame"},
-    {"state": "RENDERING_LOOP", "trigger": "Frame in Range", "next": "PROCESSING_FRAME", "action": "Update Anim State"},
-    {"state": "PROCESSING_FRAME", "trigger": "State Ready", "next": "SAVING", "action": "Apply Transform & Save"},
-    {"state": "SAVING", "trigger": "Save Complete", "next": "RENDERING_LOOP", "action": "Next Frame"},
-    {"state": "RENDERING_LOOP", "trigger": "All Frames Done", "next": "COMPLETED", "action": "Write Manifest"},
+    {
+        "state": "IDLE",
+        "trigger": "Start Render",
+        "next": "INITIALIZING",
+        "action": "Load Config & Assets",
+    },
+    {
+        "state": "INITIALIZING",
+        "trigger": "Setup Complete",
+        "next": "RENDERING_LOOP",
+        "action": "Init AnimationController",
+    },
+    {
+        "state": "RENDERING_LOOP",
+        "trigger": "Frame < Start",
+        "next": "SKIPPING",
+        "action": "Skip Blank Frame",
+    },
+    {
+        "state": "RENDERING_LOOP",
+        "trigger": "Frame in Range",
+        "next": "PROCESSING_FRAME",
+        "action": "Update Anim State",
+    },
+    {
+        "state": "PROCESSING_FRAME",
+        "trigger": "State Ready",
+        "next": "SAVING",
+        "action": "Apply Transform & Save",
+    },
+    {
+        "state": "SAVING",
+        "trigger": "Save Complete",
+        "next": "RENDERING_LOOP",
+        "action": "Next Frame",
+    },
+    {
+        "state": "RENDERING_LOOP",
+        "trigger": "All Frames Done",
+        "next": "COMPLETED",
+        "action": "Write Manifest",
+    },
     {"state": "SKIPPING", "trigger": "Continue", "next": "RENDERING_LOOP", "action": "Next Frame"},
 ]
 

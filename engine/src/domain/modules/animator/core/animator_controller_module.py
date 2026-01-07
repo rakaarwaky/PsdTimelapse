@@ -11,7 +11,7 @@ from ...script_director import Action, ActionType
 
 # Protocol definitions for DI (Blind Logic)
 class DragAnimator(Protocol):
-    def __call__(
+    def __call__(  # noqa: PLR0913
         self,
         state: LayerAnimState,
         target_pos: Vector2,
@@ -32,13 +32,13 @@ class BrushAnimator(Protocol):
 class PathGenerator(Protocol):
     """Protocol for path generation (DI)."""
 
-    def __call__(
+    def __call__(  # type: ignore[unused-ignore]
         self,
         target_position: Vector2,
         viewport_width: int,
         viewport_height: int,
         direction: str = "auto",
-        **kwargs,
+        **kwargs: Any,
     ) -> Any: ...
 
 
@@ -103,7 +103,7 @@ class AnimationController:
     def get_layer_state(self, layer_id: str) -> LayerAnimState | None:
         return self.layer_states.get(layer_id)
 
-    def update(self, action: Action | None, progress: float) -> None:
+    def update(self, action: Action | None, progress: float) -> None:  # noqa: PLR0912
         if not action:
             return
 
@@ -145,7 +145,7 @@ class AnimationController:
             # Generate path if not already set (Orchestration: inject tools)
             if not state.path and self._generate_drag_path:
                 state.path = self._generate_drag_path(
-                    action.target_position,
+                    action.target_position,  # type: ignore[arg-type]
                     self.viewport_width,
                     self.viewport_height,
                     direction=direction,
@@ -153,7 +153,7 @@ class AnimationController:
 
             self._animate_drag(
                 state,
-                action.target_position,
+                action.target_position,  # type: ignore[arg-type]
                 eased,
                 progress,
                 self.viewport_width,

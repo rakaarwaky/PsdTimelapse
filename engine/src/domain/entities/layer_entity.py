@@ -14,7 +14,7 @@ from ..value_objects.visual import BlendMode, Opacity
 
 if False:
     # Type checking only to avoid circular imports
-    from .asset_entity import AssetEntity
+    from .asset_entity import AssetEntity  # type: ignore[unreachable]
 
 __all__ = ["ActionHint", "BlendMode", "LayerEntity", "Opacity"]
 

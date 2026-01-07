@@ -1,14 +1,9 @@
-"""
-Zero-copy GPU encoder using PyNvVideoCodec.
-Wraps the encoder interactions to allow direct GPU buffer feeding.
-"""
-
 from __future__ import annotations
 
 from typing import Any
 
 try:
-    import PyNvVideoCodec as nvc
+    import PyNvVideoCodec as nvc  # type: ignore[import-not-found]  # noqa: N813
 
     HAS_NVCODEC = True
 except ImportError:
@@ -20,7 +15,7 @@ class ZeroCopyEncoder:
     Zero-copy GPU video encoder using NVIDIA Video Codec SDK.
     """
 
-    def __init__(
+    def __init__(  # noqa: PLR0913, PLR0912
         self,
         width: int,
         height: int,
@@ -28,7 +23,7 @@ class ZeroCopyEncoder:
         codec: str = "h264",
         bitrate: int = 8_000_000,
         gpu_id: int = 0,
-    ):
+    ) -> None:
         if not HAS_NVCODEC:
             raise ImportError("PyNvVideoCodec not installed")
 

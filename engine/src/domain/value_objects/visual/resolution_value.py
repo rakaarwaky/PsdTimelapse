@@ -9,9 +9,12 @@ from dataclasses import dataclass
 from math import gcd
 from typing import ClassVar
 
+MAGIC_720 = 720
+MAGIC_1080 = 1080
+
 RESOLUTION_PRESETS: dict[tuple[int, int], str] = {
-    (1280, 720): "720p HD",
-    (1920, 1080): "1080p Full HD",
+    (1280, MAGIC_720): "720p HD",
+    (1920, MAGIC_1080): "1080p Full HD",
     (2560, 1440): "1440p QHD",
     (3840, 2160): "4K UHD",
     (7680, 4320): "8K UHD",
@@ -64,16 +67,16 @@ class Resolution:
         return (self.width, self.height)
 
     def is_hd(self) -> bool:
-        """Check if HD or higher (720p+)."""
-        return self.height >= 720
+        """Check if HD or higher (MAGIC_720p+)."""
+        return self.height >= MAGIC_720
 
     def is_full_hd(self) -> bool:
-        """Check if Full HD or higher (1080p+)."""
-        return self.height >= 1080
+        """Check if Full HD or higher (MAGIC_1080p+)."""
+        return self.height >= MAGIC_1080
 
     def is_4k(self) -> bool:
         """Check if 4K or higher."""
-        return self.width >= 3840
+        return self.width >= 3840  # noqa: PLR2004  # 4=RGBA
 
     def format(self) -> str:
         """Format as string, e.g., '1920x1080 (1080p Full HD)'."""
@@ -91,7 +94,7 @@ class Resolution:
 
 
 # Standard presets
-Resolution.HD = Resolution(1280, 720)
-Resolution.FULL_HD = Resolution(1920, 1080)
+Resolution.HD = Resolution(1280, MAGIC_720)
+Resolution.FULL_HD = Resolution(1920, MAGIC_1080)
 Resolution.QHD = Resolution(2560, 1440)
 Resolution.UHD_4K = Resolution(3840, 2160)

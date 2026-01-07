@@ -6,7 +6,7 @@ Dependencies: Domain.Ports.NotificationPort
 import time
 from typing import Any
 
-from domain.ports.system.notification_port import (
+from domain.ports.system.notification_port import (  # type: ignore[import-not-found]
     DomainEvent,
     EventCallback,
     EventPayload,
@@ -14,7 +14,7 @@ from domain.ports.system.notification_port import (
 )
 
 
-class ConsoleNotificationAdapter(NotificationPort):
+class ConsoleNotificationAdapter(NotificationPort):  # type: ignore[misc]
     """
     Adapter that prints notifications to console and maintains subscriptions in memory.
     """
@@ -22,7 +22,7 @@ class ConsoleNotificationAdapter(NotificationPort):
     def __init__(self) -> None:
         self._subscribers: dict[DomainEvent, list[EventCallback]] = {}
 
-    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:
+    def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:  # type: ignore[assignment]
         """Publish event to all subscribers and print to console."""
         payload = EventPayload(event=event, data=data or {}, timestamp=time.time())
 

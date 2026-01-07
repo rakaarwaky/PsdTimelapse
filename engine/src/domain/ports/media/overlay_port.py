@@ -56,11 +56,11 @@ class OverlayPort(ABC):
 
     @abstractmethod
     def draw_selection_guides(
-        self, image: Any, rect: Rect, color: tuple[Any, ...] = (
-            0,
-            120,
-            255,
-            180), line_width: int = 2
+        self,
+        image: Any,
+        rect: Rect,
+        color: tuple[Any, ...] = (0, 120, 255, 180),
+        line_width: int = 2,
     ) -> Any:
         """
         Draw selection rectangle guides.
@@ -134,11 +134,11 @@ class NullOverlay(OverlayPort):
         return image
 
     def draw_selection_guides(
-        self, image: Any, rect: Rect, color: tuple[Any, ...] = (
-            0,
-            120,
-            255,
-            180), line_width: int = 2
+        self,
+        image: Any,
+        rect: Rect,
+        color: tuple[Any, ...] = (0, 120, 255, 180),
+        line_width: int = 2,
     ) -> Any:
         return image
 

@@ -8,8 +8,8 @@ Writes Image (Beauty) and Velocity passes to separate files.
 
 import os
 
-import cv2
-import numpy as np
+import cv2  # type: ignore[import-not-found]
+import numpy as np  # type: ignore[unused-ignore]
 from PIL import Image
 
 
@@ -17,6 +17,8 @@ class ExrRendererAdapter:
     """
     Adapter for writing OpenEXR files.
     """
+
+    RGBA_CHANNELS = 4
 
     def __init__(self) -> None:
         # Enable EXR support in OpenCV env
@@ -56,7 +58,8 @@ class ExrRendererAdapter:
         base_name = os.path.splitext(os.path.basename(output_path))[0]
         # Handle "frame_001" pattern if provided, else append number
         if "%d" in base_name or "{}" in base_name:
-            # Assume user handled formatting in path, not supported properly here without string format
+            # Assume user handled formatting in path, not supported properly here
+            # without string format
             # Simpler: Just append suffix
             pass
 
@@ -73,7 +76,7 @@ class ExrRendererAdapter:
         # 1. Write Beauty (RGBA)
         # Convert PIL (RGBA) -> NumPy (BGRA for OpenCV)
         beauty_np = np.array(beauty_image).astype(np.float32) / 255.0
-        if beauty_np.shape[2] == 4:
+        if beauty_np.shape[2] == self.RGBA_CHANNELS:
             beauty_bgra = cv2.cvtColor(beauty_np, cv2.COLOR_RGBA2BGRA)
         else:
             beauty_bgra = cv2.cvtColor(beauty_np, cv2.COLOR_RGB2BGR)
@@ -93,8 +96,8 @@ class ExrRendererAdapter:
         # NO, VelocityCompositor should produce Float Data.
 
         # Handling Float input if velocity_m is numpy array
-        if isinstance(velocity_map, np.ndarray):
-            vel_data = velocity_map
+        if isinstance(velocity_map, np.ndarray):  # type: ignore[unreachable]
+            vel_data = velocity_map  # type: ignore[unreachable]
         else:
             # Fallback (Low Precision)
             vel_data = np.array(velocity_map).astype(np.float32)

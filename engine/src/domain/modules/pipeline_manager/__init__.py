@@ -7,8 +7,8 @@ Central rendering pipeline coordination with strict type enforcement and validat
 
 from typing import TYPE_CHECKING
 
-from ...value_objects.configs import (
-    CompositeConfig,
+from ...value_objects.configs import (  # type: ignore[unused-ignore]
+    CompositorConfig,
     EngineProgress,
     EngineState,
     RenderConfig,
@@ -22,14 +22,15 @@ if TYPE_CHECKING:
 # ============================================================
 # Legacy / Internal Imports (for compatibility)
 # ============================================================
+from ...value_objects.pipeline.pipeline_state import PipelineProgress, PipelineState
 from .orchestrator.director_engine_module import DirectorEngine
 from .orchestrator.pipeline_manager_module import PipelineManager
-from .orchestrator.render_pipeline_module import PipelineProgress, PipelineState, RenderPipeline
+from .orchestrator.render_pipeline_module import RenderPipeline
 from .pipeline_orchestrator import PipelineOrchestrator, create_pipeline
 
 # Re-export configuration for public access
 __all__ = [
-    "CompositeConfig",
+    "CompositorConfig",
     "DirectorEngine",
     "EngineProgress",
     "EngineState",

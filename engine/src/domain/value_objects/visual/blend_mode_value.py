@@ -73,8 +73,9 @@ def _blend_exclusion(b: float, a: float) -> float:
     return _clamp(b + a - 2 * b * a)
 
 
-# Map modes to per-channel functions (simplification: mostly uniform across channels)
-# NOTE: Some modes like Color Dodge/Burn might need more complex logic, left as TODO/Default for now to match previous impl.
+# Map modes to per-channel functions.
+# NOTE: Some modes like Color Dodge/Burn might need more complex logic.
+# Left as TODO/Default for now to match previous impl.
 _BLEND_STRATEGIES: dict[BlendModeType, Callable[[float, float], float]] = {
     BlendModeType.NORMAL: _blend_normal,
     BlendModeType.MULTIPLY: _blend_multiply,

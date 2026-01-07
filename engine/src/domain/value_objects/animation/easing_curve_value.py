@@ -5,8 +5,23 @@ Part of animation category - timing and interpolation functions.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from enum import Enum
+
+# Auto-extracted constants
+# Auto-extracted constants
+MAGIC_2_0 = 2.0
+HALF = 0.5
+MAGIC_0_2 = 0.2
+HIGH_THRESHOLD = 0.8
+MAGIC_0_7 = 0.7
+MAGIC_0_35 = 0.35
+MAGIC_0_55 = 0.55
+MAGIC_0_45 = 0.45
+MAGIC_0_65 = 0.65
+MAGIC_0_12 = 0.12
+HIGH_THRESHOLD8 = 0.88
 
 
 class EasingType(Enum):
@@ -45,99 +60,110 @@ class EasingCurve:
     overshoot: float = 0.0
 
     def __post_init__(self) -> None:
-        if not -2.0 <= self.overshoot <= 2.0:
-            raise ValueError(f"Overshoot must be -2.0 to 2.0: {self.overshoot}")
+        if not -MAGIC_2_0 <= self.overshoot <= MAGIC_2_0:
+            raise ValueError(f"Overshoot must be -MAGIC_2_0 to MAGIC_2_0: {self.overshoot}")
 
     def apply(self, t: float) -> float:
         """Apply easing to normalized time (0.0-1.0)."""
         t = max(0.0, min(1.0, t))
 
-        if self.easing_type == EasingType.LINEAR:
-            return t
-        elif self.easing_type == EasingType.EASE_IN:
-            return t * t
-        elif self.easing_type == EasingType.EASE_OUT:
-            return 1.0 - (1.0 - t) ** 2
-        elif self.easing_type == EasingType.EASE_IN_OUT:
-            if t < 0.5:
-                return 2.0 * t * t
-            else:
-                return 1.0 - (-2.0 * t + 2.0) ** 2 / 2.0
-        elif self.easing_type == EasingType.EASE_IN_CUBIC:
-            return t * t * t
-        elif self.easing_type == EasingType.EASE_OUT_CUBIC:
-            return 1.0 - pow(1.0 - t, 3)
-        elif self.easing_type == EasingType.EASE_OUT_EXPO:
-            return 1.0 if t == 1.0 else 1.0 - pow(2.0, -10.0 * t)
-        elif self.easing_type == EasingType.EASE_OUT_BACK:
-            c1 = 1.70158 + self.overshoot
-            c3 = c1 + 1.0
-            return 1.0 + c3 * pow(t - 1.0, 3) + c1 * pow(t - 1.0, 2)
-        elif self.easing_type == EasingType.EASE_OUT_ELASTIC:
-            if t == 0.0 or t == 1.0:
-                return t
-            import math
+        # Dynamic dispatch based on easing type name
+        method_name = f"_apply_{self.easing_type.value}"
+        method = getattr(self, method_name, self._apply_linear)
+        return method(t)
 
-            p = 0.3
-            return pow(2.0, -10.0 * t) * math.sin((t - p / 4.0) * (2.0 * math.pi) / p) + 1.0
-
-        # Trending 2024-2025
-        elif self.easing_type == EasingType.SPEED_RAMP:
-            intensity = 2.0 + self.overshoot
-            return 1.0 - abs(2 * t - 1) ** intensity
-        elif self.easing_type == EasingType.WHIP_PAN:
-            if t < 0.2:
-                return t / 0.2 * 0.1
-            elif t < 0.8:
-                return 0.1 + (t - 0.2) / 0.6 * 0.8
-            else:
-                return 0.9 + (t - 0.8) / 0.2 * 0.1
-        elif self.easing_type == EasingType.BOUNCE:
-            import math
-
-            if t < 0.7:
-                return t / 0.7
-            else:
-                bt = (t - 0.7) / 0.3
-                return 1.0 + 0.15 * math.sin(bt * math.pi * 2) * (1 - bt)
-        elif self.easing_type == EasingType.ELASTIC_SNAP:
-            import math
-
-            if t >= 1.0:
-                return 1.0
-            return 1.0 - pow(2, -10 * t) * math.cos(t * math.pi * 4)
-        elif self.easing_type == EasingType.GRAVITY_FALL:
-            return t**2.5
-        elif self.easing_type == EasingType.EXPO_BURST:
-            if t < 0.7:
-                return (t / 0.7) ** 4 * 0.3
-            else:
-                return 0.3 + (t - 0.7) / 0.3 * 0.7
-        elif self.easing_type == EasingType.CINEMATIC_RAMP:
-            if t < 0.35:
-                return pow(t / 0.35, 0.5) * 0.3
-            elif t < 0.55:
-                return 0.3 + (t - 0.35) / 0.2 * 0.2
-            else:
-                return 0.5 + pow((t - 0.55) / 0.45, 1.5) * 0.5
-        elif self.easing_type == EasingType.REVERSE_RAMP:
-            return abs(2 * t - 1) ** 0.5 * (1 if t >= 0.5 else -1) * 0.5 + 0.5
-        elif self.easing_type == EasingType.STUTTER:
-            steps = 6
-            return int(t * steps) / steps
-        elif self.easing_type == EasingType.SMOOTH_OVERSHOOT:
-            amount = 0.2 + self.overshoot * 0.3
-            if t < 0.65:
-                return pow(t / 0.65, 0.7) * (1 + amount)
-            else:
-                return (1 + amount) - amount * ((t - 0.65) / 0.35)
-        elif self.easing_type == EasingType.ANTICIPATION:
-            if t < 0.12:
-                return -0.08 * (t / 0.12)
-            else:
-                return -0.08 + pow((t - 0.12) / 0.88, 0.8) * 1.08
-
+    def _apply_linear(self, t: float) -> float:
         return t
+
+    def _apply_ease_in(self, t: float) -> float:
+        return t * t
+
+    def _apply_ease_out(self, t: float) -> float:
+        return 1.0 - (1.0 - t) ** 2
+
+    def _apply_ease_in_out(self, t: float) -> float:
+        if t < HALF:
+            return MAGIC_2_0 * t * t
+        return 1.0 - (-MAGIC_2_0 * t + MAGIC_2_0) ** 2 / MAGIC_2_0
+
+    def _apply_ease_in_cubic(self, t: float) -> float:
+        return t * t * t
+
+    def _apply_ease_out_cubic(self, t: float) -> float:
+        return 1.0 - (1.0 - t) ** 3
+
+    def _apply_ease_out_expo(self, t: float) -> float:
+        return 1.0 if t == 1.0 else 1.0 - MAGIC_2_0 ** (-10.0 * t)
+
+    def _apply_ease_out_back(self, t: float) -> float:
+        c1 = 1.70158 + self.overshoot
+        c3 = c1 + 1.0
+        return 1.0 + c3 * (t - 1.0) ** 3 + c1 * (t - 1.0) ** 2
+
+    def _apply_ease_out_elastic(self, t: float) -> float:
+        if t in {0.0, 1.0}:
+            return t
+
+        p = 0.3
+        return float(
+            MAGIC_2_0 ** (-10.0 * t) * math.sin((t - p / 4.0) * (MAGIC_2_0 * math.pi) / p) + 1.0
+        )
+
+    def _apply_speed_ramp(self, t: float) -> float:
+        intensity = MAGIC_2_0 + self.overshoot
+        return float(1.0 - abs(2 * t - 1) ** intensity)
+
+    def _apply_whip_pan(self, t: float) -> float:
+        if t < MAGIC_0_2:
+            return float(t / MAGIC_0_2 * 0.1)
+        elif t < HIGH_THRESHOLD:
+            return float(0.1 + (t - MAGIC_0_2) / 0.6 * HIGH_THRESHOLD)
+        return float(0.9 + (t - HIGH_THRESHOLD) / MAGIC_0_2 * 0.1)
+
+    def _apply_bounce(self, t: float) -> float:
+        if t < MAGIC_0_7:
+            return float(t / MAGIC_0_7)
+        bt = (t - MAGIC_0_7) / 0.3
+        return float(1.0 + 0.15 * math.sin(bt * math.pi * 2) * (1 - bt))
+
+    def _apply_elastic_snap(self, t: float) -> float:
+        if t >= 1.0:
+            return 1.0
+        return float(1.0 - 2 ** (-10 * t) * math.cos(t * math.pi * 4))
+
+    def _apply_gravity_fall(self, t: float) -> float:
+        return float(t**2.5)
+
+    def _apply_expo_burst(self, t: float) -> float:
+        if t < MAGIC_0_7:
+            return float((t / MAGIC_0_7) ** 4 * 0.3)
+        return float(0.3 + (t - MAGIC_0_7) / 0.3 * MAGIC_0_7)
+
+    def _apply_cinematic_ramp(self, t: float) -> float:
+        threshold_mid = 0.55
+        if t < MAGIC_0_35:
+            return float((t / MAGIC_0_35) ** HALF * 0.3)
+        elif t < threshold_mid:
+            return float(0.3 + (t - MAGIC_0_35) / MAGIC_0_2 * MAGIC_0_2)
+        return float(0.5 + ((t - threshold_mid) / 0.45) ** 1.5 * 0.5)
+
+    def _apply_reverse_ramp(self, t: float) -> float:
+        return float(abs(2 * t - 1) ** HALF * (1 if t >= HALF else -1) * HALF + HALF)
+
+    def _apply_stutter(self, t: float) -> float:
+        steps = 6
+        return float(int(t * steps) / steps)
+
+    def _apply_smooth_overshoot(self, t: float) -> float:
+        amount = MAGIC_0_2 + self.overshoot * 0.3
+        if t < MAGIC_0_65:
+            return float((t / MAGIC_0_65) ** MAGIC_0_7 * (1 + amount))
+        return float((1 + amount) - amount * ((t - MAGIC_0_65) / MAGIC_0_35))
+
+    def _apply_anticipation(self, t: float) -> float:
+        if t < MAGIC_0_12:
+            return float(-0.08 * (t / MAGIC_0_12))
+        return float(-0.08 + ((t - MAGIC_0_12) / HIGH_THRESHOLD8) ** HIGH_THRESHOLD * 1.08)
 
     def interpolate(self, start: float, end: float, t: float) -> float:
         """Interpolate between start and end values using this easing."""
@@ -146,11 +172,11 @@ class EasingCurve:
 
 
 # Presets
-EasingCurve.LINEAR = EasingCurve(EasingType.LINEAR)
-EasingCurve.EASE_IN = EasingCurve(EasingType.EASE_IN)
-EasingCurve.EASE_OUT = EasingCurve(EasingType.EASE_OUT)
-EasingCurve.EASE_IN_OUT = EasingCurve(EasingType.EASE_IN_OUT)
-EasingCurve.EASE_IN_CUBIC = EasingCurve(EasingType.EASE_IN_CUBIC)
-EasingCurve.EASE_OUT_CUBIC = EasingCurve(EasingType.EASE_OUT_CUBIC)
-EasingCurve.EASE_OUT_EXPO = EasingCurve(EasingType.EASE_OUT_EXPO)
-EasingCurve.EASE_OUT_BACK = EasingCurve(EasingType.EASE_OUT_BACK, overshoot=0.3)
+EasingCurve.LINEAR = EasingCurve(EasingType.LINEAR)  # type: ignore[attr-defined]
+EasingCurve.EASE_IN = EasingCurve(EasingType.EASE_IN)  # type: ignore[attr-defined]
+EasingCurve.EASE_OUT = EasingCurve(EasingType.EASE_OUT)  # type: ignore[attr-defined]
+EasingCurve.EASE_IN_OUT = EasingCurve(EasingType.EASE_IN_OUT)  # type: ignore[attr-defined]
+EasingCurve.EASE_IN_CUBIC = EasingCurve(EasingType.EASE_IN_CUBIC)  # type: ignore[attr-defined]
+EasingCurve.EASE_OUT_CUBIC = EasingCurve(EasingType.EASE_OUT_CUBIC)  # type: ignore[attr-defined]
+EasingCurve.EASE_OUT_EXPO = EasingCurve(EasingType.EASE_OUT_EXPO)  # type: ignore[attr-defined]
+EasingCurve.EASE_OUT_BACK = EasingCurve(EasingType.EASE_OUT_BACK, overshoot=0.3)  # type: ignore[attr-defined]

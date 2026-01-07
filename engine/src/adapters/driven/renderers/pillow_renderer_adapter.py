@@ -7,13 +7,13 @@ from __future__ import annotations
 
 from typing import Any
 
-from domain.entities.camera_entity import CameraEntity
-from domain.entities.layer_entity import LayerEntity
-from domain.entities.viewport_entity import ViewportEntity
-from domain.entities.world_entity import WorldEntity
-from domain.modules.layout_manager import CoordinateMapper
-from domain.ports.render.renderer_port import RendererPort
-from domain.value_objects.geometry.vector_value import Vector2
+from domain.entities.camera_entity import CameraEntity  # type: ignore[import-not-found]
+from domain.entities.layer_entity import LayerEntity  # type: ignore[import-not-found]
+from domain.entities.viewport_entity import ViewportEntity  # type: ignore[import-not-found]
+from domain.entities.world_entity import WorldEntity  # type: ignore[import-not-found]
+from domain.modules.layout_manager import CoordinateMapper  # type: ignore[import-not-found]
+from domain.ports.render.renderer_port import RendererPort  # type: ignore[import-not-found]
+from domain.value_objects.geometry.vector_value import Vector2  # type: ignore[import-not-found]
 
 try:
     from PIL import Image, ImageDraw
@@ -21,10 +21,10 @@ try:
     HAS_PILLOW = True
 except ImportError:
     HAS_PILLOW = False
-    Image = None
+    Image = None  # type: ignore[assignment]
 
 
-class PillowRenderer(RendererPort):
+class PillowRenderer(RendererPort):  # type: ignore[misc]
     """
     Adapter for rendering frames using Pillow (PIL) library.
 

@@ -30,7 +30,15 @@ Internal (DO NOT IMPORT DIRECTLY):
 
 from __future__ import annotations
 
-from ...value_objects.compositor import CursorStyle
+# ============================================================
+# Backward Compatible Re-exports
+# ============================================================
+from ...value_objects.compositor import (
+    CachedLayer,
+    CompositeFrame,
+    CompositeLayer,
+    CursorStyle,
+)
 
 # ============================================================
 # Core Exports (Extracted)
@@ -44,19 +52,10 @@ from .compositor_orchestrator import (
 from .ops.blur_module import apply_motion_blur
 from .ops.composite_module import safe_paste
 from .ops.opacity_module import apply_opacity
-
-# ============================================================
-# Backward Compatible Re-exports
-# ============================================================
 from .orchestrators.compositor_module import FrameCompositor
-from .orchestrators.layer_compositor_module import (
-    CompositeFrame,
-    CompositeLayer,
-    MultiLayerCompositor,
-    RenderLayer,
-)
+from .orchestrators.layer_compositor_module import MultiLayerCompositor
 from .services.cursor_render_service import CursorRenderService
-from .services.layer_cache_module import CachedLayer, LayerCache
+from .services.layer_cache_module import LayerCache
 from .services.layer_service import LayerRetrievalService
 
 # Alias following naming convention
@@ -69,30 +68,22 @@ LayerCompositorModule = MultiLayerCompositor
 # ============================================================
 
 __all__ = [
-    # Configuration
+    "CachedLayer",
+    "CompositeFrame",
+    "CompositeLayer",
     "CompositorConfig",
-    # Orchestrator
+    "CompositorModule",
     "CompositorOrchestrator",
-    # Factory Functions
+    "CursorRenderService",
+    "CursorStyle",
+    "FrameCompositor",
+    "LayerCache",
+    "LayerCompositorModule",
+    "LayerRetrievalService",
+    "MultiLayerCompositor",
+    "apply_motion_blur",
+    "apply_opacity",
     "create_compositor",
     "create_frame_compositor",
-    # Compositor Core (backward compatible)
-    "CompositorModule",
-    "FrameCompositor",
-    "CursorStyle",
-    # Layer Compositor
-    "LayerCompositorModule",
-    "MultiLayerCompositor",
-    "CompositeLayer",
-    "RenderLayer",  # Backward compatibility alias
-    "CompositeFrame",
-    # Layer Cache
-    "LayerCache",
-    "CachedLayer",
-    # Ops & Services
-    "LayerRetrievalService",
-    "CursorRenderService",
-    "apply_opacity",
-    "apply_motion_blur",
     "safe_paste",
 ]

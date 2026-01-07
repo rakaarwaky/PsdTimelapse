@@ -14,26 +14,26 @@ SRC_ROOT = os.path.join(PROJECT_ROOT, 'src')
 if SRC_ROOT not in sys.path:
     sys.path.append(SRC_ROOT)
 
-from domain.entities.world_entity import WorldEntity, SceneEntity
-from domain.entities.layer_entity import LayerEntity
-from domain.entities.viewport_entity import ViewportEntity
-from domain.value_objects.geometry.vector_value import Vector2
-from domain.value_objects.geometry.rect_value import Rect
-from domain.modules.script_director import TimelineEntity as Timeline, Action, ActionType
-from domain.modules.animator import AnimationController
+from domain.entities.world_entity import WorldEntity, SceneEntity  # noqa: E402
+from domain.entities.layer_entity import LayerEntity  # noqa: E402
+from domain.entities.viewport_entity import ViewportEntity  # noqa: E402
+from domain.value_objects.geometry.vector_value import Vector2  # noqa: E402
+from domain.value_objects.geometry.rect_value import Rect  # noqa: E402
+from domain.modules.script_director import TimelineEntity as Timeline, Action, ActionType  # noqa: E402
+from domain.modules.animator import AnimationController  # noqa: E402
 
-from domain.modules.compositor import FrameCompositor
-from domain.modules.compositor import LayerRetrievalService
+from domain.modules.compositor import FrameCompositor  # noqa: E402
+from domain.modules.compositor import LayerRetrievalService  # noqa: E402
 
-from PIL import Image, ImageDraw
-import cv2
-import numpy as np
+from PIL import Image, ImageDraw  # noqa: E402
+import cv2  # noqa: E402
+import numpy as np  # noqa: E402
 
 # Shared Fixtures
-from domain.modules.pipeline_manager.scenario.fixtures.mock_layer_factory import MockGrid
-from domain.modules.pipeline_manager.scenario.fixtures.mock_renderer_factory import MockRenderer
-from domain.modules.pipeline_manager.scenario.fixtures.video_output_helper import VideoTestHelper
-from domain.value_objects.resource.media_output_path_value import MediaOutputPath
+from domain.modules.pipeline_manager.scenario.fixtures.mock_layer_factory import MockGrid  # noqa: E402
+from domain.modules.pipeline_manager.scenario.fixtures.mock_renderer_factory import MockRenderer  # noqa: E402
+from domain.modules.pipeline_manager.scenario.fixtures.video_output_helper import VideoTestHelper  # noqa: E402
+from domain.value_objects.resource.media_output_path_value import MediaOutputPath  # noqa: E402
 
 
 class TestBrushMultiObject(unittest.TestCase):

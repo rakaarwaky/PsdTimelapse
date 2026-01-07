@@ -71,4 +71,4 @@ class TimeRange:
         return (time - self.start) / self.duration
 
 
-TimeRange.ZERO = TimeRange(0.0, 0.0)
+TimeRange.ZERO = TimeRange(0.0, 0.0)  # type: ignore[attr-defined]

@@ -19,22 +19,17 @@ from .transform2d_value import Transform2D
 from .vector_value import DOWN, LEFT, ONE, RIGHT, UP, ZERO, Vector2, vec2
 
 __all__ = [
-    # Vector
-    "Vector2",
-    "vec2",
-    "ZERO",
-    "ONE",
-    "UP",
     "DOWN",
     "LEFT",
+    "ONE",
     "RIGHT",
-    # Rect
-    "Rect",
-    "rect",
-    # Dimensions
+    "UP",
+    "ZERO",
     "Dimensions",
-    # Scale
+    "Rect",
     "Scale",
-    # Transform
     "Transform2D",
+    "Vector2",
+    "rect",
+    "vec2",
 ]

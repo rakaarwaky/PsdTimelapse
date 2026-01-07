@@ -4,7 +4,7 @@ Converts Float32 RGBA to NV12/RGB Uint8 in-place on GPU.
 Fully vectorized to avoid JIT compilation dependency.
 """
 
-import cupy as cp
+import cupy as cp  # type: ignore[import-not-found]
 
 
 class CupyColorConverter:
@@ -50,7 +50,7 @@ class CupyColorConverter:
         """
         self.kernel = cp.RawKernel(self.kernel_code, "rgba_to_nv12")
 
-    def convert(self, rgba_ptr, width, height, output_buffer=None):
+    def convert(self, rgba_ptr, width, height, output_buffer=None):  # type: ignore[no-untyped-def]
         """
         Convert RGBA (Float32) pointer to NV12 (Uint8) CuPy Array using RawKernel.
         """

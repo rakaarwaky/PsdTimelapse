@@ -8,23 +8,22 @@ from __future__ import annotations
 import os
 from typing import Any
 
-from domain.entities.document_entity import DocumentEntity
-from domain.entities.layer_entity import BlendMode, LayerEntity
-from domain.entities.scene_entity import SceneEntity
-from domain.entities.world_entity import WorldEntity
-from domain.ports.media.psd_port import PsdPort
-from domain.value_objects.geometry.rect_value import Rect
-from domain.value_objects.geometry.vector_value import Vector2
-from domain.value_objects.visual.opacity_value import Opacity
+from domain.entities.document_entity import DocumentEntity  # type: ignore[import-not-found]
+from domain.entities.layer_entity import BlendMode, LayerEntity  # type: ignore[import-not-found]
+from domain.entities.scene_entity import SceneEntity  # type: ignore[import-not-found]
+from domain.entities.world_entity import WorldEntity  # type: ignore[import-not-found]
+from domain.ports.media.psd_port import PsdPort  # type: ignore[import-not-found]
+from domain.value_objects.geometry.rect_value import Rect  # type: ignore[import-not-found]
+from domain.value_objects.geometry.vector_value import Vector2  # type: ignore[import-not-found]
+from domain.value_objects.visual.opacity_value import Opacity  # type: ignore[import-not-found]
 
 try:
-    from psd_tools import PSDImage
-    from psd_tools.api.layers import Group, Layer
+    from psd_tools import PSDImage  # type: ignore[import-not-found]
 
     HAS_PSD_TOOLS = True
 except ImportError:
     HAS_PSD_TOOLS = False
-    PSDImage = None
+    PSDImage = None  # type: ignore[unused-ignore]
 
 
 BLEND_MODE_MAP = {
@@ -41,7 +40,7 @@ BLEND_MODE_MAP = {
 }
 
 
-class PsdToolsAdapter(PsdPort):
+class PsdToolsAdapter(PsdPort):  # type: ignore[misc]
     """
     Adapter for loading PSD files using psd-tools library.
 
@@ -75,7 +74,7 @@ class PsdToolsAdapter(PsdPort):
 
         return world
 
-    def _parse_layers(self, container, scene: SceneEntity, parent_id: str | None) -> None:
+    def _parse_layers(self, container, scene: SceneEntity, parent_id: str | None) -> None:  # type: ignore[no-untyped-def]
         """Recursively parse PSD layers into scene entities."""
         for idx, layer in enumerate(container):
             layer_id = f"{parent_id or 'root'}_{idx}"

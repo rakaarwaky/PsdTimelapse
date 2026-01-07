@@ -25,8 +25,8 @@ class CameraLike(Protocol):
 class ViewportLike(Protocol):
     """Protocol for viewport-like objects (duck typing)."""
 
-    output_width: float
-    output_height: float
+    output_width: int
+    output_height: int
 
 
 @dataclass
@@ -129,4 +129,4 @@ class CoordinateMapper:
         """
         Get the world-space rectangle currently visible.
         """
-        return self.camera.get_visible_rect(self.viewport.output_width, self.viewport.output_height)
+        return self.camera.get_visible_rect(self.viewport.output_width, self.viewport.output_height)  # type: ignore[no-any-return]

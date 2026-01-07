@@ -1,12 +1,14 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any, Protocol
+
 try:
     from PIL import Image as PILImage
     from PIL import ImageDraw as PILImageDraw
 except ImportError:
     PILImage: Any = None  # type: ignore
     PILImageDraw: Any = None  # type: ignore
-
-from dataclasses import dataclass
-from typing import Any, Protocol
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.layer_anim_state import LayerAnimState
@@ -128,69 +130,69 @@ def _apply_mask_to_image(
     return image
 
 
-def render_layer_to_image(
-    layer_img: Any,
-    layer: LayerEntity,
-    state: LayerAnimState | None,
-    canvas_width: int,
-    canvas_height: int,
-    cumulative_masks: dict[str, Any],
-    image_processor: Any = None,
-) -> Any:
+@dataclass
+class LayerRenderContext:
+    """Dataclass to encapsulate render arguments and reduce complexity."""
+
+    layer_img: Any
+    layer: LayerEntity
+    state: LayerAnimState | None
+    canvas_size: tuple[int, int]
+    cumulative_masks: dict[str, Any]
+    image_processor: Any = None
+
+
+def render_layer_to_image(ctx: LayerRenderContext) -> Any:
     """
     Renders the layer onto a canvas and returns image.
-
-    Refactored with RenderContext for cleanliness.
+    Refactored to use LayerRenderContext.
     """
-    processor = _get_processor(image_processor)
-    canvas = processor.new("RGBA", (canvas_width, canvas_height), (0, 0, 0, 0))
+    processor = _get_processor(ctx.image_processor)
+    canvas = processor.new("RGBA", ctx.canvas_size, (0, 0, 0, 0))
 
-    if not layer_img:
+    if not ctx.layer_img:
         return canvas
 
-    is_visible = state.visible if state else True
+    is_visible = ctx.state.visible if ctx.state else True
     if not is_visible:
         return canvas
 
     # Determine render properties
-    pos_x = state.position.x if state else layer.position.x
-    pos_y = state.position.y if state else layer.position.y
-    opacity = state.opacity if state else layer.opacity.value
+    pos_x = ctx.state.position.x if ctx.state else ctx.layer.position.x
+    pos_y = ctx.state.position.y if ctx.state else ctx.layer.position.y
+    opacity = ctx.state.opacity if ctx.state else ctx.layer.opacity.value
 
-    # Prepare Context
-    ctx = RenderContext(
+    # Prepare Internal Context
+    internal_ctx = RenderContext(
         processor=processor,
-        cumulative_masks=cumulative_masks,
-        layer_id=layer.id,
-        canvas_size=(canvas_width, canvas_height),
+        cumulative_masks=ctx.cumulative_masks,
+        layer_id=ctx.layer.id,
+        canvas_size=ctx.canvas_size,
     )
 
     # Process Base Image
-    processed_img = layer_img.convert("RGBA")
+    processed_img = ctx.layer_img.convert("RGBA")
 
-    # Handle Reveal State (The most complex part)
-    if state and state.reveal_progress < 1.0:
-        # UPDATE MASKS PHASE
-        if state.brush_size > 0:
-            _create_brush_mask(ctx, processed_img.size, state)
+    # Handle Reveal State
+    if ctx.state and ctx.state.reveal_progress < 1.0:
+        if ctx.state.brush_size > 0:
+            _create_brush_mask(internal_ctx, processed_img.size, ctx.state)
 
-        # APPLY MASKS PHASE
-        x = int(pos_x - layer.bounds.width / 2)
-        y = int(pos_y - layer.bounds.height / 2)
+        x = int(pos_x - ctx.layer.bounds.width / 2)
+        y = int(pos_y - ctx.layer.bounds.height / 2)
 
-        processed_img = _apply_mask_to_image(ctx, processed_img, state, (x, y))
+        processed_img = _apply_mask_to_image(internal_ctx, processed_img, ctx.state, (x, y))
     else:
-        # Standard positioning
-        x = int(pos_x - layer.bounds.width / 2)
-        y = int(pos_y - layer.bounds.height / 2)
+        x = int(pos_x - ctx.layer.bounds.width / 2)
+        y = int(pos_y - ctx.layer.bounds.height / 2)
 
-    # 4. Apply Opacity (Global)
+    # Apply Opacity
     if opacity != 1.0:
         alpha = processed_img.split()[3]
         alpha = alpha.point(lambda p: int(p * opacity))
         processed_img.putalpha(alpha)
 
-    # 5. Composite
+    # Composite
     canvas.paste(processed_img, (x, y), processed_img)
 
     return canvas

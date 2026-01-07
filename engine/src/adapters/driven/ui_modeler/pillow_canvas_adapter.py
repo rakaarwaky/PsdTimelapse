@@ -26,7 +26,7 @@ class CanvasRenderer(BaseRenderer):
         right = VIDEO_WIDTH - RIGHT_TOOLBAR_WIDTH
         bottom = VIDEO_HEIGHT - LAYERS_PANEL_HEIGHT
 
-        draw.rectangle([left, top, right, bottom], fill=PSColors.CANVAS)
+        draw.rectangle([left, top, right, bottom], fill=PSColors.CANVAS)  # type: ignore[arg-type]
 
     def place_content(self, frame: Image.Image, content: Image.Image) -> None:
         """Center and scale the PSD content within the canvas area."""

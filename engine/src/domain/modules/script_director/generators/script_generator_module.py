@@ -9,7 +9,7 @@ This allows the animation plan to be saved, versioned, and executed by other mod
 from ....entities.timeline_entity import TimelineEntity
 
 
-def generate_python_script(timeline: TimelineEntity, output_path: str = None) -> str:
+def generate_python_script(timeline: TimelineEntity, output_path: str | None = None) -> str:
     """
     Generate a Python script string from a Timeline object.
 

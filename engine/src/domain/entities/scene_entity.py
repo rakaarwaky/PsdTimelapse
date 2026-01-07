@@ -37,7 +37,7 @@ class SceneEntity:
     def find_by_name(self, name: str) -> LayerEntity | None:
         """Find first layer matching the given name."""
         for layer in self._layer_map.values():
-            if layer.name == name or layer.clean_name == name:
+            if name in (layer.name, layer.clean_name):
                 return layer
         return None
 

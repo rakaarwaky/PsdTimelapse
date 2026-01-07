@@ -8,10 +8,10 @@ from __future__ import annotations
 import os
 from typing import Any
 
-import numpy as np
+import numpy as np  # type: ignore[unused-ignore]
 
 try:
-    from moviepy import ImageSequenceClip
+    from moviepy import ImageSequenceClip  # type: ignore[import-untyped]
 
     HAS_MOVIEPY = True
 except ImportError:
@@ -24,14 +24,14 @@ try:
 except ImportError:
     HAS_PILLOW = False
 
-from domain.entities.viewport_entity import ViewportEntity
-from domain.ports.media.video_port import VideoPort
+from domain.entities.viewport_entity import ViewportEntity  # type: ignore[import-not-found]
+from domain.ports.media.video_port import VideoPort  # type: ignore[import-not-found]
 
 from .layer_compositor_service import composite_frame_naive, prepare_layer_compositing
 from .nvenc_detector import check_nvenc_available
 
 
-class MoviePyAdapter(VideoPort):
+class MoviePyAdapter(VideoPort):  # type: ignore[misc]
     """
     Adapter for video encoding using MoviePy library.
     Accumulates frames and exports to MP4 format.
@@ -98,7 +98,7 @@ class MoviePyAdapter(VideoPort):
         clip.write_videofile(self._output_path, codec=self._codec, audio=False)
         clip.close()
         self._is_recording = False
-        return self._output_path
+        return self._output_path  # type: ignore[return-value]
 
     def cancel(self) -> None:
         """Cancel recording and clean up resources."""
@@ -120,7 +120,7 @@ class MoviePyAdapter(VideoPort):
         estimated_size = 0
         if self._frames:
             frame_bytes = self._frames[0].nbytes
-            estimated_size = (frame_bytes * len(self._frames) * 0.1) / (1024 * 1024)
+            estimated_size = (frame_bytes * len(self._frames) * 0.1) / (1024 * 1024)  # type: ignore[assignment]
 
         return {
             "frame_count": self.frame_count,

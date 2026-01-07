@@ -4,14 +4,14 @@ Python-Live: Simple Python Dependency Visualizer
 Usage: python tools/dependency_viewer.py [path/to/file.py]
 Opens interactive HTML graph in browser showing file connections.
 """
-import re
-import os
-import sys
+
 import json
+import re
+import sys
 import webbrowser
-from pathlib import Path
 from dataclasses import dataclass
-from typing import Set, Dict, List
+from pathlib import Path
+from typing import Dict, List, Set
 
 
 @dataclass
@@ -25,44 +25,44 @@ def parse_imports(file_path: Path) -> List[str]:
     """Extract import statements from a Python file."""
     imports = []
     try:
-        content = file_path.read_text(encoding='utf-8')
+        content = file_path.read_text(encoding="utf-8")
     except Exception:
         return imports
-    
+
     # Pattern: from x.y.z import ...
-    from_pattern = r'^from\s+([\w.]+)\s+import'
+    from_pattern = r"^from\s+([\w.]+)\s+import"
     # Pattern: import x.y.z
-    import_pattern = r'^import\s+([\w.]+)'
-    
-    for line in content.split('\n'):
+    import_pattern = r"^import\s+([\w.]+)"
+
+    for line in content.split("\n"):
         line = line.strip()
-        if line.startswith('#'):
+        if line.startswith("#"):
             continue
-            
+
         match = re.match(from_pattern, line)
         if match:
             imports.append(match.group(1))
             continue
-            
+
         match = re.match(import_pattern, line)
         if match:
             imports.append(match.group(1))
-    
+
     return imports
 
 
 def resolve_module_to_file(module: str, project_root: Path) -> Path | None:
     """Convert module path (Domain.modules.X) to file path."""
     # Try src/ prefix first
-    rel_path = module.replace('.', '/')
-    
+    rel_path = module.replace(".", "/")
+
     candidates = [
-        project_root / 'src' / f'{rel_path}.py',
-        project_root / 'src' / rel_path / '__init__.py',
-        project_root / f'{rel_path}.py',
-        project_root / rel_path / '__init__.py',
+        project_root / "src" / f"{rel_path}.py",
+        project_root / "src" / rel_path / "__init__.py",
+        project_root / f"{rel_path}.py",
+        project_root / rel_path / "__init__.py",
     ]
-    
+
     for candidate in candidates:
         if candidate.exists():
             return candidate
@@ -72,63 +72,54 @@ def resolve_module_to_file(module: str, project_root: Path) -> Path | None:
 def find_project_root(start_path: Path) -> Path:
     """Find project root by looking for markers."""
     current = start_path if start_path.is_dir() else start_path.parent
-    
+
     while current != current.parent:
-        markers = ['pyproject.toml', 'setup.py', 'requirements.txt', '.git']
+        markers = ["pyproject.toml", "setup.py", "requirements.txt", ".git"]
         if any((current / m).exists() for m in markers):
             return current
         current = current.parent
-    
+
     return start_path.parent
 
 
 def build_dependency_graph(start_file: Path, max_depth: int = 3) -> Dict:
     """Build dependency graph starting from a file."""
     project_root = find_project_root(start_file)
-    
+
     nodes: Dict[str, FileNode] = {}
     edges: List[Dict] = []
     visited: Set[str] = set()
-    
+
     def process_file(file_path: Path, depth: int):
         if depth > max_depth:
             return
-        
+
         rel_path = str(file_path.relative_to(project_root))
         if rel_path in visited:
             return
         visited.add(rel_path)
-        
+
         imports = parse_imports(file_path)
-        node = FileNode(
-            path=rel_path,
-            name=file_path.stem,
-            imports=imports
-        )
+        node = FileNode(path=rel_path, name=file_path.stem, imports=imports)
         nodes[rel_path] = node
-        
+
         for imp in imports:
             target = resolve_module_to_file(imp, project_root)
             if target and target.exists():
                 target_rel = str(target.relative_to(project_root))
-                edges.append({
-                    'source': rel_path,
-                    'target': target_rel,
-                    'module': imp
-                })
+                edges.append({"source": rel_path, "target": target_rel, "module": imp})
                 process_file(target, depth + 1)
-    
+
     process_file(start_file, 0)
-    
+
     return {
-        'nodes': [{'id': k, 'name': v.name, 'imports': len(v.imports)} 
-                  for k, v in nodes.items()],
-        'edges': edges,
-        'root': str(start_file.relative_to(project_root))
+        "nodes": [{"id": k, "name": v.name, "imports": len(v.imports)} for k, v in nodes.items()],
+        "edges": edges,
+        "root": str(start_file.relative_to(project_root)),
     }
 
 
-HTML_TEMPLATE = '''<!DOCTYPE html>
+HTML_TEMPLATE = """<!DOCTYPE html>
 <html>
 <head>
     <title>Python-Live: {filename}</title>
@@ -218,7 +209,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         }}
     </script>
 </body>
-</html>'''
+</html>"""
 
 
 def main():
@@ -226,30 +217,28 @@ def main():
         print("Usage: python dependency_viewer.py <path/to/file.py>")
         print("Example: python tools/dependency_viewer.py src/Domain/core/engine.py")
         sys.exit(1)
-    
+
     file_path = Path(sys.argv[1]).resolve()
     if not file_path.exists():
         print(f"Error: File not found: {file_path}")
         sys.exit(1)
-    
+
     print(f"🔍 Analyzing: {file_path.name}")
     graph = build_dependency_graph(file_path)
-    
+
     print(f"📊 Found {len(graph['nodes'])} files, {len(graph['edges'])} connections")
-    
+
     # Generate HTML
     html = HTML_TEMPLATE.format(
-        filename=file_path.name,
-        edge_count=len(graph['edges']),
-        graph_data=json.dumps(graph)
+        filename=file_path.name, edge_count=len(graph["edges"]), graph_data=json.dumps(graph)
     )
-    
-    output_path = Path('dependency_graph.html')
+
+    output_path = Path("dependency_graph.html")
     output_path.write_text(html)
-    
+
     print(f"✅ Generated: {output_path.absolute()}")
-    webbrowser.open(f'file://{output_path.absolute()}')
+    webbrowser.open(f"file://{output_path.absolute()}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

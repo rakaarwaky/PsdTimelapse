@@ -66,7 +66,7 @@ class Dimensions:
 
 
 # Common presets
-Dimensions.HD = Dimensions(1280, 720)
-Dimensions.FULL_HD = Dimensions(1920, 1080)
-Dimensions.QHD = Dimensions(2560, 1440)
-Dimensions.UHD_4K = Dimensions(3840, 2160)
+Dimensions.HD = Dimensions(1280, 720)  # type: ignore[attr-defined]
+Dimensions.FULL_HD = Dimensions(1920, 1080)  # type: ignore[attr-defined]
+Dimensions.QHD = Dimensions(2560, 1440)  # type: ignore[attr-defined]
+Dimensions.UHD_4K = Dimensions(3840, 2160)  # type: ignore[attr-defined]

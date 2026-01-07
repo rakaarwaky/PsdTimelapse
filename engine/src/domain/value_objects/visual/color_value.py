@@ -7,6 +7,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+# Auto-extracted constants
+MAGIC_6 = 6
+MAGIC_8 = 8
+
 
 @dataclass(frozen=True)
 class Color:
@@ -28,12 +32,12 @@ class Color:
         """Create Color from hex string (e.g., '#FF5500' or 'FF5500')."""
         hex_clean = hex_str.lstrip("#")
 
-        if len(hex_clean) == 6:
+        if len(hex_clean) == MAGIC_6:
             r = int(hex_clean[0:2], 16)
             g = int(hex_clean[2:4], 16)
             b = int(hex_clean[4:6], 16)
             return Color(r, g, b, 255)
-        elif len(hex_clean) == 8:
+        elif len(hex_clean) == MAGIC_8:
             r = int(hex_clean[0:2], 16)
             g = int(hex_clean[2:4], 16)
             b = int(hex_clean[4:6], 16)

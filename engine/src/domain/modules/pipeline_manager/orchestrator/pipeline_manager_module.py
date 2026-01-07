@@ -4,6 +4,7 @@ PipelineManager - Unified Compositing for CPU/GPU
 Single source of truth for frame compositing algorithm.
 Ensures CPU and GPU pipelines produce identical output.
 """
+
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass
@@ -48,7 +49,6 @@ class CompositeConfig:
     @property
     def canvas_height(self) -> int:
         return self.canvas_bottom - self.canvas_top
-
 
 
 # ... imports ...
@@ -135,7 +135,7 @@ class PipelineManager:
 
         return frame
 
-    def iterate_frames(
+    def iterate_frames(  # noqa: PLR0913
         self,
         static_ui: Any,
         timeline: Any,

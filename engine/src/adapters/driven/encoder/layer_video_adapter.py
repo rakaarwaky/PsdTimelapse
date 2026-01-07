@@ -14,10 +14,13 @@ from typing import TYPE_CHECKING
 try:
     from .mp4_encoder_adapter import Mp4EncoderAdapter
 except ImportError:
-    Mp4EncoderAdapter = None
+    Mp4EncoderAdapter = None  # type: ignore[assignment,misc]
 
 if TYPE_CHECKING:
-    from domain.modules.animator.layer_state_generator_module import FrameData
+    from domain.modules.animator.layer_state_generator_module import (  # type: ignore[import-not-found]
+        FrameData,
+    )
+# type: ignore[unused-ignore]
 
 
 class LayerVideoAdapter:
@@ -43,7 +46,7 @@ class LayerVideoAdapter:
         if Mp4EncoderAdapter is None:
             return
 
-        # Check if we need to start a new encoder
+        # Check if we need to start a new encoder  # type: ignore[unreachable]
         if self.current_layer_id != frame_data.layer_id:
             # Close previous if exists (though finalize should have done it)
             self.finalize()

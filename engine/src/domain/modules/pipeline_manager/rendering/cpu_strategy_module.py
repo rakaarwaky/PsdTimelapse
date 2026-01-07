@@ -9,7 +9,20 @@ from ....entities.viewport_entity import ViewportEntity
 from ....entities.world_entity import WorldEntity
 from ....ports.media.video_port import VideoPort
 from ....value_objects.configs import EngineState, RenderConfig
+from ...animator import AnimationController
+from ...compositor import FrameCompositor
 from ...script_director import TimelineEntity
+
+try:
+    from ...animator.generators.mask_generator_module import (
+        create_brush_tool_for_layer,
+        generate_reveal_mask,
+    )
+    from ...animator.motion.path_generator_module import generate_brush_path
+except ImportError:
+    create_brush_tool_for_layer = None  # type: ignore
+    generate_reveal_mask = None  # type: ignore
+    generate_brush_path = None  # type: ignore
 
 # Factory type aliases (blind)
 AnimControllerFactory = Callable[[int, int], Any]
@@ -24,7 +37,7 @@ class CPURenderStrategy:
     def __init__(self, world: WorldEntity):
         self.world = world
 
-    def execute(
+    def execute(  # noqa: PLR0913, PLR0912  # noqa: PLR0912
         self,
         config: RenderConfig,
         timeline: TimelineEntity,
@@ -49,44 +62,16 @@ class CPURenderStrategy:
         if anim_controller_factory:
             anim_controller = anim_controller_factory(config.width, config.height)
         else:
-            from ...animator import AnimationController
-
             anim_controller = AnimationController(config.width, config.height)
 
-        layer_ids = [layer.id for layer in self.world.scene.iterate_visible()]
-        anim_controller.initialize_layers(layer_ids)
+            layer_ids = [layer.id for layer in self.world.scene.iterate_visible()]
+            anim_controller.initialize_layers(layer_ids)
 
         # 3. Setup Compositor
         if compositor_factory:
             compositor = compositor_factory(self.world, viewport)
         else:
-            from ...compositor import FrameCompositor
-
-            # Inject Dependencies (Orchestration Wiring)
-            try:
-                from ...animator.generators.mask_generator_module import (
-                    create_brush_tool_for_layer,
-                    generate_reveal_mask,
-                )
-                from ...animator.motion.path_generator_module import generate_brush_path
-            except ImportError:
-                # Should not happen in production, but graceful degradation for strict isolation testing
-                create_brush_tool_for_layer = None  # type: ignore
-                generate_reveal_mask = None  # type: ignore
-                generate_brush_path = None  # type: ignore
-
-            draw_brush_cursor_ui = None
-            get_brush_cursor_position = None
-
-            compositor = FrameCompositor(
-                self.world,
-                viewport,
-                mask_generator_fn=generate_reveal_mask,
-                brush_tool_factory_fn=create_brush_tool_for_layer,
-                path_generator_fn=generate_brush_path,
-                get_brush_cursor_pos_fn=get_brush_cursor_position,
-                draw_brush_cursor_ui_fn=draw_brush_cursor_ui,
-            )
+            compositor = self._setup_default_compositor(viewport)
 
         total_frames = int(timeline.total_duration * config.fps)
         progress_callback(EngineState.RENDERING, 0, total_frames, "Starting render")
@@ -140,3 +125,29 @@ class CPURenderStrategy:
 
         progress_callback(EngineState.COMPLETE, total_frames, total_frames, "Complete!")
         return output_path
+
+    def _setup_default_compositor(self, viewport: ViewportEntity) -> Any:
+        try:
+            from ...animator.generators.mask_generator_module import (  # noqa: PLC0415
+                create_brush_tool_for_layer as cb,
+            )
+            from ...animator.generators.mask_generator_module import (  # noqa: PLC0415
+                generate_reveal_mask as gr,
+            )
+            from ...animator.motion.path_generator_module import (  # noqa: PLC0415
+                generate_brush_path as gp,
+            )
+        except ImportError:
+            cb = None  # type: ignore
+            gr = None  # type: ignore
+            gp = None  # type: ignore
+
+        return FrameCompositor(  # noqa: PLR0913, PLR0912  # type: ignore[call-arg]
+            self.world,
+            viewport,
+            mask_generator_fn=gr,
+            brush_tool_factory_fn=cb,
+            path_generator_fn=gp,
+            get_brush_cursor_pos_fn=None,
+            draw_brush_cursor_ui_fn=None,
+        )

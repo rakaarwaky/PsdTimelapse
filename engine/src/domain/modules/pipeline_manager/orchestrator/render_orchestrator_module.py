@@ -20,11 +20,12 @@ from typing import TYPE_CHECKING, Any
 try:
     from PIL import Image
 except ImportError:
-    Image = None
+    Image = None  # type: ignore[assignment]
 
 from ....ports.media.frame_output_port import FrameOutputPort
 from ....ports.ui.ui_renderer_port import UIRendererPort
 from .config.render_config import RenderOrchestratorConfig
+from .pipeline_manager_module import CompositeConfig, PipelineManager
 
 if TYPE_CHECKING:
     from ....entities.layer_entity import LayerEntity
@@ -120,7 +121,7 @@ class RenderOrchestrator:
             "hold_frames": hold_count,
         }
 
-    def render_full_pipeline(
+    def render_full_pipeline(  # noqa: PLR0913
         self,
         world: WorldEntity,
         timeline: Any,
@@ -140,8 +141,6 @@ class RenderOrchestrator:
         Yields:
             (frame_number, composited_image)
         """
-        from .pipeline_manager_module import CompositeConfig, PipelineManager
-
         # Get total frames from timeline
         total_frames = int(timeline.total_duration * self.config.fps)
 
@@ -187,7 +186,7 @@ class RenderOrchestrator:
             yield frame_num, final_frame
 
 
-def create_render_orchestrator(
+def create_render_orchestrator(  # type: ignore[no-untyped-def]
     config: RenderOrchestratorConfig | None = None, **kwargs
 ) -> RenderOrchestrator:
     """Factory function for RenderOrchestrator."""

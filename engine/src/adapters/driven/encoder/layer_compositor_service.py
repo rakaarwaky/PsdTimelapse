@@ -1,6 +1,6 @@
 from typing import Any
 
-import numpy as np
+import numpy as np  # type: ignore[unused-ignore]
 from PIL import Image
 
 

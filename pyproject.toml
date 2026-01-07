@@ -82,11 +82,29 @@ explicit_package_bases = true
 
 [[tool.mypy.overrides]]
 module = [
+    # External libraries without type stubs
     "networkx",
+    "networkx.*",
     "cv2",
+    "cv2.*",
     "PIL.*",
     "psd_tools.*",
+    "moviepy",
     "moviepy.*",
-    "bezier"
+    "bezier",
+    "bezier.*",
+    "cupy",
+    "cupy.*",
+    "PyNvVideoCodec",
+    "PyNvVideoCodec.*",
+    "OpenEXR",
+    "OpenEXR.*",
+    "Imath",
+    "Imath.*",
+    # Internal domain modules
+    "domain.*",
+    "adapters.*",
+    "src.*",
+    "engine.*",
 ]
 ignore_missing_imports = true

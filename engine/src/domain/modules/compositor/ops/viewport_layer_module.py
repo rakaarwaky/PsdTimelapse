@@ -2,12 +2,16 @@ from PIL import Image
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.geometry import Vector2
-from ..layout_manager.coordinate_mapper_module import CoordinateMapper
+from ...layout_manager.coordinate_mapper_module import CoordinateMapper
 from ..services.layer_service import LayerRetrievalService
 from .opacity_module import apply_opacity
 
 try:
-    from ...animator import LayerAnimState, apply_mask_to_layer, generate_reveal_mask
+    from ...animator import (  # type: ignore[attr-defined]
+        LayerAnimState,
+        apply_mask_to_layer,
+        generate_reveal_mask,
+    )
 except ImportError:
     # Placeholder types/funcs if circular import issues arise,
     # but in atomic op we expect them to be available or passed in.

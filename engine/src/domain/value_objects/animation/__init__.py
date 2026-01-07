@@ -24,22 +24,16 @@ from .render_state_value import RenderState
 from .sequencing_strategy_value import SequencingStrategy
 
 __all__ = [
-    # Easing
+    "ActionType",
+    "BrushPathType",
+    "BrushTool",
+    "DirectorProfile",
     "EasingCurve",
     "EasingType",
-    # Brush
-    "BrushTool",
-    "BrushPathType",
-    # State
-    "RenderState",
-    # Classification
     "LayerClassification",
-    "RecommendedAction",
-    # Director
-    "DirectorProfile",
-    "RhythmPace",
-    # Strategies
-    "ActionType",
     "PathDirection",
+    "RecommendedAction",
+    "RenderState",
+    "RhythmPace",
     "SequencingStrategy",
 ]

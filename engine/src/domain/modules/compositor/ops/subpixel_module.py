@@ -1,12 +1,14 @@
-import numpy as np
+import numpy as np  # type: ignore[unused-ignore]
 from PIL import Image
 
 try:
-    import cv2
+    import cv2  # type: ignore[import-not-found]
 
     CV2_AVAILABLE = True
 except ImportError:
     CV2_AVAILABLE = False
+
+SUBPIXEL_PRECISION_THRESHOLD = 0.01
 
 
 def apply_subpixel_shift(
@@ -26,7 +28,9 @@ def apply_subpixel_shift(
         (Shifted PIL Image, (offset_x_correction, offset_y_correction))
     """
     # Precision threshold or cv2 not available -> no-op
-    if not CV2_AVAILABLE or (abs(shift_x) < 0.01 and abs(shift_y) < 0.01):
+    if not CV2_AVAILABLE or (
+        abs(shift_x) < SUBPIXEL_PRECISION_THRESHOLD and abs(shift_y) < SUBPIXEL_PRECISION_THRESHOLD
+    ):
         return img, (0, 0)
 
     # Convert to OpenCV (numpy)
@@ -43,7 +47,7 @@ def apply_subpixel_shift(
 
     # Transformation Matrix [ [1, 0, shift_x], [0, 1, shift_y] ]
     # Note: We are shifting the PADDED image.
-    matrix = np.float32([[1, 0, shift_x], [0, 1, shift_y]])
+    matrix = np.array([[1, 0, shift_x], [0, 1, shift_y]], dtype=np.float32)
 
     # Apply Warp with Lanczos4 Interpolation (High Quality)
     warped = cv2.warpAffine(

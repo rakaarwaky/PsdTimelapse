@@ -11,6 +11,8 @@ import shutil
 from pathlib import Path
 from typing import Optional, Callable, Any
 from dataclasses import dataclass
+from ....value_objects.resource.media_output_path_value import MediaOutputPath
+from ....entities.layer_entity import LayerEntity
 
 # ============================================================
 # Path Setup
@@ -98,8 +100,7 @@ class BaseScenarioTest:
     def setup_output(self, project_id: Optional[str] = None) -> "MediaOutputPath":
         """
         Initialize output using MediaOutputService.
-        
-        Args:
+Args:
             project_id: Optional custom ID, auto-generates if None
             
         Returns:
@@ -108,48 +109,17 @@ class BaseScenarioTest:
         imports = get_domain_imports()
         
         config = imports['MediaOutputConfig'](
-            base_path=str(MEDIA_OUTPUT_DIR)
+            from typing import Optional
+            from domain.entities.layer_entity import LayerEntity
+            from domain.value_objects.geometry import Rect
+            from domain.value_objects.media_output_service import MediaOutputService
+            from domain.value_objects.media_output_path import MediaOutputPath
         )
         
-        self._output_service = imports['MediaOutputService'](config)
-        self._output_path = self._output_service.create_project(
-            project_id or f"test_{self.test_name}"
-        )
-        
-        return self._output_path
-    
-    def cleanup_output(self, keep_final: bool = True):
-        """
-        Cleanup test output.
-        
-        Args:
-            keep_final: If True, runs cache cleanup (keeps MP4). 
-                       If False, deletes entire project.
-        """
-        if self._output_service and self._output_path:
-            if keep_final:
-                self._output_service.cleanup_cache(self._output_path)
-            else:
-                self._output_service.cleanup_project(self._output_path)
-    
-    @property
-    def output_path(self) -> Optional["MediaOutputPath"]:
-        return self._output_path
-    
-    @property
-    def output_service(self) -> Optional["MediaOutputService"]:
-        return self._output_service
-
-
-# ============================================================
-# Mock Layer Factory
-# ============================================================
-
-@dataclass
-class MockLayerData:
-    """Data for creating mock layers."""
-    id: str
-    name: str
+        class MockLayerData:
+            """Data for creating mock layers."""
+            id: str
+            name: str
     x: int
     y: int
     width: int
@@ -158,19 +128,21 @@ class MockLayerData:
     visible: bool = True
     color: tuple = (255, 0, 0, 255)  # RGBA
 
-
 def create_mock_layer(data: MockLayerData) -> "LayerEntity":
     """Create a mock LayerEntity from data."""
     from domain.entities.layer_entity import LayerEntity
     from domain.value_objects.geometry import Rect
-    
-    return LayerEntity(
+return LayerEntity(
         id=data.id,
-        name=data.name,
+name=data.name,
         z_index=data.z_index,
-        bounds=Rect(data.x, data.y, data.width, data.height),
-        visible=data.visible
+        visible=data.visible,
+color=data.color,
+        geometry=Rect(x=data.x, y=data.y, width=data.width, height=data.height)
     )
+    bounds=Rect(data.x, data.y, data.width, data.height),
+    visible=data.visible
+)
 
 
 def create_mock_image(width: int, height: int, color: tuple = (255, 0, 0, 255)):
@@ -180,11 +152,9 @@ def create_mock_image(width: int, height: int, color: tuple = (255, 0, 0, 255)):
         return Image.new('RGBA', (width, height), color)
     except ImportError:
         return None
-
-
-# ============================================================
+#===========
 # Test Runner Utilities
-# ============================================================
+#===========
 
 def load_psd_world():
     """Load test.psd and return WorldEntity."""

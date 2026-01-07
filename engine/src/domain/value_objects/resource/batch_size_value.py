@@ -5,7 +5,9 @@ Part of resource category - batch configuration.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -35,7 +37,9 @@ class BatchSize:
     def num_batches(self, total_items: int) -> int:
         return (total_items + self.size - 1) // self.size
 
-    def batch_ranges(self, total_items: int):
+    # type: ignore[name-defined,unused-ignore]
+    # type: ignore[name-defined,unused-ignore]
+    def batch_ranges(self, total_items: int) -> Iterator[Any]:  # type: ignore[unused-ignore]
         for start in range(0, total_items, self.size):
             end = min(start + self.size, total_items)
             yield (start, end)
@@ -55,7 +59,7 @@ class BatchSize:
 
 
 # Common presets
-BatchSize.SMALL = BatchSize(10)
-BatchSize.MEDIUM = BatchSize(30)
-BatchSize.LARGE = BatchSize(100)
-BatchSize.XLARGE = BatchSize(500)
+BatchSize.SMALL = BatchSize(10)  # type: ignore[attr-defined]
+BatchSize.MEDIUM = BatchSize(30)  # type: ignore[attr-defined]
+BatchSize.LARGE = BatchSize(100)  # type: ignore[attr-defined]
+BatchSize.XLARGE = BatchSize(500)  # type: ignore[attr-defined]

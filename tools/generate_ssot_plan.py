@@ -1,6 +1,4 @@
-import networkx as nx
-import os
-import json
+import networkx as nx  # type: ignore[import-untyped]
 
 # ==========================================
 # 1. SETUP & GRAPH GENERATION
@@ -8,16 +6,18 @@ import json
 try:
     import networkx as nx
 except ImportError:
-    import sys, subprocess
+    import subprocess
+    import sys
+
     subprocess.check_call([sys.executable, "-m", "pip", "install", "networkx"])
     import networkx as nx
 
 # Define the Independent Tasks (Nodes only, NO EDGES)
 tasks = [
     "refactor_producer_engine",  # Domain Layer: Expose methods in ProducerEngine
-    "update_http_adapter",       # Adapter Layer: Switch type hints and calls to ProducerEngine
-    "update_main_entrypoint",    # Application Layer: Inject adapters into ProducerEngine
-    "create_verification_script" # QA: Verify the new wiring
+    "update_http_adapter",  # Adapter Layer: Switch type hints and calls to ProducerEngine
+    "update_main_entrypoint",  # Application Layer: Inject adapters into ProducerEngine
+    "create_verification_script",  # QA: Verify the new wiring
 ]
 
 G = nx.DiGraph()
@@ -36,19 +36,21 @@ print(f"Graph Validated: {G.number_of_nodes()} independent tasks, 0 dependencies
 AGENTS = {
     "DomainArchitect": {
         "role": "Core Logic & Interfaces",
-        "description": "Owner of the pure domain layer. Ensures ProducerEngine exposes the correct facade.",
-        "tasks": ["refactor_producer_engine"]
+        "description": (
+            "Owner of the pure domain layer. Ensures ProducerEngine exposes the correct facade."
+        ),
+        "tasks": ["refactor_producer_engine"],
     },
     "AdapterSpecialist": {
         "role": "Integration & Infrastructure",
         "description": "Owner of external adapters. Updates the API to consume the new facade.",
-        "tasks": ["update_http_adapter"]
+        "tasks": ["update_http_adapter"],
     },
     "IntegrationLead": {
         "role": "Wiring & Verification",
         "description": "Owner of the composition root (main.py) and system verification.",
-        "tasks": ["update_main_entrypoint", "create_verification_script"]
-    }
+        "tasks": ["update_main_entrypoint", "create_verification_script"],
+    },
 }
 
 # Universal FSM for all Agents
@@ -68,11 +70,14 @@ FSM_TABLE = """
 
 OUTPUT_DIR = ".agent/doc/plan_refactor_ssot"
 
+
 def get_eagle_view(agent_name):
     return f"""## 1. 🦅 Eagle View
 
-This project is **Timelapse Engine**, a hexagonal architecture system for generating videos from PSDs.
-Current feature: **SSOT Refactor** which establishes `ProducerEngine` as the single entry point.
+This project is **Timelapse Engine**, a hexagonal architecture system
+for generating videos from PSDs.
+Current feature: **SSOT Refactor** which establishes `ProducerEngine`
+as the single entry point.
 
 System has 3 agents:
 - **DomainArchitect**: Core Logic (ProducerEngine)
@@ -83,11 +88,13 @@ System has 3 agents:
 **Execution Mode:** PARALLEL. Do NOT wait for other agents.
 """
 
+
 def generate_overview():
     content = f"""# Plan: SSOT Refactor Overview
 
 ## Computational Analysis
-**Tasks:** {len(tasks)} | **Execution Mode:** PARALLEL | **Framework:** Hexagonal (Independent Layers)
+**Tasks:** {len(tasks)} | **Execution Mode:** PARALLEL
+**Framework:** Hexagonal (Independent Layers)
 
 ## Task Indepedence Graph
 ```mermaid
@@ -96,7 +103,7 @@ graph TD
     B[update_http_adapter]
     C[update_main_entrypoint]
     D[create_verification_script]
-    
+
     %% NO ARROWS - PURE PARALLELISM
     style A stroke-dasharray: 5 5
     style B stroke-dasharray: 5 5
@@ -115,6 +122,7 @@ graph TD
     with open(f"{OUTPUT_DIR}/plan_refactor_overview.md", "w") as f:
         f.write(content)
 
+
 def generate_agent_file(agent_name, data):
     task_content = ""
     for task in data["tasks"]:
@@ -132,7 +140,7 @@ def generate_agent_file(agent_name, data):
     content = f"""{get_eagle_view(agent_name)}
 
 ## 2. Role
-**{data['role']}** - {data['description']}
+**{data["role"]}** - {data["description"]}
 
 **Responsibilities:**
 - Execute assigned tasks immediately.
@@ -168,6 +176,7 @@ def generate_agent_file(agent_name, data):
     filename = f"tasks_{agent_name}.md"
     with open(f"{OUTPUT_DIR}/{filename}", "w") as f:
         f.write(content)
+
 
 # ==========================================
 # 4. EXECUTION

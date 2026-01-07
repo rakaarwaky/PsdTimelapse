@@ -13,6 +13,11 @@ from ....value_objects.visual.video_constants_value import VIDEO_HEIGHT, VIDEO_W
 # Alias for backward compatibility if needed, though strictly we should update usage.
 AnimationType = ActionType
 
+# Classification thresholds
+BACKGROUND_COVERAGE_THRESHOLD = 0.8
+HORIZONTAL_ASPECT_RATIO_THRESHOLD = 3.0
+VERTICAL_ASPECT_RATIO_THRESHOLD = 0.33
+
 
 def classify_layer(layer: LayerEntity) -> ClassificationResult:
     """
@@ -39,18 +44,18 @@ def classify_layer(layer: LayerEntity) -> ClassificationResult:
     canvas_area = VIDEO_WIDTH * VIDEO_HEIGHT
     layer_coverage = layer.area / canvas_area if canvas_area > 0 else 0
 
-    if layer.z_index == 0 and layer_coverage > 0.8:
+    if layer.z_index == 0 and layer_coverage > BACKGROUND_COVERAGE_THRESHOLD:
         return ClassificationResult(ActionType.NONE, "Background layer (z=0, >80% coverage)")
 
     # Rule 2: Texture detection (elongated aspect ratio)
     if layer.bounds.width > 0 and layer.bounds.height > 0:
         aspect_ratio = layer.bounds.width / layer.bounds.height
 
-        if aspect_ratio > 3.0:
+        if aspect_ratio > HORIZONTAL_ASPECT_RATIO_THRESHOLD:
             return ClassificationResult(
                 ActionType.BRUSH, f"Horizontal texture (aspect {aspect_ratio:.1f}:1)"
             )
-        if aspect_ratio < 0.33:
+        if aspect_ratio < VERTICAL_ASPECT_RATIO_THRESHOLD:
             return ClassificationResult(
                 ActionType.BRUSH, f"Vertical texture (aspect 1:{1 / aspect_ratio:.1f})"
             )

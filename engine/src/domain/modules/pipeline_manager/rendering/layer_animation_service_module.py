@@ -4,12 +4,18 @@ from typing import Any
 try:
     from PIL import Image
 except ImportError:
-    Image = None
+    Image = None  # type: ignore[assignment]
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.configs import LayerRenderConfig
+
+# Use TYPE_CHECKING pattern to avoid circular import, RenderFrame may not exist yet
+try:
+    from ....value_objects.animation.render_state_value import RenderFrame
+except ImportError:
+    RenderFrame = Any  # type: ignore[assignment,misc]
+
 from ...animator.generators.layer_state_generator_module import LayerStateGenerator
-from ...value_objects.animation.render_state_value import RenderFrame
 from .layer_composition_module import render_layer_to_image
 
 
@@ -60,8 +66,8 @@ class LayerAnimationService:
                     )
                 else:
                     # Render image for active frame
-                    rendered_img = render_layer_to_image(
-                        layer_img,
+                    rendered_img = render_layer_to_image(  # type: ignore[call-arg]
+                        layer_img,  # type: ignore[arg-type]
                         layer,
                         frame_data.state,
                         self.config.canvas_width,

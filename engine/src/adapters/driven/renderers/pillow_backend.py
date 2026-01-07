@@ -1,10 +1,3 @@
-"""
-Pillow Rendering Backend
-========================
-
-Infrastructure implementation of CompositingBackend using PIL.
-"""
-
 from typing import Any
 
 from PIL import Image
@@ -15,7 +8,7 @@ try:
     )
 except ImportError:
     # Fallback for relative import resolution issues during dev/test if package structure varies
-    from domain.modules.pipeline_manager.orchestrator.pipeline_manager_module import (
+    from domain.modules.pipeline_manager.orchestrator.pipeline_manager_module import (  # type: ignore[import-not-found,no-redef]
         CompositingBackend,
     )
 
@@ -36,10 +29,10 @@ class PillowBackend(CompositingBackend):
             target.paste(source, pos)
 
     def get_size(self, image: Any) -> tuple[int, int]:
-        return image.size
+        return image.size  # type: ignore[no-any-return]
 
     def is_rgba(self, image: Any) -> bool:
-        return image.mode == "RGBA"
+        return image.mode == "RGBA"  # type: ignore[no-any-return]
 
     def to_device(self, image: Any) -> Any:
         # PIL is already on host

@@ -17,7 +17,7 @@ from ....value_objects.animation.animation_path import AnimationPath
 from ....value_objects.geometry import Rect, Vector2
 
 
-def generate_reveal_mask(
+def generate_reveal_mask(  # noqa: PLR0913
     layer_size: tuple[int, int],
     path: AnimationPath,
     progress: float,
@@ -136,7 +136,7 @@ def create_brush_tool_for_layer(layer_bounds: Rect, hardness: float = 0.3) -> Br
     return BrushTool(size_px=size, hardness=hardness)
 
 
-def generate_reveal_mask_v2(
+def generate_reveal_mask_v2(  # noqa: PLR0913
     layer_size: tuple[int, int],
     path: AnimationPath,
     progress: float,

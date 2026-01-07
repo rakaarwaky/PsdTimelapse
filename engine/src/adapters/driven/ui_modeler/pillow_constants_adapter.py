@@ -7,7 +7,7 @@ import os
 try:
     from PIL import ImageFont
 except ImportError:
-    ImageFont = None
+    ImageFont = None  # type: ignore[assignment]
 
 
 # =====================================================
@@ -66,7 +66,7 @@ ICONS_DIR = os.path.join(ASSETS_DIR, "ui_icons")
 INTER_FONT = os.path.join(FONTS_DIR, "InterVariable.ttf")
 
 
-def load_font(size: int):
+def load_font(size: int):  # type: ignore[no-untyped-def]
     """Load Inter font at given size, fallback to default."""
     try:
         if os.path.exists(INTER_FONT) and ImageFont:

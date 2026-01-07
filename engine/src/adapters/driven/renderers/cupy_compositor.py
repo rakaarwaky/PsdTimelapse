@@ -1,9 +1,9 @@
-import cupy as cp
+import cupy as cp  # type: ignore[import-not-found]
 
-from domain.ports.render.compositor_port import CompositorPort
+from domain.ports.render.compositor_port import CompositorPort  # type: ignore[import-not-found]
 
 
-class CupyCompositor(CompositorPort):
+class CupyCompositor(CompositorPort):  # type: ignore[misc]
     def __init__(self) -> None:
         # Optimized CUDA Alpha Blending Kernel
         # Assumes Float32 RGBA (0.0-1.0)
@@ -70,7 +70,7 @@ class CupyCompositor(CompositorPort):
         """
         self.blend_kernel = cp.RawKernel(self.kernel_code, "blend_overlay")
 
-    def blend(self, canvas_arr, overlay_arr, x, y) -> None:
+    def blend(self, canvas_arr, overlay_arr, x, y) -> None:  # type: ignore[no-untyped-def]
         """
         Blend overlay_arr onto canvas_arr at (x, y) in-place.
         canvas_arr: CuPy array (h, w, 4) float32

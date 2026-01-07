@@ -2,8 +2,9 @@
 Verification Script for Integration Lead Tasks.
 Verifies that ProducerEngine can be instantiated and wired correctly.
 """
-import sys
+
 import os
+import sys
 
 # Add src to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -11,11 +12,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 def verify_integration():
     print("🧪 Starting Integration Verification...")
-    
+
     # Debug: Try direct import first
     try:
         print("DEBUG: Importing src.domain.core.engine...")
         from src.domain.core import engine as engine_mod
+
         print(f"DEBUG: Engine module: {engine_mod}")
         print(f"DEBUG: Has ProducerConfig? {'ProducerConfig' in dir(engine_mod)}")
     except ImportError as e:
@@ -24,13 +26,14 @@ def verify_integration():
     try:
         # Try intended import
         from src.domain.core import ProducerEngine
+
         print("✅ Import ProducerEngine success")
     except ImportError as e:
         print(f"❌ Failed to import ProducerEngine: {e}")
         import traceback
+
         traceback.print_exc()
         return False
-
 
     # Attempt instantiation
     try:
@@ -39,14 +42,15 @@ def verify_integration():
     except Exception as e:
         print(f"❌ Failed to instantiate ProducerEngine: {e}")
         return False
-        
+
     # Check default state
     try:
         from src.domain.modules.pipeline_manager import EngineState
+
         if engine.state == EngineState.IDLE:
-             print("✅ Engine state is IDLE")
+            print("✅ Engine state is IDLE")
         else:
-             print(f"⚠️ Unexpected engine state: {engine.state}")
+            print(f"⚠️ Unexpected engine state: {engine.state}")
     except Exception as e:
         print(f"⚠️ Could not verify state: {e}")
 
@@ -60,6 +64,7 @@ def verify_integration():
 
     print("🎉 Verification COMPLETE")
     return True
+
 
 if __name__ == "__main__":
     success = verify_integration()

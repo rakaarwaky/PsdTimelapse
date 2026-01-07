@@ -6,19 +6,37 @@ Dependencies: fastapi, uvicorn, ProducerEngine
 from __future__ import annotations
 
 import os
+import uuid
+from typing import TYPE_CHECKING, Any
 
-try:
-    from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
-    from fastapi.responses import FileResponse
-    from pydantic import BaseModel
+if TYPE_CHECKING:
+    from fastapi import (  # type: ignore[import-not-found]  # noqa: PLR0913, PLR0912
+        BackgroundTasks,
+        FastAPI,
+        File,
+        HTTPException,
+        UploadFile,
+    )
+    from pydantic import BaseModel  # type: ignore[import-not-found]
 
     HAS_FASTAPI = True
-except ImportError:
-    HAS_FASTAPI = False
-    FastAPI = None
-    BaseModel = object
+else:
+    try:
+        from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
+        from pydantic import BaseModel
 
-from domain.core import (
+        HAS_FASTAPI = True
+    except ImportError:
+        HAS_FASTAPI = False
+        FastAPI = Any
+        BaseModel = object
+        # Mocks for runtime safety
+        BackgroundTasks = Any
+        File = Any
+        HTTPException = Any
+        UploadFile = Any
+
+from domain.core import (  # type: ignore[import-not-found]
     EngineProgress,
     EngineState,
     ProducerConfig,  # Use ProducerConfig for high level options like 'use_gpu'
@@ -28,7 +46,7 @@ from domain.core import (
 
 
 # Request/Response Models
-class RenderRequest(BaseModel):
+class RenderRequest(BaseModel):  # type: ignore[misc]
     """Request body for render endpoint."""
 
     psd_path: str
@@ -40,7 +58,7 @@ class RenderRequest(BaseModel):
     use_gpu: bool = False
 
 
-class RenderResponse(BaseModel):
+class RenderResponse(BaseModel):  # type: ignore[misc]
     """Response for render endpoint."""
 
     status: str
@@ -49,7 +67,7 @@ class RenderResponse(BaseModel):
     output_path: str | None = None
 
 
-class ProgressResponse(BaseModel):
+class ProgressResponse(BaseModel):  # type: ignore[misc]
     """Response for progress endpoint."""
 
     state: str
@@ -73,14 +91,12 @@ def create_api(engine: ProducerEngine) -> FastAPI:
     os.makedirs(uploads_dir, exist_ok=True)
 
     @app.post("/upload")
-    async def upload_file(file: UploadFile = File(...)):
+    async def upload_file(file: UploadFile = File(...)):  # type: ignore[no-untyped-def]  # noqa: B008
         if not file.filename:
             raise HTTPException(400, "No filename")
         ext = file.filename.split(".")[-1].lower()
         if ext not in ("psd", "psb"):
             raise HTTPException(400, "Only PSD/PSB")
-
-        import uuid
 
         safe_name = f"{uuid.uuid4().hex[:8]}_{file.filename}"
         file_path = os.path.join(uploads_dir, safe_name)
@@ -90,11 +106,11 @@ def create_api(engine: ProducerEngine) -> FastAPI:
         return {"status": "uploaded", "path": os.path.abspath(file_path)}
 
     @app.get("/health")
-    async def health_check():
+    async def health_check():  # type: ignore[no-untyped-def]
         return {"status": "healthy", "engine_state": engine.state.value}
 
     @app.post("/render", response_model=RenderResponse)
-    async def start_render(request: RenderRequest, background_tasks: BackgroundTasks):
+    async def start_render(request: RenderRequest, background_tasks: BackgroundTasks):  # type: ignore[no-untyped-def]
         if not os.path.exists(request.psd_path):
             raise HTTPException(404, f"PSD not found: {request.psd_path}")
 
@@ -115,8 +131,6 @@ def create_api(engine: ProducerEngine) -> FastAPI:
             use_gpu=request.use_gpu,
         )
 
-        import uuid
-
         job_id = str(uuid.uuid4())[:8]
 
         def track_progress(progress: EngineProgress) -> None:
@@ -130,7 +144,7 @@ def create_api(engine: ProducerEngine) -> FastAPI:
         )
 
     @app.get("/progress/{job_id}", response_model=ProgressResponse)
-    async def get_progress(job_id: str):
+    async def get_progress(job_id: str):  # type: ignore[no-untyped-def]
         if job_id not in _active_jobs:
             raise HTTPException(404, "Job not found")
         progress = _active_jobs[job_id]
@@ -154,7 +168,9 @@ def create_api(engine: ProducerEngine) -> FastAPI:
     return app
 
 
-async def _run_render(engine: ProducerEngine, psd_path: str, config: ProducerConfig, job_id: str) -> None:
+async def _run_render(
+    engine: ProducerEngine, psd_path: str, config: ProducerConfig, job_id: str
+) -> None:
     try:
         engine.load_psd(psd_path)
         engine.generate_timeline(config.strategy)

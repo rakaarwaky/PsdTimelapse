@@ -55,7 +55,7 @@ class ProducerEngine:
     Provides a high-level API for the timelapse generation workflow.
     """
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         psd_port: PsdPort | None = None,
         renderer_port: RendererPort | None = None,
@@ -113,6 +113,14 @@ class ProducerEngine:
             return self._engine.run_gpu(config)
         return self._engine.run_optimized(config)
 
+    def run_optimized(self, config: RenderConfig) -> str:
+        """Delegate to director engine (CPU)."""
+        return self._engine.run_optimized(config)
+
+    def run_gpu(self, config: RenderConfig) -> str:
+        """Delegate to director engine (GPU)."""
+        return self._engine.run_gpu(config)
+
     def render(self, config: ProducerConfig) -> str:
         """
         Execute full render pipeline.
@@ -135,7 +143,7 @@ class ProducerEngine:
             return self._engine.run_gpu(render_config)
         return self._engine.run_optimized(render_config)
 
-    def generate_video(
+    def generate_video(  # noqa: PLR0913
         self,
         psd_path: str,
         output_path: str = "./output.mp4",
@@ -196,18 +204,17 @@ class ProducerEngine:
 
 # Convenience exports
 __all__ = [
-    "ProducerEngine",
-    "ProducerConfig",
-    # Re-export key types
-    "DirectorEngine",
-    "RenderConfig",
-    "EngineState",
-    "EngineProgress",
-    "SequencingStrategy",
-    "TimelineEntity",
     "ActionType",
-    "CoordinateMapper",
     "AnimationController",
+    "CoordinateMapper",
+    "DirectorEngine",
+    "EngineProgress",
+    "EngineState",
     "FrameCompositor",
     "LayerCache",
+    "ProducerConfig",
+    "ProducerEngine",
+    "RenderConfig",
+    "SequencingStrategy",
+    "TimelineEntity",
 ]

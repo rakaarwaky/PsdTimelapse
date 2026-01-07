@@ -6,11 +6,16 @@ Part of timing category - time handling.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import ClassVar
 
 
 @dataclass(frozen=True)
 class Duration:
     """Immutable time duration in seconds."""
+
+    ZERO: ClassVar[Duration]
+    ONE_SECOND: ClassVar[Duration]
+    ONE_FRAME_30FPS: ClassVar[Duration]
 
     seconds: float
 

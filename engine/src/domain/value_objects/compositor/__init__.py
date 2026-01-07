@@ -6,11 +6,11 @@ from .cursor_style_value import CursorStyle
 from .layer_type_value import LayerType
 
 __all__ = [
-    "CursorStyle",
-    "CursorState",
-    "LayerType",
-    "CompositeLayer",
-    "RenderLayer",  # Backward compatibility alias
-    "CompositeFrame",
     "CachedLayer",
+    "CompositeFrame",
+    "CompositeLayer",
+    "CursorState",
+    "CursorStyle",
+    "LayerType",
+    "RenderLayer",  # Backward compatibility alias
 ]

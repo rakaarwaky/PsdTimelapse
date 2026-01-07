@@ -14,7 +14,7 @@ class GpuRendererPort(ABC):
         self,
         composited_frames: list[Any],  # Pre-composited PIL frames from Domain
         config: Any,  # RenderConfig
-        progress_callback: Callable[[int, int], None] = None,
+        progress_callback: Callable[[int, int], None] = None,  # type: ignore[assignment]
     ) -> str:
         """
         Encode pre-composited frames to video using GPU.

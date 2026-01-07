@@ -66,5 +66,5 @@ class WorkerCount:
 
 
 # Presets
-WorkerCount.SINGLE = WorkerCount(1)
-WorkerCount.AUTO = WorkerCount.auto()
+WorkerCount.SINGLE = WorkerCount(1)  # type: ignore[attr-defined]
+WorkerCount.AUTO = WorkerCount.auto()  # type: ignore[attr-defined]

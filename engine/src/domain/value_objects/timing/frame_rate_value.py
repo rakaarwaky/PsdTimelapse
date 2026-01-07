@@ -19,7 +19,7 @@ class FrameRate:
     def __post_init__(self) -> None:
         if self.fps <= 0:
             raise ValueError(f"FPS must be positive: {self.fps}")
-        if self.fps > 240:
+        if self.fps > 240:  # noqa: PLR2004  # 4=RGBA
             raise ValueError(f"FPS too high (max 240): {self.fps}")
 
     @property
@@ -54,7 +54,7 @@ class FrameRate:
 
 
 # Common presets
-FrameRate.FILM = FrameRate(24)
-FrameRate.PAL = FrameRate(25)
-FrameRate.NTSC = FrameRate(30)
-FrameRate.SMOOTH = FrameRate(60)
+FrameRate.FILM = FrameRate(24)  # type: ignore[attr-defined]
+FrameRate.PAL = FrameRate(25)  # type: ignore[attr-defined]
+FrameRate.NTSC = FrameRate(30)  # type: ignore[attr-defined]
+FrameRate.SMOOTH = FrameRate(60)  # type: ignore[attr-defined]

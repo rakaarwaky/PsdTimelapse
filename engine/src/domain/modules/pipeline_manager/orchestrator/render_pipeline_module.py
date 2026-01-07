@@ -40,7 +40,7 @@ from ...script_director import TimelineEntity
 class RenderPipeline:
     """Optimized rendering pipeline with memory management."""
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         world: WorldEntity,
         timeline: TimelineEntity,
@@ -62,7 +62,7 @@ class RenderPipeline:
         self.media_output = media_output
 
         self.viewport = ViewportEntity(config.width, config.height, config.fps)
-        self.camera = CameraEntity(
+        self.camera = CameraEntity(  # type: ignore[call-arg]
             center_x=config.width / 2,
             center_y=config.height / 2,
             width=config.width,
@@ -90,7 +90,9 @@ class RenderPipeline:
             self._start_pipeline(start_time)
 
             controller = AnimationController(
-                self.timeline, self.viewport.output_width, self.viewport.output_height
+                self.timeline,  # type: ignore[arg-type]
+                self.viewport.output_width,
+                self.viewport.output_height,  # type: ignore[arg-type]
             )
             compositor = FrameCompositor(self.world, self.viewport)
             total_frames = int(self.timeline.total_duration * self.config.fps)
@@ -182,7 +184,7 @@ class RenderPipeline:
             if camera_action and hasattr(camera_action, "zoom"):
                 self.camera.zoom = camera_action.zoom
 
-            frame = compositor.compose_frame(self.camera, controller)
+            frame = compositor.compose_frame(self.camera, controller)  # type: ignore[attr-defined]
             self.video_port.add_frame(frame)
 
             elapsed = self._get_elapsed(start_time)
@@ -206,7 +208,7 @@ class RenderPipeline:
         self._emit_progress(PipelineState.ENCODING, total_frames, total_frames, "Encoding video")
         output_path = self.video_port.save()
 
-        compositor.clear_cache()
+        compositor.clear_cache()  # type: ignore[attr-defined]
         gc.collect()
 
         elapsed = self._get_elapsed(start_time)
@@ -236,7 +238,7 @@ class RenderPipeline:
         )
         self._emit_progress(PipelineState.ERROR, 0, 0, str(e))
 
-    def _emit_progress(
+    def _emit_progress(  # noqa: PLR0913
         self,
         state: PipelineState,
         current: int,

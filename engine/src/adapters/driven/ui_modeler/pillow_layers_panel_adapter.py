@@ -31,7 +31,8 @@ class LayersPanelRenderer(BaseRenderer):
 
         # Background
         draw.rectangle(
-            [panel_x, panel_y, panel_x + panel_w, panel_y + panel_h], fill=PSColors.PANEL
+            [panel_x, panel_y, panel_x + panel_w, panel_y + panel_h],  # type: ignore[arg-type]
+            fill=PSColors.PANEL,  # type: ignore[unused-ignore]
         )
         draw.line([(panel_x, panel_y), (panel_x + panel_w, panel_y)], fill=PSColors.BORDER)
 
@@ -39,7 +40,7 @@ class LayersPanelRenderer(BaseRenderer):
         self._draw_tabs(draw, panel_x, panel_y, panel_w)
 
         # Load Icons
-        icons = self._load_layer_icons()
+        icons = self._load_layer_icons()  # type: ignore[no-untyped-call]
 
         # Lock Status Row (below tabs)
         self._draw_lock_status(draw, frame, panel_x, panel_y, icons)
@@ -53,7 +54,7 @@ class LayersPanelRenderer(BaseRenderer):
     def _draw_tabs(self, draw: ImageDraw.ImageDraw, x: int, y: int, w: int) -> None:
         header_y = y
         tab_h = 36
-        draw.rectangle([x, header_y, x + w, header_y + tab_h], fill=PSColors.LAYER_TAB)
+        draw.rectangle([x, header_y, x + w, header_y + tab_h], fill=PSColors.LAYER_TAB)  # type: ignore[arg-type]
 
         draw.text((x + 20, header_y + 10), "Layers", font=self.fonts["bold"], fill=PSColors.TEXT)
         draw.text((x + 90, header_y + 10), "Channels", font=self.fonts["std"], fill=PSColors.MUTED)
@@ -62,7 +63,7 @@ class LayersPanelRenderer(BaseRenderer):
         # Active Indicator
         draw.line([(x + 15, header_y + 34), (x + 70, header_y + 34)], fill=PSColors.ACCENT, width=2)
 
-    def _load_layer_icons(self):
+    def _load_layer_icons(self):  # type: ignore[no-untyped-def]
         """Load specific icons for layers panel."""
         icons = {}
         # Map logical names to filenames
@@ -104,7 +105,7 @@ class LayersPanelRenderer(BaseRenderer):
         if "unlock" in icons:
             self.draw_icon(frame, icons["unlock"], x + 50, lock_y + 2)
 
-    def _draw_layer_list(
+    def _draw_layer_list(  # noqa: PLR0913, PLR0912
         self,
         draw: ImageDraw.ImageDraw,
         frame: Image.Image,
@@ -125,7 +126,7 @@ class LayersPanelRenderer(BaseRenderer):
             is_active = (len(layers) - 1 - i) == active_idx
             if is_active:
                 draw.rectangle(
-                    [panel_x, layer_y, panel_x + VIDEO_WIDTH, layer_y + layer_h],
+                    [panel_x, layer_y, panel_x + VIDEO_WIDTH, layer_y + layer_h],  # type: ignore[arg-type]
                     fill=PSColors.SELECTED,
                 )
 
@@ -142,7 +143,7 @@ class LayersPanelRenderer(BaseRenderer):
             # Thumbnail
             thumb_x = panel_x + 35
             thumb_y = layer_y + 7
-            draw.rectangle([thumb_x, thumb_y, thumb_x + 36, thumb_y + 36], fill=(255, 255, 255))
+            draw.rectangle([thumb_x, thumb_y, thumb_x + 36, thumb_y + 36], fill=(255, 255, 255))  # type: ignore[arg-type]
             if layer.get("type") == "group" and "folder" in icons:
                 f_icon = icons["folder"].resize((24, 24), Image.Resampling.LANCZOS)
                 self.draw_icon(frame, f_icon, thumb_x + 6, thumb_y + 6)

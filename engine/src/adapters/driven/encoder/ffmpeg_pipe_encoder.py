@@ -49,7 +49,7 @@ class FfmpegPipeEncoder:
         )
 
         # Async writer queue
-        self.write_queue = queue.Queue(maxsize=30)
+        self.write_queue = queue.Queue(maxsize=30)  # type: ignore[var-annotated]
         self.writer_thread = threading.Thread(target=self._writer_worker, daemon=True)
         self.writer_thread.start()
 
@@ -60,7 +60,7 @@ class FfmpegPipeEncoder:
                 break
 
             try:
-                self.process.stdin.write(data)
+                self.process.stdin.write(data)  # type: ignore[union-attr]
             except BrokenPipeError:
                 print("❌ FFmpeg Pipe Broken!")
                 break
@@ -68,7 +68,7 @@ class FfmpegPipeEncoder:
                 print(f"❌ Writer Error: {e}")
                 break
 
-    def encode_frame(self, nv12_gpu_array) -> None:
+    def encode_frame(self, nv12_gpu_array) -> None:  # type: ignore[no-untyped-def]
         """
         Takes a CuPy NV12 array, downloads to host, and queues for encoding.
         """
@@ -96,7 +96,7 @@ class FfmpegPipeEncoder:
         self.process.wait()
 
         if self.process.returncode != 0:
-            err = self.process.stderr.read().decode()
+            err = self.process.stderr.read().decode()  # type: ignore[union-attr]
             print(f"❌ FFmpeg Error:\n{err}")
         else:
             print("✅ Video Saved Successfully.")

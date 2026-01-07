@@ -1,9 +1,6 @@
-"""
-PillowImageAdapter: PIL-based implementation of ImageProcessingPort.
-Dependencies: Pillow (PIL)
-"""
-
 from typing import Any
+
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 try:
     from PIL import Image, ImageChops, ImageDraw, ImageFilter
@@ -17,13 +14,15 @@ try:
 
     HAS_NUMPY = True
 except ImportError:
-    np = None
+    np = None  # type: ignore[assignment]
     HAS_NUMPY = False
 
-from domain.ports.media.image_processing_port import ImageProcessingPort
+from domain.ports.media.image_processing_port import (  # type: ignore[import-not-found]
+    ImageProcessingPort,
+)
 
 
-class PillowImageAdapter(ImageProcessingPort):
+class PillowImageAdapter(ImageProcessingPort):  # type: ignore[misc]
     """
     PIL/Pillow-based implementation of ImageProcessingPort.
 
@@ -94,7 +93,7 @@ class PillowImageAdapter(ImageProcessingPort):
         """Draw filled ellipse on image."""
         result = image.copy()
         draw = ImageDraw.Draw(result)
-        draw.ellipse(bbox, fill=fill)
+        draw.ellipse(bbox, fill=fill)  # type: ignore[arg-type]
         return result
 
     def get_size(self, image: Image.Image) -> tuple[int, int]:

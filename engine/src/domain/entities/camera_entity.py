@@ -14,14 +14,14 @@ from ..value_objects.geometry import Rect, Vector2
 class CameraEntity:
     """Domain entity representing the virtual camera/director."""
 
-    position: Vector2 = None
+    position: Vector2 = None  # type: ignore[assignment]
     zoom: float = 1.0
     min_zoom: float = 0.1
     max_zoom: float = 10.0
 
     def __post_init__(self) -> None:
         if self.position is None:
-            self.position = Vector2(0.0, 0.0)
+            self.position = Vector2(0.0, 0.0)  # type: ignore[unreachable]
 
     def pan_to(self, target: Vector2) -> None:
         """Move camera to a target position."""

@@ -4,15 +4,20 @@ Alpha Composite Module: Image compositing operations.
 
 from __future__ import annotations
 
+import typing
 from typing import Any
 
 try:
-    import numpy as np
+    import numpy as np  # type: ignore[unused-ignore]
     from PIL import Image
 
     HAS_DEPS = True
 except ImportError:
     HAS_DEPS = False
+
+# Constants
+RGB_CHANNELS = 3
+RGBA_CHANNELS = 4
 
 
 def alpha_composite(bg: np.ndarray, fg: np.ndarray) -> np.ndarray:
@@ -26,13 +31,10 @@ def alpha_composite(bg: np.ndarray, fg: np.ndarray) -> np.ndarray:
     Returns:
         Composited RGB numpy array (no alpha).
     """
-    import numpy as np
-    from PIL import Image
-
     # Ensure both are RGBA
-    if bg.shape[2] == 3:
+    if bg.shape[2] == RGB_CHANNELS:
         bg = np.concatenate([bg, np.full((*bg.shape[:2], 1), 255, dtype=np.uint8)], axis=2)
-    if fg.shape[2] == 3:
+    if fg.shape[2] == RGB_CHANNELS:
         fg = np.concatenate([fg, np.full((*fg.shape[:2], 1), 255, dtype=np.uint8)], axis=2)
 
     # Resize fg to match bg if needed
@@ -58,26 +60,23 @@ def alpha_composite(bg: np.ndarray, fg: np.ndarray) -> np.ndarray:
     )
 
     # Convert to RGB for video
-    return result[:, :, :3]
+
+    return typing.cast(np.ndarray, result[:, :, :3])  # type: ignore[redundant-cast]
 
 
 def convert_to_numpy_rgba(image: Any) -> np.ndarray:
     """Convert PIL Image or numpy array to RGBA numpy array."""
-    import numpy as np
-
     if hasattr(image, "convert"):
         return np.array(image.convert("RGBA"))
-    return image
+    return np.array(image)
 
 
 def convert_to_numpy_rgb(image: Any) -> np.ndarray:
     """Convert PIL Image or numpy array to RGB numpy array."""
-    import numpy as np
-
     if hasattr(image, "convert"):
         return np.array(image.convert("RGB"))
     elif isinstance(image, np.ndarray):
-        if image.shape[2] == 4:
+        if image.shape[2] == RGBA_CHANNELS:
             return image[:, :, :3]
         return image
     else:

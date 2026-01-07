@@ -10,12 +10,16 @@ from ..services.layer_service import LayerRetrievalService
 from .opacity_module import apply_opacity
 
 try:
-    from ...animator import LayerAnimState, apply_mask_to_layer, generate_reveal_mask
+    from ...animator import (  # type: ignore[attr-defined]
+        LayerAnimState,
+        apply_mask_to_layer,
+        generate_reveal_mask,
+    )
 except ImportError:
     pass
 
 
-def composite_centered_layer(
+def composite_centered_layer(  # noqa: PLR0913
     frame: Image.Image,
     layer: LayerEntity,
     state: "LayerAnimState",
@@ -38,6 +42,8 @@ def composite_centered_layer(
             layer_origin=Vector2(layer.bounds.x, layer.bounds.y),
         )
         layer_img = apply_mask_to_layer(layer_img, mask)
+        if layer_img is None:  # Guard against potential None return
+            return frame
 
     # 2. Scale
     new_w = max(1, int(layer_img.width * scale))

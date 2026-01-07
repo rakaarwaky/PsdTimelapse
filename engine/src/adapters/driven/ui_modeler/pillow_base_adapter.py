@@ -8,11 +8,11 @@ try:
     HAS_PILLOW = True
 except ImportError:
     HAS_PILLOW = False
-    Image = None
-    ImageDraw = None
+    Image = None  # type: ignore[assignment]
+    ImageDraw = None  # type: ignore[assignment]
 
 try:
-    from mdi_pil import MDI
+    from mdi_pil import MDI  # type: ignore[import-not-found]
 
     HAS_MDI = True
 except ImportError:
@@ -42,7 +42,7 @@ class BaseRenderer:
         if icon:
             frame.paste(icon, (int(x), int(y)), icon)
 
-    def draw_mdi_fallback(
+    def draw_mdi_fallback(  # noqa: PLR0913, PLR0912
         self,
         frame: Image.Image,
         name: str,

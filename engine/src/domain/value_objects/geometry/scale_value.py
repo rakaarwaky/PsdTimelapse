@@ -66,6 +66,6 @@ class Scale:
 
 
 # Class-level constants
-Scale.IDENTITY = Scale(1.0)
-Scale.HALF = Scale(0.5)
-Scale.DOUBLE = Scale(2.0)
+Scale.IDENTITY = Scale(1.0)  # type: ignore[attr-defined]
+Scale.HALF = Scale(0.5)  # type: ignore[attr-defined]
+Scale.DOUBLE = Scale(2.0)  # type: ignore[attr-defined]

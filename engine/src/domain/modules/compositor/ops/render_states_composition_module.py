@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections.abc import Callable
 from typing import Any, Protocol
 
@@ -28,7 +30,10 @@ class DrawCursorUIFn(Protocol):
     def __call__(self, target: Image.Image, x: float, y: float, r: float) -> None: ...
 
 
-def compose_from_render_states(
+# noqa: PLR0913
+
+
+def compose_from_render_states(  # noqa: PLR0913
     states: list[RenderState],
     find_layer_func: Callable[[str], LayerEntity | None],
     layer_service: LayerRetrievalService,
@@ -50,7 +55,7 @@ def compose_from_render_states(
         psd = Image.new("RGBA", (width, height), (255, 255, 255, 255))
 
     # Filter and sort by z_index
-    visible_states = [s for s in states if s.visible and s.opacity > 0]
+    visible_states = [s for s in states if s.visible and s.opacity > 0]  # type: ignore[operator]
     visible_states.sort(key=lambda s: s.z_index)
 
     # Track brush cursors to draw AFTER all layers
@@ -74,7 +79,7 @@ def compose_from_render_states(
         pos_y = int(raw_y)
 
         # Apply opacity
-        img = apply_opacity(img, state.opacity)
+        img = apply_opacity(img, state.opacity)  # type: ignore[arg-type]
 
         # Reveal mask (Brush actions)
         if hasattr(state, "reveal_progress") and state.reveal_progress < 1.0:
@@ -110,4 +115,4 @@ def compose_from_render_states(
         for cursor_x, cursor_y, radius in brush_cursors:
             draw_brush_cursor_ui_fn(psd, cursor_x, cursor_y, radius)
 
-    return psd
+    return psd  # type: ignore[no-any-return]

@@ -251,4 +251,5 @@ __all__ = [
     "CursorStyle",
     "MultiLayerCompositor",
     "LayerCache",
+    "ProducerConfig",
 ]

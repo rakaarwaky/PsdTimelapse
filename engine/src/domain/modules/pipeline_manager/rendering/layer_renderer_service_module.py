@@ -5,15 +5,25 @@ from typing import TYPE_CHECKING, Any, Optional
 try:
     from PIL import Image
 except ImportError:
-    Image = None
+    Image = None  # type: ignore[assignment]
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.configs import LayerRenderConfig
-from ...animator.io.layer_manifest_module import LayerManifest, RenderManifest
+
+# Optional dependency imports with fallback
+try:
+    from ....value_objects.io.render_manifest import LayerManifest, RenderManifest
+except ImportError:
+    LayerManifest = Any  # type: ignore[assignment,misc]
+    RenderManifest = Any  # type: ignore[assignment,misc]
+
 from .layer_animation_service_module import create_layer_animation_service
 
 if TYPE_CHECKING:
-    from ...orchestrator.render_orchestrator_module import FrameOutputPort
+    # Forward ref for optional port, may not exist
+    class FrameOutputPort:
+        def write_frame(self, frame_data: Any, path: str) -> None: ...
+        def finalize(self) -> None: ...
 
 
 class LayerRenderer:
@@ -62,7 +72,7 @@ class LayerRenderer:
         total_frames = timeline_info.get("total_frames", 100)
 
         blank_count = 0
-        hold_ranges = []
+        hold_ranges = []  # type: ignore[var-annotated]
 
         # Iterate pure states
         for frame_data in self.service.generate_frames(layer, get_layer_image, timeline_info):

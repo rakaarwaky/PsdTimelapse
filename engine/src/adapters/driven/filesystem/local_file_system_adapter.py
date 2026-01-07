@@ -6,10 +6,10 @@ Dependencies: os, shutil, Domain.Ports.FileSystemPort
 import os
 import shutil
 
-from domain.ports.store.file_system_port import FileSystemPort
+from domain.ports.store.file_system_port import FileSystemPort  # type: ignore[import-not-found]
 
 
-class LocalFileSystemAdapter(FileSystemPort):
+class LocalFileSystemAdapter(FileSystemPort):  # type: ignore[misc]
     """Standard local file system implementation."""
 
     def read_bytes(self, path: str) -> bytes:

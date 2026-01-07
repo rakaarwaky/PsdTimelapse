@@ -28,4 +28,4 @@ def create_coordinate_mapper(
     """
     from .coordinate_mapper_module import CoordinateMapper
 
-    return CoordinateMapper(camera=camera, viewport=viewport)
+    return CoordinateMapper(camera=camera, viewport=viewport)  # type: ignore[unused-ignore]

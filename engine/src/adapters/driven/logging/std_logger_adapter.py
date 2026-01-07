@@ -6,10 +6,10 @@ Dependencies: python logging module, Domain.Ports.LoggerPort
 import logging
 from typing import Any
 
-from domain.ports.system.logger_port import LoggerPort
+from domain.ports.system.logger_port import LoggerPort  # type: ignore[import-not-found]
 
 
-class StdLoggerAdapter(LoggerPort):
+class StdLoggerAdapter(LoggerPort):  # type: ignore[misc]
     """
     Adapter for LoggerPort using Python's standard logging module.
     """

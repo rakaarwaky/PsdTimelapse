@@ -86,8 +86,8 @@ class MemoryLimit:
 
 
 # Common presets
-MemoryLimit.MB_512 = MemoryLimit.from_mb(512)
-MemoryLimit.GB_1 = MemoryLimit.from_gb(1)
-MemoryLimit.GB_2 = MemoryLimit.from_gb(2)
-MemoryLimit.GB_4 = MemoryLimit.from_gb(4)
-MemoryLimit.GB_8 = MemoryLimit.from_gb(8)
+MemoryLimit.MB_512 = MemoryLimit.from_mb(512)  # type: ignore[attr-defined]
+MemoryLimit.GB_1 = MemoryLimit.from_gb(1)  # type: ignore[attr-defined]
+MemoryLimit.GB_2 = MemoryLimit.from_gb(2)  # type: ignore[attr-defined]
+MemoryLimit.GB_4 = MemoryLimit.from_gb(4)  # type: ignore[attr-defined]
+MemoryLimit.GB_8 = MemoryLimit.from_gb(8)  # type: ignore[attr-defined]

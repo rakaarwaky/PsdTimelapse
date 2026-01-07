@@ -5,10 +5,10 @@ Dependencies: Domain.Ports.CachePort
 
 from typing import Any
 
-from domain.ports.store.cache_port import CachePort
+from domain.ports.store.cache_port import CachePort  # type: ignore[import-not-found]
 
 
-class InMemoryCacheAdapter(CachePort):
+class InMemoryCacheAdapter(CachePort):  # type: ignore[misc]
     """
     Simple in-memory cache using Python dict.
     No TTL support in this basic version, unbounded size.

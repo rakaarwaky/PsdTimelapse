@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from ..value_objects.geometry import Rect
+from ..value_objects.geometry import Rect, Vector2
 from .document_entity import DocumentEntity
 from .scene_entity import SceneEntity
 from .timeline_entity import TimelineEntity
@@ -31,7 +31,7 @@ class WorldEntity:
         return Rect(0, 0, float(self.width), float(self.height))
 
     @property
-    def center(self):
+    def center(self):  # type: ignore[no-untyped-def]
         """Get the center point of the world."""
         return self.bounds.center()
 
@@ -44,8 +44,6 @@ class WorldEntity:
 
     def contains_point(self, x: float, y: float) -> bool:
         """Check if a point is within world bounds."""
-        from ..value_objects.geometry import Vector2
-
         return self.bounds.contains_point(Vector2(x, y))
 
     def __repr__(self) -> str:

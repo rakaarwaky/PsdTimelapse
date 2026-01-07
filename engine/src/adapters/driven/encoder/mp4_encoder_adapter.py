@@ -47,7 +47,7 @@ class Mp4EncoderAdapter:
             self.cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE
         )
 
-        self.write_queue = queue.Queue(maxsize=30)
+        self.write_queue = queue.Queue(maxsize=30)  # type: ignore[var-annotated]
         self.writer_thread = threading.Thread(target=self._writer_worker, daemon=True)
         self.writer_thread.start()
 
@@ -58,7 +58,7 @@ class Mp4EncoderAdapter:
                 break
 
             try:
-                self.process.stdin.write(data)
+                self.process.stdin.write(data)  # type: ignore[union-attr]
             except (BrokenPipeError, OSError):
                 # Process might have crashed or closed
                 break
@@ -96,7 +96,7 @@ class Mp4EncoderAdapter:
         self.process.wait()
 
         if self.process.returncode != 0:
-            err = self.process.stderr.read().decode()
+            err = self.process.stderr.read().decode()  # type: ignore[union-attr]
             print(f"❌ FFmpeg Error:\n{err}")
         else:
             print(f"✅ Video Saved: {self.output_path}")

@@ -13,7 +13,9 @@ try:
 except ImportError:
     HAS_PILLOW = False
 
-from domain.ports.store.asset_provider_port import AssetProviderPort
+from domain.ports.store.asset_provider_port import (
+    AssetProviderPort,  # type: ignore[import-not-found]
+)
 
 
 class LocalAssetProviderAdapter(AssetProviderPort):

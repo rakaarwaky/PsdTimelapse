@@ -25,26 +25,18 @@ from .producer_config_value import ProducerConfig
 from .script_director_config_value import ScriptDirectorConfig
 
 __all__ = [
-    # Producer
-    "ProducerConfig",
-    # Animator
-    "AnimatorConfig",
-    # Compositor
-    "CompositorConfig",
-    # Layout
-    "LayoutConfig",
-    # Script Director
-    "ScriptDirectorConfig",
-    # Layer Render
-    "LayerRenderConfig",
-    # Pipeline
-    "EngineState",
-    "RenderMode",
-    "RenderConfig",
-    "PipelineConfig",
-    "EngineProgress",
-    # Media Output
-    "MediaOutputConfig",
-    "FINAL_WIDTH",
     "FINAL_HEIGHT",
+    "FINAL_WIDTH",
+    "AnimatorConfig",
+    "CompositorConfig",
+    "EngineProgress",
+    "EngineState",
+    "LayerRenderConfig",
+    "LayoutConfig",
+    "MediaOutputConfig",
+    "PipelineConfig",
+    "ProducerConfig",
+    "RenderConfig",
+    "RenderMode",
+    "ScriptDirectorConfig",
 ]

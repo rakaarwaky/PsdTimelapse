@@ -17,8 +17,8 @@ except ImportError:
     np = None
 
 try:
-    import Imath
-    import OpenEXR
+    import Imath  # type: ignore[import-not-found]
+    import OpenEXR  # type: ignore[import-not-found]
 except ImportError:
     OpenEXR = None
     Imath = None
@@ -29,12 +29,14 @@ except ImportError:
     Image = None
 
 if TYPE_CHECKING:
-    from domain.modules.animator.layer_state_generator_module import FrameData
+    from domain.modules.animator.layer_state_generator_module import (
+        FrameData,  # type: ignore[import-not-found]
+    )
 
-    from domain.modules.pipeline_manager import FrameOutputPort
+    from domain.modules.pipeline_manager import FrameOutputPort  # type: ignore[import-not-found]
 
 
-from domain.ports.media.frame_output_port import FrameOutputPort
+from domain.ports.media.frame_output_port import FrameOutputPort  # type: ignore[import-not-found]
 
 
 class ExrOutputAdapter(FrameOutputPort):

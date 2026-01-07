@@ -74,7 +74,11 @@ SCENES = [
         "name": "Linear vs Curved",
         "items": [
             {"label": "Straight", "type": BrushPathType.STRAIGHT, "color": (255, 100, 100, 255)},
-            {"label": "Curve Down", "type": BrushPathType.CURVE_DOWN, "color": (100, 255, 100, 255)},
+            {"label": "Curve Down", "type": BrushPathType.CURVE_DOWN, "color": (
+                100,
+                255,
+                100,
+                255)},
             {"label": "Curve Up", "type": BrushPathType.CURVE_UP, "color": (100, 100, 255, 255)},
             {"label": "ZigZag", "type": BrushPathType.ZIGZAG, "color": (255, 200, 50, 255)},
         ]
@@ -102,66 +106,65 @@ class TestBrushPath(unittest.TestCase):
 
     def test_path_variations(self):
         print("--- Brush Reveal Path Test ---")
+fps = 30
+duration = 3.0
+total_frames = int(duration * fps)
+
+helper = VideoTestHelper(
+    output_dir=self.output_dir,
+    filename_base='brush_path_test',
+    fps=fps
+)
+
+print(f"Rendering {total_frames} frames...")
+
+for scene in SCENES:
+    print(f"Scene: {scene['name']}")
+    
+    # Setup Layers
+    layers = []
+    actions = []
+    
+    for i, item in enumerate(scene["items"]):
+        x, y, w, h = POSITIONS[i]
+        l = MockLayer(f"L{i}", item["color"], x, y, w, h, i, item["label"])
+        layers.append(l)
         
-        fps = 30
-        duration = 3.0
-        total_frames = int(duration * fps)
+        # We need to manually drive the path logic here since Animator default handle might assume Straight for now
+        # Or we explicitly test the 'apply_reveal_mask_with_path' function
         
-        helper = VideoTestHelper(
-            output_dir=self.output_dir,
-            filename_base='brush_path_test',
-            fps=fps
-        )
+        actions.append({
+            "layer": l,
+            "type": item["type"],
+            "start": 0.0,
+            "dur": duration
+        })
+    
+    # Setup Compositing
+    viewport = ViewportEntity(800, 600, 30)
+    
+    # Render Loop
+    for f in range(total_frames):
+        time = f / fps
+        progress = min(1.0, time / duration)
         
-        print(f"Rendering {total_frames} frames...")
+        # Canvas
+        canvas = Image.new('RGBA', (800, 600), (30, 30, 30, 255))
         
-        for scene in SCENES:
-            print(f"Scene: {scene['name']}")
+        for act in actions:
+            layer = act["layer"]
+            path_type = act["type"]
             
-            # Setup Layers
-            layers = []
-            actions = []
+            # 1. Get Base Image
+            base_img = layer._create_mock_image()
             
-            for i, item in enumerate(scene["items"]):
-                x, y, w, h = POSITIONS[i]
-                l = MockLayer(f"L{i}", item["color"], x, y, w, h, i, item["label"])
-                layers.append(l)
-                
-                # We need to manually drive the path logic here since Animator default handle might assume Straight for now
-                # Or we explicitly test the 'apply_reveal_mask_with_path' function
-                
-                actions.append({
-                    "layer": l,
-                    "type": item["type"],
-                    "start": 0.0,
-                    "dur": duration
-                })
-            
-            # Setup Compositing
-            viewport = ViewportEntity(800, 600, 30)
-            
-            # Render Loop
-            for f in range(total_frames):
-                time = f / fps
-                progress = min(1.0, time / duration)
-                
-                # Canvas
-                canvas = Image.new('RGBA', (800, 600), (30, 30, 30, 255))
-                
-                for act in actions:
-                    layer = act["layer"]
-                    path_type = act["type"]
-                    
-                    # 1. Get Base Image
-                    base_img = layer._create_mock_image()
-                    
-                    # 2. Apply Path Reveal
-                    revealed = apply_reveal_mask_with_path(
-                        base_img, 
-                        progress, 
-                        path_type, 
-                        invert=False # Standard reveal
-                    )
+            # 2. Apply Path Reveal
+            revealed = apply_reveal_mask_with_path(
+                base_img, 
+                progress, 
+                path_type, 
+                invert=False # Standard reveal
+            )
                     
                     # 3. Paste to Canvas
                     canvas.alpha_composite(revealed, (int(layer.position.x), int(layer.position.y)))

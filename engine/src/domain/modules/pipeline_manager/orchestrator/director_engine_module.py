@@ -6,10 +6,10 @@ Migrated from render_manager to pipeline_manager.
 
 from __future__ import annotations
 
+# New Service Imports
+import os
 from collections.abc import Callable
 from dataclasses import dataclass, field
-
-# New Service Imports
 from typing import TYPE_CHECKING, Any
 
 from ....entities.camera_entity import CameraEntity
@@ -28,6 +28,8 @@ from ....ports.system.time_port import TimePort
 from ....value_objects.configs import EngineProgress, EngineState, RenderConfig
 from ...script_director import SequencingStrategy, TimelineEntity, create_timeline
 from ..rendering.cpu_strategy_module import CPURenderStrategy
+from ..rendering.gpu_backend_module import GpuBackend
+from ..rendering.gpu_strategy_module import GPURenderStrategy
 from ..rendering.optimized_strategy_module import OptimizedRenderStrategy
 
 if TYPE_CHECKING:
@@ -148,17 +150,13 @@ class DirectorEngine:
             raise RuntimeError("UI Factory missing")
         _ = self.ui_renderer_factory()
 
-        from ..rendering.gpu_strategy_module import GPURenderStrategy
-
         strategy = GPURenderStrategy(self.world)
         if hasattr(strategy, "initialize"):
             # Create backend via factory or injection (Level 2 Orchestration responsibility)
             # Lazy import backend here (Orchestrator knows about backend implementation)
             backend = None
             if self.compositor_port:
-                try:
-                    from ..rendering.gpu_backend_module import GpuBackend
-
+                try:  # type: ignore[unused-ignore]
                     backend = GpuBackend(self.compositor_port)
                 except ImportError:
                     self.logger.warning("GpuBackend not found")
@@ -176,11 +174,9 @@ class DirectorEngine:
     def _ensure_media_path(self) -> None:
         """Initialize MediaOutputPath if service is available."""
         if self.media_output_service and not self.media_path:
-            import os
-
             # Use PSD stem as project_id
-            if self.world and hasattr(self.world, "source_path"):
-                project_id = os.path.splitext(os.path.basename(str(self.world.source_path)))[0]
+            if self.world and hasattr(self.world, "source_path"):  # type: ignore[unused-ignore]
+                project_id = os.path.splitext(os.path.basename(str(self.world.source_path)))[0]  # type: ignore[unused-ignore]
             else:
                 project_id = "render_project"
 
@@ -195,7 +191,7 @@ class DirectorEngine:
         if self.ui_renderer_factory is None:
             raise RuntimeError("UI Renderer Factory is missing")
 
-        return strategy.execute(
+        return strategy.execute(  # type: ignore[no-any-return]
             config,
             self.timeline,
             self.video_port,

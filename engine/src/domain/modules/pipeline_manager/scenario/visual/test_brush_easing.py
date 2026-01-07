@@ -13,26 +13,26 @@ SRC_ROOT = os.path.join(PROJECT_ROOT, 'src')
 if SRC_ROOT not in sys.path:
     sys.path.append(SRC_ROOT)
 
-from domain.entities.world_entity import WorldEntity, SceneEntity
-from domain.entities.layer_entity import LayerEntity
-from domain.entities.viewport_entity import ViewportEntity
-from domain.value_objects import Vector2, Rect, EasingCurve, EasingType
-from domain.modules.script_director import TimelineEntity, Action, ActionType
-from domain.modules.animator import AnimationController
-from domain.modules.compositor import FrameCompositor
+from domain.entities.world_entity import WorldEntity, SceneEntity  # noqa: E402
+from domain.entities.layer_entity import LayerEntity  # noqa: E402
+from domain.entities.viewport_entity import ViewportEntity  # noqa: E402
+from domain.value_objects import Vector2, Rect, EasingCurve, EasingType  # noqa: E402
+from domain.modules.script_director import TimelineEntity, Action, ActionType  # noqa: E402
+from domain.modules.animator import AnimationController  # noqa: E402
+from domain.modules.compositor import FrameCompositor  # noqa: E402
 
-from PIL import Image, ImageDraw, ImageFont
-import cv2
-import numpy as np
+from PIL import Image, ImageDraw, ImageFont  # noqa: E402
+import cv2  # noqa: E402
+import numpy as np  # noqa: E402
 
 # Shared Fixtures
-from domain.modules.pipeline_manager.scenario.fixtures.mock_layer_factory import MockGrid
-from domain.modules.pipeline_manager.scenario.fixtures.mock_renderer_factory import MockRenderer
-from domain.modules.pipeline_manager.scenario.fixtures.video_output_helper import VideoTestHelper
+from domain.modules.pipeline_manager.scenario.fixtures.mock_layer_factory import MockGrid  # noqa: E402
+from domain.modules.pipeline_manager.scenario.fixtures.mock_renderer_factory import MockRenderer  # noqa: E402
+from domain.modules.pipeline_manager.scenario.fixtures.video_output_helper import VideoTestHelper  # noqa: E402
 
 # Local Config
-from domain.modules.pipeline_manager.scenario.visual.brush_scenes_config import SCENES, POSITIONS, SCENE_DURATION, TRANSITION_GAP
-from domain.value_objects.resource.media_output_path_value import MediaOutputPath
+from domain.modules.pipeline_manager.scenario.visual.brush_scenes_config import SCENES, POSITIONS, SCENE_DURATION, TRANSITION_GAP  # noqa: E402
+from domain.value_objects.resource.media_output_path_value import MediaOutputPath  # noqa: E402
 
 
 class TestBrushEasing(unittest.TestCase):
@@ -47,8 +47,8 @@ class TestBrushEasing(unittest.TestCase):
         self.output_dir = str(self.media_path.visual_test_dir / "brush_easing")
         os.makedirs(self.output_dir, exist_ok=True)
 
-    def test_extended_easing(self):
-        print(f"\\n--- Brush Reveal Test 002: Extended Easing Showcase ---")
+    def test_extended_easing(self):  # noqa: PLR0915
+        print(f"--- Brush Reveal Test 002: Extended Easing Showcase ---")
         print(f"Scenes: {len(SCENES)}, Total Easings: {len(SCENES) * 3}")
         
         total_duration = len(SCENES) * (SCENE_DURATION + TRANSITION_GAP)

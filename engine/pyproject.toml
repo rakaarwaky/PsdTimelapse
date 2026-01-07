@@ -54,6 +54,7 @@ select = [
     "B", # flake8-bugbear (common logical errors)
     "UP", # pyupgrade (modernize syntax)
     "N", # pep8-naming
+    "PLR", # Pylint Refactor (Complexity)
 ]
 ignore = []
 
@@ -88,7 +89,7 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict = true
-ignore_missing_imports = true # Useful for libraries without stubs (like moviepy, psd-tools sometimes)
+ignore_missing_imports = false # Disabled to allow explicit management by auto_fixer (LibraryStubFixer)
 exclude = [
     "src/domain/modules/pipeline_manager/scenario",
 ]
@@ -98,3 +99,35 @@ exclude = [
 module = "tests.*"
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
+
+[[tool.mypy.overrides]]
+# External libraries without type stubs
+module = [
+    "cupy",
+    "cupy.*",
+    "PyNvVideoCodec",
+    "PyNvVideoCodec.*",
+    "moviepy",
+    "moviepy.*",
+    "OpenEXR",
+    "OpenEXR.*",
+    "Imath",
+    "Imath.*",
+    "bezier",
+    "bezier.*",
+    "cv2",
+    "cv2.*",
+    "networkx",
+    "networkx.*",
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# Internal domain modules (relative imports from src)
+module = [
+    "domain.*",
+    "adapters.*",
+    "src.*",
+    "engine.*",
+]
+ignore_missing_imports = true

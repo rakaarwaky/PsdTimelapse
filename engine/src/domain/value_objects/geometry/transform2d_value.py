@@ -19,16 +19,16 @@ class Transform2D:
     Applies transformations in order: Scale -> Rotate -> Translate
     """
 
-    position: Vector2 = None
+    position: Vector2 = None  # type: ignore[assignment]
     scale: float = 1.0
     rotation: float = 0.0
-    anchor: Vector2 = None
+    anchor: Vector2 = None  # type: ignore[assignment]
 
     def __post_init__(self) -> None:
         if self.position is None:
-            object.__setattr__(self, "position", Vector2(0, 0))
+            object.__setattr__(self, "position", Vector2(0, 0))  # type: ignore[unreachable]
         if self.anchor is None:
-            object.__setattr__(self, "anchor", Vector2(0, 0))
+            object.__setattr__(self, "anchor", Vector2(0, 0))  # type: ignore[unreachable]
 
         if self.scale <= 0:
             raise ValueError(f"Scale must be positive: {self.scale}")
@@ -108,4 +108,4 @@ class Transform2D:
 
 
 # Identity transform
-Transform2D.IDENTITY = Transform2D()
+Transform2D.IDENTITY = Transform2D()  # type: ignore[attr-defined]

@@ -75,7 +75,7 @@ def get_path_direction(orientation: Orientation, action_type: ActionType) -> Pat
         return PathDirection.HORIZONTAL if is_horizontal else PathDirection.VERTICAL
 
 
-def plan_smart_timeline(
+def plan_smart_timeline(  # noqa: PLR0913, PLR0912
     layers: list[LayerEntity],
     analyze_fn: AnalyzeFn,
     canvas_width: int,

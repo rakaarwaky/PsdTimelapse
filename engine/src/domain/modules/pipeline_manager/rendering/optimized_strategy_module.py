@@ -29,7 +29,7 @@ class OptimizedRenderStrategy:
     def __init__(self, world: WorldEntity):
         self.world = world
 
-    def execute(
+    def execute(  # noqa: PLR0913, PLR0912
         self,
         config: "RenderConfig",
         timeline: "TimelineEntity",
@@ -69,7 +69,7 @@ class OptimizedRenderStrategy:
         draw_brush_cursor_ui = None
         get_brush_cursor_position = None
 
-        compositor = FrameCompositor(
+        compositor = FrameCompositor(  # noqa: PLR0913, PLR0912  # type: ignore[call-arg]
             self.world,
             viewport,
             mask_generator_fn=generate_reveal_mask,
@@ -94,7 +94,7 @@ class OptimizedRenderStrategy:
         cursor_overlay = CursorOverlay(icon_size=32)
 
         # 6. Render Loop (Pipeline)
-        def _emit_progress_adapter(current, total) -> None:
+        def _emit_progress_adapter(current, total) -> None:  # type: ignore[no-untyped-def]
             progress_callback(EngineState.RENDERING, current, total, f"Frame {current}/{total}")
 
         for frame_num, frame in pipeline.iterate_frames(

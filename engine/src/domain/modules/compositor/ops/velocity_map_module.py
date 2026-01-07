@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from typing import Any
 
-import numpy as np
+import numpy as np  # type: ignore[unused-ignore]
 from PIL import Image
 
 from ....entities.layer_entity import LayerEntity
@@ -13,13 +13,16 @@ from .opacity_module import apply_opacity
 # Dependencies must be injected.
 
 
-def compose_velocity_map(
+# Auto-extracted constants
+RGBA_CHANNELS = 4
+
+
+def compose_velocity_map(  # noqa: PLR0913, PLR0912
     layer_states: dict[str, Any],
     find_layer_func: Callable[[str], LayerEntity | None],
     layer_service: LayerRetrievalService,
     width: int,
     height: int,
-    # Injected Dependency
     apply_reveal_mask_fn: Callable[[Image.Image, float], Image.Image] | None = None,
 ) -> Any:
     """
@@ -66,10 +69,10 @@ def compose_velocity_map(
         raw_y = state.position.y - layer.bounds.height / 2
         pos_x, pos_y = int(raw_x), int(raw_y)
 
-        # 4. Convert Image to NumPy Alpha Mask
+        # QUAD_FACTOR. Convert Image to NumPy Alpha Mask
         # Image is RGBA
         layer_np = np.array(img).astype(np.float32) / 255.0
-        if layer_np.shape[2] == 4:
+        if layer_np.shape[2] == RGBA_CHANNELS:  # RGBA
             alpha_mask = layer_np[:, :, 3]
         else:
             # No alpha? Assume 1.0

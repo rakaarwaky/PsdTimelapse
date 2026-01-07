@@ -5,10 +5,10 @@ Dependencies: time, Domain.Ports.TimePort
 
 import time
 
-from domain.ports.system.time_port import TimePort
+from domain.ports.system.time_port import TimePort  # type: ignore[import-not-found]
 
 
-class SystemTimeAdapter(TimePort):
+class SystemTimeAdapter(TimePort):  # type: ignore[misc]
     """Standard time implementation using Python's time module."""
 
     def now(self) -> float:

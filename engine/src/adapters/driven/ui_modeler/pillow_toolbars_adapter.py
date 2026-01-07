@@ -27,7 +27,7 @@ class ToolbarRenderer(BaseRenderer):
         top = HEADER_HEIGHT
         bottom = VIDEO_HEIGHT - LAYERS_PANEL_HEIGHT
 
-        draw.rectangle([0, top, LEFT_TOOLBAR_WIDTH, bottom], fill=PSColors.PANEL)
+        draw.rectangle([0, top, LEFT_TOOLBAR_WIDTH, bottom], fill=PSColors.PANEL)  # type: ignore[arg-type]
         draw.line([(LEFT_TOOLBAR_WIDTH, top), (LEFT_TOOLBAR_WIDTH, bottom)], fill=PSColors.BORDER)
 
         toolbar_icons_path = os.path.join(ICONS_DIR, "toolbar")
@@ -86,7 +86,7 @@ class ToolbarRenderer(BaseRenderer):
             btn_x = (LEFT_TOOLBAR_WIDTH - 44) // 2
 
             if is_selected:
-                draw.rectangle([btn_x, y, btn_x + 44, y + 44], fill=PSColors.HOVER)
+                draw.rectangle([btn_x, y, btn_x + 44, y + 44], fill=PSColors.HOVER)  # type: ignore[arg-type]
 
             if item in icons:
                 icon = icons[item]
@@ -99,9 +99,11 @@ class ToolbarRenderer(BaseRenderer):
 
         # Swatches
         swatch_y = bottom - 55
-        draw.rectangle([10, swatch_y, 30, swatch_y + 20], fill=(0, 0, 0), outline=PSColors.MUTED)
+        draw.rectangle([10, swatch_y, 30, swatch_y + 20], fill=(0, 0, 0), outline=PSColors.MUTED)  # type: ignore[arg-type]
         draw.rectangle(
-            [18, swatch_y + 10, 38, swatch_y + 30], fill=(255, 255, 255), outline=PSColors.MUTED
+            [18, swatch_y + 10, 38, swatch_y + 30],  # type: ignore[arg-type]
+            fill=(255, 255, 255),
+            outline=PSColors.MUTED,  # type: ignore[unused-ignore]
         )
 
     def draw_right(self, draw: ImageDraw.ImageDraw, frame: Image.Image) -> None:
@@ -110,7 +112,7 @@ class ToolbarRenderer(BaseRenderer):
         bottom = VIDEO_HEIGHT - LAYERS_PANEL_HEIGHT
         left = VIDEO_WIDTH - RIGHT_TOOLBAR_WIDTH
 
-        draw.rectangle([left, top, VIDEO_WIDTH, bottom], fill=PSColors.PANEL)
+        draw.rectangle([left, top, VIDEO_WIDTH, bottom], fill=PSColors.PANEL)  # type: ignore[arg-type]
         draw.line([(left, top), (left, bottom)], fill=PSColors.BORDER)
 
         sidebar_mapping = {

@@ -46,7 +46,7 @@ class GPURenderStrategy:
         self.compositor_port = compositor
         self.backend = backend
 
-    def execute(
+    def execute(  # noqa: PLR0913, PLR0912
         self,
         config: RenderConfig,
         timeline: TimelineEntity,
@@ -69,7 +69,7 @@ class GPURenderStrategy:
         if anim_controller_factory:
             anim_controller = anim_controller_factory(config.width, config.height)
         else:
-            from ...animator import AnimationController
+            from ...animator import AnimationController  # noqa: PLC0415
 
             anim_controller = AnimationController(config.width, config.height)
 
@@ -80,7 +80,7 @@ class GPURenderStrategy:
         if compositor_factory:
             compositor = compositor_factory(self.world, viewport)
         else:
-            from ...compositor import FrameCompositor
+            from ...compositor import FrameCompositor  # noqa: PLC0415
 
             compositor = FrameCompositor(self.world, viewport)
 
@@ -109,7 +109,7 @@ class GPURenderStrategy:
         def _emit_progress_adapter(current: int, total: int) -> None:
             progress_callback(EngineState.RENDERING, current, total, f"GPU Frame {current}/{total}")
 
-        for frame_num, frame in pipeline.iterate_frames(
+        for frame_num, frame_data in pipeline.iterate_frames(
             static_ui=static_ui,
             timeline=timeline,
             anim_controller=anim_controller,
@@ -126,10 +126,12 @@ class GPURenderStrategy:
                 camera.lerp_to(cam_action.end_position, cam_action.end_zoom, t)
 
             # Add frame to video port
-            if hasattr(frame, "get"):  # CuPy/NumPy
-                frame = frame.get()  # To NumPy
+            if hasattr(frame_data, "get"):  # CuPy/NumPy
+                frame_np = frame_data.get()  # To NumPy
+            else:
+                frame_np = frame_data
 
-            video_port.add_frame(frame)
+            video_port.add_frame(frame_np)
 
         # 7. Finalize
         progress_callback(EngineState.SAVING, total_frames, total_frames, "Saving video...")

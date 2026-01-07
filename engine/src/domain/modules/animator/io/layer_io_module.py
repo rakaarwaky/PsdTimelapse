@@ -7,14 +7,14 @@ This file will be removed in a future version.
 
 import warnings
 
-import Imath
-import numpy as np
-import OpenEXR
+import Imath  # type: ignore[import-not-found]
+import numpy as np  # type: ignore[unused-ignore]
+import OpenEXR  # type: ignore[import-not-found]
 
 try:
     from PIL import Image
 except ImportError:
-    Image = None
+    Image = None  # type: ignore[assignment]
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.layer_anim_state import LayerAnimState
@@ -50,7 +50,7 @@ class LayerIO:
         out.close()
 
     @staticmethod
-    def save_layer_frame(
+    def save_layer_frame(  # noqa: PLR0913
         layer_img: Image.Image,
         path: str,
         layer: LayerEntity,

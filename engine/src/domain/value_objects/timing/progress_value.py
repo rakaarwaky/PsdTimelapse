@@ -58,6 +58,6 @@ class Progress:
 
 
 # Class-level constants
-Progress.ZERO = Progress(0.0)
-Progress.COMPLETE = Progress(1.0)
-Progress.HALF = Progress(0.5)
+Progress.ZERO = Progress(0.0)  # type: ignore[attr-defined]
+Progress.COMPLETE = Progress(1.0)  # type: ignore[attr-defined]
+Progress.HALF = Progress(0.5)  # type: ignore[attr-defined]

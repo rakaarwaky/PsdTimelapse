@@ -16,3 +16,13 @@ dist/
 !.vscode/extensions.json
 .idea/
 engine/src/assets/Psd/test.psd
+
+# Virtual Environments
+.venv/
+.venv_train/
+
+# Auto-generated
+auto_linter/
+mypy.ini
+server.py
+tools/proof_report.py

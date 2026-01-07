@@ -6,7 +6,6 @@ Layer Manifest: IO data structures for layer rendering.
 """
 
 
-
 @dataclass
 class LayerManifest:
     """Render manifest for a single layer."""

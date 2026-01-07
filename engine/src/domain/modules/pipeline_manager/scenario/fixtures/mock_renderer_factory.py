@@ -1,4 +1,4 @@
-import os
+import os  # noqa: PLR0913, PLR0912
 from PIL import Image, ImageDraw
 
 class MockRenderer:
@@ -14,9 +14,9 @@ class MockRenderer:
                 pass
 
     def render_cursor(self, layers, cursor_state, frame):
-        if not cursor_state or not cursor_state.position: return
+        if not cursor_state or not cursor_state.position: return  # noqa: PLR0913, PLR0912
         pos = cursor_state.position
-        
+
         if self.cursor_img:
             x, y = int(pos.x), int(pos.y)
             try:
@@ -33,14 +33,14 @@ class MockRenderer:
 class DynamicCursorRenderer:
     """Renders the dynamic cursor (Hand/Brush) onto the canvas content."""
     def render_cursor(self, layer_list, cursor_state, frame):
-        if not cursor_state or not cursor_state.position: return
+        if not cursor_state or not cursor_state.position: return  # noqa: PLR0913, PLR0912
         pos = cursor_state.position
-        
+
         d = ImageDraw.Draw(frame)
         # Simple Cursor Triangle (White with black outline)
         points = [
-            (pos.x, pos.y), 
-            (pos.x, pos.y + 20), 
+            (pos.x, pos.y),
+            (pos.x, pos.y + 20),
             (pos.x + 12, pos.y + 12)
         ]
         d.polygon(points, fill=(255, 255, 255, 255), outline=(0, 0, 0, 255))

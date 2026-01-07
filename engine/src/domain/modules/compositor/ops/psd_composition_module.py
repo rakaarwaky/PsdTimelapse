@@ -10,7 +10,7 @@ All dependencies are injected as arguments by the Orchestrator.
 """
 
 from collections.abc import Callable
-from typing import Any, Protocol
+from typing import TYPE_CHECKING, Any, Protocol
 
 from PIL import Image
 
@@ -30,7 +30,7 @@ from .subpixel_module import apply_subpixel_shift
 class MaskGeneratorProtocol(Protocol):
     """What the mask generator looks like to this module."""
 
-    def __call__(
+    def __call__(  # noqa: PLR0913
         self,
         layer_size: tuple[Any, ...],
         path: Any,
@@ -63,12 +63,79 @@ class ImageProcessorProtocol(Protocol):
 # ============================================================
 # Backward compatibility stubs
 # ============================================================
-def get_brush_cursor_position(*args):
+def get_brush_cursor_position(*args):  # type: ignore[no-untyped-def]
     return 0, 0, 0
 
 
-def draw_brush_cursor_ui(*args) -> None:
+def draw_brush_cursor_ui(*args) -> None:  # type: ignore[no-untyped-def]
     pass
+
+
+def _apply_reveal_mask(  # noqa: PLR0913
+    img: Image.Image,
+    state: Any,
+    layer: LayerEntity,
+    mask_generator_fn: MaskGeneratorProtocol | None,
+    path_generator_fn: PathGeneratorProtocol | None,
+    brush_tool_factory_fn: BrushToolFactoryProtocol | None,
+    image_processor: ImageProcessorProtocol | None,
+    brush_cursors: list[Any],
+) -> Image.Image:
+    """Helper to apply reveal mask logic."""
+    if not all([path_generator_fn, brush_tool_factory_fn, mask_generator_fn]):
+        return img
+
+    if TYPE_CHECKING:
+        assert path_generator_fn is not None
+        assert brush_tool_factory_fn is not None
+        assert mask_generator_fn is not None
+
+    # Generate Deterministic Path for this layer
+    path = path_generator_fn(  # type: ignore[unused-ignore]
+        layer.bounds,
+        duration=1.0,
+        brush_size=state.brush_size if state.brush_size > 0 else 100,
+    )
+
+    # Create tool config
+    tool = brush_tool_factory_fn(layer.bounds)  # type: ignore[unused-ignore]
+    if state.brush_size > 0:
+        tool.size_px = state.brush_size
+
+    # Generate Mask
+    if image_processor is None:
+        raise ValueError("image_processor required for mask generation")
+
+    mask = mask_generator_fn(  # type: ignore[unused-ignore]
+        layer_size=img.size,
+        path=path,
+        progress=state.reveal_progress,
+        brush_size=tool.size_px,
+        blur_radius=tool.blur_radius,
+        layer_origin=Vector2(layer.bounds.x, layer.bounds.y),
+        image_processor=image_processor,
+    )
+
+    # Apply Mask
+    img_out = image_processor.apply_mask(img, mask)
+
+    # Only show cursor when action is ACTIVELY running (0 < progress < 1)
+    if state.reveal_progress > 0.0:
+        # Rough estimation for UI
+        if path.points:
+            idx = int(state.reveal_progress * (len(path.points) - 1))
+            idx = max(0, min(idx, len(path.points) - 1))
+            pt = path.points[idx]
+
+            # Use cached brush position if available, otherwise fallback to rough calc
+            if hasattr(state, "brush_position") and state.brush_position:
+                brush_cursors.append(
+                    (state.brush_position.x, state.brush_position.y, tool.size_px / 2)
+                )
+            elif pt:
+                pass  # Placeholder if we needed pt
+
+    return img_out
 
 
 # ============================================================
@@ -76,7 +143,72 @@ def draw_brush_cursor_ui(*args) -> None:
 # ============================================================
 
 
-def compose_psd_content(
+def _compose_single_layer(  # noqa: PLR0913
+    psd: Image.Image,
+    layer: LayerEntity,
+    state: Any,
+    layer_service: LayerRetrievalService,
+    mask_generator_fn: MaskGeneratorProtocol | None,
+    path_generator_fn: PathGeneratorProtocol | None,
+    brush_tool_factory_fn: BrushToolFactoryProtocol | None,
+    image_processor: ImageProcessorProtocol | None,
+    brush_cursors: list[Any],
+) -> None:
+    """Process and composite a single layer onto the PSD."""
+    img = layer_service.get_layer_image(layer)
+    if not img:
+        return
+
+    # Position Calculation (Sub-pixel)
+    raw_x = state.position.x - layer.bounds.width / 2
+    raw_y = state.position.y - layer.bounds.height / 2
+
+    # Integer paste position
+    pos_x = int(raw_x)
+    pos_y = int(raw_y)
+
+    # Application order:
+    # 1. Opacity
+    # 2. Reveal Mask
+    # 3. Motion Blur
+    # 4. Sub-pixel Shift (Last before paste to preserve anti-aliasing)
+
+    # Opacity
+    img = apply_opacity(img, state.opacity)
+
+    # Reveal mask (Brush actions)
+    if hasattr(state, "reveal_progress") and state.reveal_progress < 1.0:
+        img = _apply_reveal_mask(
+            img,
+            state,
+            layer,
+            mask_generator_fn,
+            path_generator_fn,
+            brush_tool_factory_fn,
+            image_processor,
+            brush_cursors,
+        )
+
+    # Blur
+    if hasattr(state, "velocity"):
+        img, blur_offset = apply_motion_blur(img, state.velocity)
+        # Accumulate offset from blur (padding)
+        pos_x += blur_offset[0]
+        pos_y += blur_offset[1]
+
+    # Sub-pixel Shift
+    shift_x = raw_x - int(raw_x)  # Re-calculate fraction from ORIGINAL pos.
+    shift_y = raw_y - int(raw_y)
+
+    img, sp_offset = apply_subpixel_shift(img, shift_x, shift_y)
+    pos_x += sp_offset[0]
+    pos_y += sp_offset[1]
+
+    # Composite
+    safe_paste(psd, img, (pos_x, pos_y))
+
+
+def compose_psd_content(  # noqa: PLR0913
     layer_states: dict[str, Any],
     find_layer_func: Callable[[str], LayerEntity | None],
     layer_service: LayerRetrievalService,
@@ -110,105 +242,24 @@ def compose_psd_content(
     queue.sort(key=lambda x: x[0].z_index)
 
     # Track brush cursors to draw AFTER all layers
-    brush_cursors = []
+    brush_cursors = []  # noqa: PLR0913, PLR0912  # type: ignore[var-annotated]
 
     # Compose
     for layer, state in queue:
-        img = layer_service.get_layer_image(layer)
-        if not img:
-            continue
-
-        # Position Calculation (Sub-pixel)
-        raw_x = state.position.x - layer.bounds.width / 2
-        raw_y = state.position.y - layer.bounds.height / 2
-
-        # Integer paste position
-        pos_x = int(raw_x)
-        pos_y = int(raw_y)
-
-        # Application order:
-        # 1. Opacity
-        # 2. Reveal Mask
-        # 3. Motion Blur
-        # 4. Sub-pixel Shift (Last before paste to preserve anti-aliasing)
-
-        # Opacity
-        img = apply_opacity(img, state.opacity)
-
-        # Reveal mask (Brush actions)
-        if hasattr(state, "reveal_progress") and state.reveal_progress < 1.0:
-            if not all([path_generator_fn, brush_tool_factory_fn, mask_generator_fn]):
-                # If we don't have generators, we can't do the complex mask logic.
-                # Just skip or fail?
-                # Fail safe: simple cut
-                pass
-            else:
-                # Generate Deterministic Path for this layer
-                path = path_generator_fn(
-                    layer.bounds,
-                    duration=1.0,
-                    brush_size=state.brush_size if state.brush_size > 0 else 100,
-                )
-
-                # Create tool config
-                tool = brush_tool_factory_fn(layer.bounds)
-                if state.brush_size > 0:
-                    tool.size_px = state.brush_size
-
-                # Generate Mask
-                if image_processor is None:
-                    raise ValueError("image_processor required for mask generation")
-
-                mask = mask_generator_fn(
-                    layer_size=img.size,
-                    path=path,
-                    progress=state.reveal_progress,
-                    brush_size=tool.size_px,
-                    blur_radius=tool.blur_radius,
-                    layer_origin=Vector2(layer.bounds.x, layer.bounds.y),
-                    image_processor=image_processor,
-                )
-
-                # Apply Mask
-                img = image_processor.apply_mask(img, mask)
-
-                # Only show cursor when action is ACTIVELY running (0 < progress < 1)
-                if state.reveal_progress > 0.0:
-                    # Rough estimation for UI
-                    if path.points:
-                        idx = int(state.reveal_progress * (len(path.points) - 1))
-                        idx = max(0, min(idx, len(path.points) - 1))
-                        pt = path.points[idx]
-
-                        # Use cached brush position if available, otherwise fallback to rough calc
-                        # (Ideally `state` should have this from the generator phase)
-                        if hasattr(state, "brush_position") and state.brush_position:
-                            brush_cursors.append(
-                                (state.brush_position.x, state.brush_position.y, tool.size_px / 2)
-                            )
-                        elif pt:
-                            pass  # Placeholder if we needed pt
-
-        # Blur
-        if hasattr(state, "velocity"):
-            img, blur_offset = apply_motion_blur(img, state.velocity)
-            # Accumulate offset from blur (padding)
-            pos_x += blur_offset[0]
-            pos_y += blur_offset[1]
-
-        # Sub-pixel Shift
-        shift_x = raw_x - int(raw_x)  # Re-calculate fraction from ORIGINAL pos.
-        shift_y = raw_y - int(raw_y)
-
-        img, sp_offset = apply_subpixel_shift(img, shift_x, shift_y)
-        pos_x += sp_offset[0]
-        pos_y += sp_offset[1]
-
-        # Composite
-        safe_paste(psd, img, (pos_x, pos_y))
+        _compose_single_layer(
+            psd,
+            layer,
+            state,
+            layer_service,
+            mask_generator_fn,
+            path_generator_fn,
+            brush_tool_factory_fn,
+            image_processor,
+            brush_cursors,
+        )
 
     # Draw brush cursors ON TOP of everything (complete circles)
     for cursor_x, cursor_y, radius in brush_cursors:
         draw_brush_cursor_ui(psd, cursor_x, cursor_y, radius)
 
-    return psd
+    return psd  # type: ignore[no-any-return]

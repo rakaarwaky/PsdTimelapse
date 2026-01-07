@@ -11,5 +11,5 @@ class UIRendererPort(ABC):
     """
 
     @abstractmethod
-    def render_static_ui(self, layers: list[dict[str, Any]] = None) -> Image.Image:
+    def render_static_ui(self, layers: list[dict[str, Any]] = None) -> Image.Image:  # type: ignore[assignment]
         raise NotImplementedError

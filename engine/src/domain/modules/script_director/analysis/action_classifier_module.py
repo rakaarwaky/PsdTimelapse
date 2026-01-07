@@ -18,36 +18,20 @@ SMALL_THRESHOLD = 100  # Pixels - below this = DRAG
 LARGE_THRESHOLD = 500  # Pixels - above this = BRUSH
 
 
+# Auto-extracted constants
+MAGIC_0_3 = 0.3
+TRIPLE_FACTOR = 3.0
+
+
 def classify_action(layer: LayerEntity) -> ClassificationResult:
     """
     Classify a layer to determine its animation type.
-
-    Priority:
-    1. Manual override via naming convention ([D] or [B] prefix)
-    2. Background layer (z_index=0) = instant appear
-    3. Size-based heuristic (small=drag, large=brush)
-
-    Args:
-        layer: The layer to classify.
-
-    Returns:
-        ClassificationResult with action type and reasoning.
     """
     # Priority 1: Manual override
-    if layer.action_hint == ActionHint.DRAG:
-        return ClassificationResult(
-            animation_type=ActionType.DRAG,
-            confidence=1.0,
-            reason="Manual override: layer name starts with [D]",
-        )
-    elif layer.action_hint == ActionHint.BRUSH:
-        return ClassificationResult(
-            animation_type=ActionType.BRUSH,
-            confidence=1.0,
-            reason="Manual override: layer name starts with [B]",
-        )
+    if override := _check_manual_override(layer):
+        return override
 
-    # Priority 2: Background layer detection (z_index=0 = bottom layer)
+    # Priority 2: Background layer
     if layer.z_index == 0:
         return ClassificationResult(
             animation_type=ActionType.NONE,
@@ -55,7 +39,27 @@ def classify_action(layer: LayerEntity) -> ClassificationResult:
             reason="Background layer (z_index=0) - instant visible",
         )
 
-    # Priority 2: Size-based classification
+    # Priority 3: Size-based classification
+    return _classify_by_size(layer)
+
+
+def _check_manual_override(layer: LayerEntity) -> ClassificationResult | None:
+    if layer.action_hint == ActionHint.DRAG:
+        return ClassificationResult(
+            animation_type=ActionType.DRAG,
+            confidence=1.0,
+            reason="Manual override: layer name starts with [D]",
+        )
+    if layer.action_hint == ActionHint.BRUSH:
+        return ClassificationResult(
+            animation_type=ActionType.BRUSH,
+            confidence=1.0,
+            reason="Manual override: layer name starts with [B]",
+        )
+    return None
+
+
+def _classify_by_size(layer: LayerEntity) -> ClassificationResult:
     max_dimension = max(layer.bounds.width, layer.bounds.height)
     min_dimension = min(layer.bounds.width, layer.bounds.height)
 
@@ -65,29 +69,31 @@ def classify_action(layer: LayerEntity) -> ClassificationResult:
             confidence=0.9,
             reason=f"Small layer ({max_dimension:.0f}px < {SMALL_THRESHOLD}px)",
         )
-    elif layer.is_large(LARGE_THRESHOLD):
+
+    if layer.is_large(LARGE_THRESHOLD):
         return ClassificationResult(
             animation_type=ActionType.BRUSH,
             confidence=0.9,
             reason=f"Large layer ({min_dimension:.0f}px > {LARGE_THRESHOLD}px)",
         )
-    else:
-        # Medium-sized: use aspect ratio or default to drag
-        aspect = layer.bounds.width / max(layer.bounds.height, 1)
-        if 0.3 < aspect < 3.0:
-            # Roughly square or regular proportions
-            return ClassificationResult(
-                animation_type=ActionType.DRAG,
-                confidence=0.6,
-                reason=f"Medium layer ({max_dimension:.0f}px), balanced aspect",
-            )
-        else:
-            # Long/thin elements
-            return ClassificationResult(
-                animation_type=ActionType.BRUSH,
-                confidence=0.7,
-                reason=f"Medium layer with extreme aspect ratio ({aspect:.1f})",
-            )
+
+    return _classify_medium_layer(layer, max_dimension)
+
+
+def _classify_medium_layer(layer: LayerEntity, max_dimension: float) -> ClassificationResult:
+    aspect = layer.bounds.width / max(layer.bounds.height, 1)
+    if MAGIC_0_3 < aspect < TRIPLE_FACTOR:
+        return ClassificationResult(
+            animation_type=ActionType.DRAG,
+            confidence=0.6,
+            reason=f"Medium layer ({max_dimension:.0f}px), balanced aspect",
+        )
+
+    return ClassificationResult(
+        animation_type=ActionType.BRUSH,
+        confidence=0.7,
+        reason=f"Medium layer with extreme aspect ratio ({aspect:.1f})",
+    )
 
 
 def classify_layer_v2(layer: LayerEntity) -> LayerClassification:

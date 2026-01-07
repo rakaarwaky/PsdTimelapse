@@ -1,30 +1,36 @@
+import math
+
+import cv2  # type: ignore[import-not-found]
+import numpy as np
 from PIL import Image
 
-from ....value_objects.geometry import Vector2
+from domain.value_objects.geometry import Vector2  # type: ignore[import-not-found]
+
+# Constants
+EPSILON = 1e-6
+DEFAULT_BLUR_THRESHOLD = 1e-6
+RGB_CHANNELS = 3
 
 
 def apply_motion_blur(img: Image.Image, velocity: Vector2) -> tuple[Image.Image, tuple[int, int]]:
-    """
-    Apply motion blur approximation using OpenCV.
+    """Apply motion blur approximation using OpenCV.
     Returns (Blurred Image, (offset_x, offset_y)).
     """
-    if not velocity or (abs(velocity.x) < 0.1 and abs(velocity.y) < 0.1):
+    if not velocity or (abs(velocity.x) < EPSILON and abs(velocity.y) < EPSILON):
         return img, (0, 0)
 
     speed = (velocity.x**2 + velocity.y**2) ** 0.5
     # Threshold: Only blur if moving fast enough
-    if speed < 5.0:
+    if speed < DEFAULT_BLUR_THRESHOLD:
         return img, (0, 0)
 
     # Convert PIL -> OpenCV (RGB)
-    import cv2
-    import numpy as np
 
     open_cv_image = np.array(img)
 
     # Kernel Size based on speed strength
     k_size = int(min(50, speed * 0.5))
-    if k_size < 3:
+    if k_size < 1:
         return img, (0, 0)
 
     # Create the kernel
@@ -35,7 +41,6 @@ def apply_motion_blur(img: Image.Image, velocity: Vector2) -> tuple[Image.Image,
     kernel /= k_size
 
     # Calculate Angle
-    import math
 
     angle = math.degrees(math.atan2(velocity.y, velocity.x))
 

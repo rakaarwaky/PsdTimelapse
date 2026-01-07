@@ -7,17 +7,22 @@ NOTE: Compositor implementation is now injected via CompositorPort (Hexagonal Ar
 
 from typing import Any
 
-import numpy as np
+import numpy as np  # type: ignore[unused-ignore]
 
 from ....ports.render.compositor_port import CompositorPort
 
 try:
-    import cupy as cp
-    import cupyx.scipy.ndimage
+    import cupy as cp  # type: ignore[import-not-found]
+    import cupyx.scipy.ndimage  # type: ignore[import-not-found]
 
     HAS_GPU_BACKEND = True
 except ImportError:
     HAS_GPU_BACKEND = False
+
+try:
+    from PIL import Image
+except ImportError:
+    pass  # Should be available
 
 from ..orchestrator.pipeline_manager_module import CompositingBackend
 
@@ -31,6 +36,8 @@ class GpuBackend(CompositingBackend):
         compositor: Injected compositor implementation (e.g., CupyCompositor).
     """
 
+    RGBA_CHANNELS = 4
+
     def __init__(self, compositor: CompositorPort):
         if not HAS_GPU_BACKEND:
             raise ImportError("CuPy not installed or GPU not available")
@@ -43,10 +50,10 @@ class GpuBackend(CompositingBackend):
     def resize(self, image: Any, size: tuple[int, int]) -> Any:
         """
         Resize CuPy array using spline interpolation (order=1 for speed, or 3 for quality).
-        PIL Lanczos is sinc-based. Bicubic (order=3) is closest standard approximation in simple calls.
+        PIL Lanczos is sinc-based. Bicubic (order=3) is closest standard approximation.
         """
         target_w, target_h = size
-        h, w, c = image.shape
+        h, w, _ = image.shape
 
         # Calculate zoom factors
         zoom_h = target_h / h
@@ -73,7 +80,7 @@ class GpuBackend(CompositingBackend):
 
     def is_rgba(self, image: Any) -> bool:
         """Check if 4 channels."""
-        return image.shape[2] == 4
+        return bool(image.shape[2] == self.RGBA_CHANNELS)
 
     def to_device(self, image: Any) -> Any:
         """Convert PIL/Numpy/Other to GPU array."""
@@ -93,8 +100,6 @@ class GpuBackend(CompositingBackend):
 
     def to_cpu(self, image: Any) -> Any:
         """Convert GPU array to PIL Image."""
-        from PIL import Image
-
         arr = cp.asnumpy(image)
         arr_u8 = (arr * 255).astype(np.uint8)
         return Image.fromarray(arr_u8, mode="RGBA")

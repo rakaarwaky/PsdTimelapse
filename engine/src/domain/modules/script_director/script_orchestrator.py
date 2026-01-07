@@ -34,10 +34,10 @@ def create_timeline(
     from .planners.timeline_planner_module import plan_timeline
 
     if strategy is None:
-        strategy = SeqStrat.STAGGERED
+        strategy = SeqStrat.STAGGERED  # type: ignore[assignment]
 
     # ORCHESTRATION: Inject Staff (Classifier) into Planner
-    return plan_timeline(layers, classify_layer, strategy)
+    return plan_timeline(layers, classify_layer, strategy)  # type: ignore[arg-type]
 
 
 def plan_production(
@@ -96,4 +96,4 @@ def generate_script(timeline: TimelineEntity, output_path: str | None = None) ->
     """
     from .generators.script_generator_module import generate_python_script
 
-    return generate_python_script(timeline, output_path)
+    return generate_python_script(timeline, output_path)  # type: ignore[unused-ignore]

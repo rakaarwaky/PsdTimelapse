@@ -9,8 +9,6 @@ Dependencies: WorldEntity
 """
 
 
-
-
 class PsdPort(ABC):
     """
     Port interface for loading PSD files into the domain.

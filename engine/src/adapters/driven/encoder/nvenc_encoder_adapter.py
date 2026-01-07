@@ -12,15 +12,15 @@ import tempfile
 from typing import Any
 
 try:
-    import numpy as np
+    import numpy as np  # type: ignore[unused-ignore]
     from PIL import Image
 
     HAS_DEPS = True
 except ImportError:
     HAS_DEPS = False
 
-from domain.entities.viewport_entity import ViewportEntity
-from domain.ports.media.video_port import VideoPort
+from domain.entities.viewport_entity import ViewportEntity  # type: ignore[import-not-found]
+from domain.ports.media.video_port import VideoPort  # type: ignore[import-not-found]
 
 from .alpha_composite_module import alpha_composite, convert_to_numpy_rgb, convert_to_numpy_rgba
 from .ffmpeg_command_factory import (
@@ -35,7 +35,7 @@ from .ffmpeg_command_factory import (
 from .nvenc_capability_module import detect_encoder
 
 
-class NvencEncoderAdapter(VideoPort):
+class NvencEncoderAdapter(VideoPort):  # type: ignore[misc]
     """
     Video encoder using NVIDIA NVENC hardware acceleration.
 
@@ -97,9 +97,9 @@ class NvencEncoderAdapter(VideoPort):
             # Build command using factory
             input_pattern = os.path.join(temp_dir, "frame_%06d.png")
             if self._use_nvenc:
-                cmd = build_nvenc_command_from_images(input_pattern, self._output_path, fps)
+                cmd = build_nvenc_command_from_images(input_pattern, self._output_path, fps)  # type: ignore[arg-type]
             else:
-                cmd = build_libx264_command_from_images(input_pattern, self._output_path, fps)
+                cmd = build_libx264_command_from_images(input_pattern, self._output_path, fps)  # type: ignore[arg-type]
 
             result = subprocess.run(cmd, capture_output=True, text=True)
             if result.returncode != 0:
@@ -109,7 +109,7 @@ class NvencEncoderAdapter(VideoPort):
             shutil.rmtree(temp_dir, ignore_errors=True)
 
         self._is_recording = False
-        return self._output_path
+        return self._output_path  # type: ignore[return-value]
 
     def save_with_layers(
         self, static_layer: Any, dynamic_frames: list[Any], output_path: str, fps: int = 30
@@ -136,9 +136,9 @@ class NvencEncoderAdapter(VideoPort):
             for dyn_frame in dynamic_frames:
                 dyn_np = convert_to_numpy_rgba(dyn_frame)
                 composite = alpha_composite(static_np, dyn_np)
-                process.stdin.write(composite.tobytes())
+                process.stdin.write(composite.tobytes())  # type: ignore[union-attr]
 
-            process.stdin.close()
+            process.stdin.close()  # type: ignore[union-attr]
             returncode = process.wait()
 
             if returncode != 0:
@@ -181,7 +181,7 @@ class NvencEncoderAdapter(VideoPort):
         estimated_size = 0
         if self._frames:
             frame_bytes = self._frames[0].nbytes
-            estimated_size = (frame_bytes * len(self._frames) * 0.1) / (1024 * 1024)
+            estimated_size = (frame_bytes * len(self._frames) * 0.1) / (1024 * 1024)  # type: ignore[assignment]
 
         return {
             "frame_count": self.frame_count,

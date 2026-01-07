@@ -18,8 +18,6 @@ This module yields animation states that PipelineManager consumes for rendering.
 """
 
 
-
-
 # ============================================================
 # Value Objects (Pure Data)
 # ============================================================

@@ -4,7 +4,7 @@ from ....value_objects.geometry import Vector2
 # NOTE: Path generation removed - injected via state.path by Orchestrator (Blind Logic)
 
 
-def animate_drag(
+def animate_drag(  # noqa: PLR0913, PLR0912
     state: LayerAnimState,
     target_pos: Vector2,
     eased_progress: float,
