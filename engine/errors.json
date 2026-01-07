@@ -46,42 +46,6 @@
       "severity": "error"
     },
     {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
-      "line": 1,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
-      "line": 34,
-      "column": 32,
-      "code": "W292",
-      "message": "No newline at end of file",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
-      "line": 1,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
-      "line": 98,
-      "column": 21,
-      "code": "W292",
-      "message": "No newline at end of file",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
       "line": 12,
       "column": 35,
@@ -96,6 +60,15 @@
       "column": 46,
       "code": "B008",
       "message": "Do not perform function call `File` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
+      "line": 18,
+      "column": 1,
+      "code": "I001",
+      "message": "Import block is un-sorted or un-formatted",
       "source": "ruff",
       "severity": "error"
     },
@@ -127,132 +100,6 @@
       "severity": "error"
     },
     {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/layer_entity.py",
-      "line": 15,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (111 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 12,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (145 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 13,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (139 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 15,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (116 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 19,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (141 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 22,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (115 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 33,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (117 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
-      "line": 42,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (137 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
-      "line": 1,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
-      "line": 126,
-      "column": 39,
-      "code": "W292",
-      "message": "No newline at end of file",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
-      "line": 45,
-      "column": 23,
-      "code": "F821",
-      "message": "Undefined name `MediaOutputPath`",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
-      "line": 58,
-      "column": 101,
-      "code": "E501",
-      "message": "Line too long (110 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/pipeline_manager_module.py",
-      "line": 7,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/pipeline_manager_module.py",
-      "line": 218,
-      "column": 30,
-      "code": "W292",
-      "message": "No newline at end of file",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/cpu_strategy_module.py",
       "line": 73,
       "column": 101,
@@ -267,42 +114,6 @@
       "column": 101,
       "code": "E501",
       "message": "Line too long (103 > 100)",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/psd_port.py",
-      "line": 1,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/psd_port.py",
-      "line": 60,
-      "column": 13,
-      "code": "W292",
-      "message": "No newline at end of file",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/io/render_manifest.py",
-      "line": 1,
-      "column": 1,
-      "code": "I001",
-      "message": "Import block is un-sorted or un-formatted",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/io/render_manifest.py",
-      "line": 47,
-      "column": 10,
-      "code": "W292",
-      "message": "No newline at end of file",
       "source": "ruff",
       "severity": "error"
     }

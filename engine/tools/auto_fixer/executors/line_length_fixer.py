@@ -22,7 +22,7 @@ class LineLengthFixer(BaseStrategy):
     MAX_LENGTH = 100
 
     def fix(self, errors: List[LintError]) -> List[FixResult]:
-        results = []
+        results: List[FixResult] = []
 
         relevant = [e for e in errors if e.code == "E501"]
         if not relevant:

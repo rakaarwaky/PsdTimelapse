@@ -21,6 +21,7 @@ from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.render_state_value import RenderFrame
 from ....value_objects.configs import LayerRenderConfig
 from ....value_objects.manifest.layer_manifest_value import LayerManifest
+from ....value_objects.resource.media_output_path_value import MediaOutputPath
 from ...animator.core.animator_controller_module import AnimationController
 from .render_orchestrator_module import FrameOutputPort
 
@@ -55,7 +56,10 @@ class LayerRenderPipeline:
         return layer_id.replace(" ", "_").replace("/", "_").lower()
 
     def execute(
-        self, layer: LayerEntity, get_layer_image: Callable[[LayerEntity], Any], timeline_info: dict[str, Any]
+        self,
+        layer: LayerEntity,
+        get_layer_image: Callable[[LayerEntity], Any],
+        timeline_info: dict[str, Any],
     ) -> LayerManifest:
         """
         Execute the render pipeline for a single layer.

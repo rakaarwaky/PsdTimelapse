@@ -12,7 +12,8 @@ from typing import Any
 from ..value_objects.geometry import Rect, Vector2
 from ..value_objects.visual import BlendMode, Opacity
 
-if False:  # Type checking only to avoid circular imports if necessary, though simple entities are usually fine
+if False:
+    # Type checking only to avoid circular imports
     from .asset_entity import AssetEntity
 
 __all__ = ["ActionHint", "BlendMode", "LayerEntity", "Opacity"]

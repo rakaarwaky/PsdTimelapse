@@ -5,9 +5,11 @@ from .base import BaseStrategy
 from .cleaners import CleanerStrategy
 from .import_order_fixer import ImportOrderFixer
 from .line_length_fixer import LineLengthFixer
+from .missing_import_fixer import MissingImportFixer
 from .return_type_fixer import ReturnTypeFixer
 from .ruff_auto import RuffAutoStrategy
 from .type_fixing import TypeFixingStrategy
+from .unused_import_fixer import UnusedImportFixer
 from .variable_naming_fixer import VariableNamingFixer
 
 
@@ -20,6 +22,8 @@ class ExecutorManager:
             "type_fixing": TypeFixingStrategy(),
             "variable_naming": VariableNamingFixer(),
             "line_length": LineLengthFixer(),
+            "missing_import": MissingImportFixer(),
+            "unused_import": UnusedImportFixer(),
             "cleaner": CleanerStrategy(),
         }
 
@@ -29,6 +33,8 @@ class ExecutorManager:
         # Priority order: most impactful first
         strategy_order = [
             "ruff_auto",  # Generic Ruff fixes first
+            "unused_import",  # F401 unused imports
+            "missing_import",  # F821 undefined names
             # "import_order",  # DISABLED: Too risky, breaks try-block imports
             "return_type",  # no-untyped-def (84 errors)
             "type_fixing",  # type-arg, implicit-optional

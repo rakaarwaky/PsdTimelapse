@@ -6,7 +6,7 @@ from ..core.types import LintError, Pattern
 
 
 class Analyzer:
-    def __init__(self):
+    def __init__(self) -> None:
         self.patterns = self._load_patterns()
 
     def _load_patterns(self) -> List[Pattern]:
@@ -41,7 +41,7 @@ class Analyzer:
     def analyze(self, errors: List[LintError]) -> Dict[str, Any]:
         """Group errors by pattern/code and attach fix strategies."""
 
-        analysis_result = {
+        analysis_result: Dict[str, Any] = {
             "summary": {"total": len(errors)},
             "groups": {},  # keyed by error code
         }

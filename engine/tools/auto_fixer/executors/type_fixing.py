@@ -113,12 +113,21 @@ class TypeFixingStrategy(BaseStrategy):
             return content
 
         lines = content.splitlines()
-        for err in relevant:
+        modified = False
+
+        for err in sorted(relevant, key=lambda e: e.line, reverse=True):
             idx = err.line - 1
             if 0 <= idx < len(lines):
-                # Very naive: assuming it returns None if no return statement found?
-                # Or just add -> None if it looks like a procedure.
-                # For safety, let's only do this if users explicitly asked or if we are confident.
-                # Currently V3 didn't implement this fully, so I'll leave placeholder
-                pass
+                line = lines[idx]
+
+                # Strategy 1: Always fix __init__ -> None
+                if "def __init__" in line and "->" not in line:
+                    # check if we can safely append -> None
+                    if line.rstrip().endswith(":"):
+                        lines[idx] = re.sub(r"\)\s*:", ") -> None:", line)
+                        modified = True
+
+        if modified:
+            return "\n".join(lines) + "\n"
+
         return content

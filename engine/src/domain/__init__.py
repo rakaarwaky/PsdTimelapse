@@ -58,7 +58,7 @@ from .modules.script_director import (
     SequencingStrategy,
     TimelineEntity,
     estimate_duration,
-    plan_timeline,
+    plan_timeline
 )
 
 # ============================================================

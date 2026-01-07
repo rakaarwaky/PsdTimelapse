@@ -24,7 +24,7 @@ class ImportOrderFixer(BaseStrategy):
     """Fixes import ordering issues by moving imports to top."""
 
     def fix(self, errors: List[LintError]) -> List[FixResult]:
-        results = []
+        results: List[FixResult] = []
 
         # Filter relevant errors
         relevant = [e for e in errors if e.code in ("E402", "F404")]

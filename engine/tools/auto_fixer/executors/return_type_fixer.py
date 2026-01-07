@@ -21,7 +21,7 @@ class ReturnTypeFixer(BaseStrategy):
     """Fixes missing return type annotations."""
 
     def fix(self, errors: List[LintError]) -> List[FixResult]:
-        results = []
+        results: List[FixResult] = []
 
         # Filter relevant errors
         relevant = [e for e in errors if e.code in ("no-untyped-def", "no-any-return")]

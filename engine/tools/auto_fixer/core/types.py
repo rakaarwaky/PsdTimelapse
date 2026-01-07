@@ -17,8 +17,10 @@ class LintError:
 class FixResult:
     file: str
     fixed: bool
-    strategy: str
+    strategy: str = ""
     details: str = ""
+    line: int = 0
+    message: str = ""
 
 
 @dataclass
