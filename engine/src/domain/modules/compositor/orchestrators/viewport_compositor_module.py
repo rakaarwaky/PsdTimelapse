@@ -1,33 +1,28 @@
-from __future__ import annotations
-
-from typing import Any
-from collections.abc import Callable
-from PIL import Image
-    from PIL import Image
-from ....entities.camera_entity import CameraEntity
-from ....entities.layer_entity import LayerEntity
-from ....entities.viewport_entity import ViewportEntity
-from ....entities.world_entity import WorldEntity
-from ...animator import AnimationController, LayerAnimState
-from ..services.layer_service import LayerRetrievalService
-        from ..ops.viewport_frame_module import compose_viewport_frame
-        from ..ops.viewport_centered_module import compose_centered_frame
-
-
 """
 ViewportCompositor: Composes frames specifically for Viewport/Camera display.
 Separates Viewport/Camera logic from the main PSD composition pipeline.
 """
 
+from __future__ import annotations
 
+from collections.abc import Callable
+from typing import Any
 
+from ....entities.camera_entity import CameraEntity
+from ....entities.layer_entity import LayerEntity
+from ....entities.viewport_entity import ViewportEntity
+from ....entities.world_entity import WorldEntity
+from ...animator import AnimationController, LayerAnimState
+from ..ops.viewport_centered_module import compose_centered_frame
+from ..ops.viewport_frame_module import compose_viewport_frame
+from ..services.layer_service import LayerRetrievalService
 
 try:
+    from PIL import Image
 
     HAS_PILLOW = True
 except ImportError:
     HAS_PILLOW = False
-
 
 
 class ViewportCompositor:

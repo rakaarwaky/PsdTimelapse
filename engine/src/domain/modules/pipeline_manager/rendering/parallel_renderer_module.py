@@ -1,24 +1,19 @@
-from __future__ import annotations
-
-from typing import Any
-from collections.abc import Callable
-from dataclasses import dataclass
-from multiprocessing import Pool, cpu_count
-    from PIL import Image
-    import io
-    from PIL import Image
-        import io
-
-
 """
 ParallelRenderer: Multiprocessing frame rendering for Phase 4 optimization.
 Uses Python's multiprocessing to render frames in parallel across CPU cores.
 Migrated from render_manager to pipeline_manager.
 """
 
+from __future__ import annotations
 
+import io
+from collections.abc import Callable
+from dataclasses import dataclass
+from multiprocessing import Pool, cpu_count
+from typing import Any
 
 try:
+    from PIL import Image
 
     HAS_PILLOW = True
 except ImportError:
@@ -57,7 +52,6 @@ def _render_frame_worker(args: tuple[Any, ...]) -> tuple[int, bytes, int, int]:
     Returns:
         Tuple of (frame_num, png_bytes, width, height)
     """
-
 
     (frame_num, timestamp, layer_states, world_width, world_height, layer_images_bytes) = args
 

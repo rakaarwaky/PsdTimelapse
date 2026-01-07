@@ -4,12 +4,10 @@ PipelineManager - Unified Compositing for CPU/GPU
 Single source of truth for frame compositing algorithm.
 Ensures CPU and GPU pipelines produce identical output.
 """
+from abc import ABC, abstractmethod
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from typing import Any
-from abc import ABC, abstractmethod
-
-
 
 
 @dataclass

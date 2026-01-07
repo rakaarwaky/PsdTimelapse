@@ -1,24 +1,21 @@
-from __future__ import annotations
-
-from typing import Any
-import hashlib
-    from PIL import Image
-from ....value_objects.compositor import CachedLayer
-
-
 """
 LayerCache: Caches static render layers for reuse across frames.
 Dependencies: PIL Image
 """
 
+from __future__ import annotations
 
+import hashlib
+from typing import Any
+
+from ....value_objects.compositor import CachedLayer
 
 try:
+    from PIL import Image
 
     HAS_PILLOW = True
 except ImportError:
     HAS_PILLOW = False
-
 
 
 class LayerCache:

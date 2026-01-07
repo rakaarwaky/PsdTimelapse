@@ -1,13 +1,3 @@
-from __future__ import annotations
-
-from typing import Any
-from domain entities.
-import os
-from ....entities.timeline_entity import TimelineEntity
-from ....value_objects.manifest.compositor_manifest_value import CompositorManifest
-from ....value_objects.manifest.layer_manifest_value import LayerManifest
-
-
 """
 ManifestGeneratorModule: Generate JSON manifest for compositor consumption.
 Dependencies: Timeline, LayerEntity (BLIND MODULE - no peer imports)
@@ -16,8 +6,14 @@ BLIND LOGIC: This module is "Staff" level. It does NOT import from peer
 submodules (planners/). All external dependencies are injected or imported
 """
 
+from __future__ import annotations
 
+import os
+from typing import Any
 
+from ....entities.timeline_entity import TimelineEntity
+from ....value_objects.manifest.compositor_manifest_value import CompositorManifest
+from ....value_objects.manifest.layer_manifest_value import LayerManifest
 
 
 def generate_manifest(
@@ -104,7 +100,10 @@ def save_manifest(manifest: CompositorManifest, output_path: str) -> str:
 
 
 def generate_and_save_manifest(
-    timeline: TimelineEntity, output_path: str, fps: int = 24, layer_names: dict[str, Any] | None = None
+    timeline: TimelineEntity,
+    output_path: str,
+    fps: int = 24,
+    layer_names: dict[str, Any] | None = None,
 ) -> tuple[CompositorManifest, str]:
     """
     Generate and save manifest in one call.

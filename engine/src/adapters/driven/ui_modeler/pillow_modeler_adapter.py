@@ -1,13 +1,15 @@
 from typing import Any
+
 from PIL import Image, ImageDraw
+
 from domain.ports.ui.ui_renderer_port import UIRendererPort
+
 from .pillow_base_adapter import HAS_PILLOW
 from .pillow_canvas_adapter import CanvasRenderer
 from .pillow_constants_adapter import VIDEO_HEIGHT, VIDEO_WIDTH, PSColors
 from .pillow_header_adapter import HeaderRenderer
 from .pillow_layers_panel_adapter import LayersPanelRenderer
 from .pillow_toolbars_adapter import ToolbarRenderer
-
 
 """
 Core Orchestrator for UI Rendering.

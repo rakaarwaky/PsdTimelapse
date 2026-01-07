@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from typing import Any
 from collections.abc import Iterator
+from typing import Any
+
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.layer_anim_state import LayerAnimState
 from ....value_objects.animation.render_state_value import RenderFrame
 from ....value_objects.configs import LayerRenderConfig
 from ..core.animator_controller_module import AnimationController
-
 
 """
 Layer State Generator Module
