@@ -11,7 +11,7 @@ Strategy: Renames variables to follow PEP8 conventions.
 import re
 from collections import defaultdict
 from pathlib import Path
-from typing import List
+from typing import ClassVar, List
 
 from ..core.types import FixResult, LintError
 from .base import BaseStrategy
@@ -21,7 +21,7 @@ class VariableNamingFixer(BaseStrategy):
     """Fixes variable naming convention issues."""
 
     # Common mappings for ambiguous single-letter names
-    RENAME_MAP = {
+    RENAME_MAP: ClassVar[dict[str, str]] = {
         "l": "layer",
         "O": "opacity",
         "I": "index",

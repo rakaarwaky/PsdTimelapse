@@ -73,20 +73,23 @@ class TypeFixingStrategy(BaseStrategy):
         lines = content.splitlines()
         modified = False
 
+        replacements = {
+            '"dict"': (r"\bdict\b(?!\[)", "dict[str, Any]"),
+            '"list"': (r"\blist\b(?!\[)", "list[Any]"),
+            '"tuple"': (r"\btuple\b(?!\[)", "tuple[Any, ...]"),
+            '"set"': (r"\bset\b(?!\[)", "set[Any]"),
+            '"Callable"': (r"\bCallable\b(?!\[)", "Callable[..., Any]"),
+        }
+
         for err in sorted(relevant, key=lambda e: e.line, reverse=True):
             idx = err.line - 1
             if 0 <= idx < len(lines):
                 line = lines[idx]
-                if '"dict"' in err.message:
-                    line = re.sub(r"\bdict\b(?!\[)", "dict[str, Any]", line)
-                elif '"list"' in err.message:
-                    line = re.sub(r"\blist\b(?!\[)", "list[Any]", line)
-                elif '"tuple"' in err.message:
-                    line = re.sub(r"\btuple\b(?!\[)", "tuple[Any, ...]", line)
-                elif '"set"' in err.message:
-                    line = re.sub(r"\bset\b(?!\[)", "set[Any]", line)
-                elif '"Callable"' in err.message:
-                    line = re.sub(r"\bCallable\b(?!\[)", "Callable[..., Any]", line)
+
+                for key, (pattern, repl) in replacements.items():
+                    if key in err.message:
+                        line = re.sub(pattern, repl, line)
+                        break
 
                 if lines[idx] != line:
                     lines[idx] = line
@@ -94,17 +97,18 @@ class TypeFixingStrategy(BaseStrategy):
 
         if modified:
             new_content = "\n".join(lines) + "\n"
-            # Add Any import if needed
-            if "Any" in new_content and "from typing import" in new_content:
-                match = re.search(r"from typing import ([^\n]+)", new_content)
-                if match and "Any" not in match.group(1):
-                    new_content = re.sub(
-                        r"(from typing import )([^\n]+)", r"\1Any, \2", new_content, count=1
-                    )
-            elif "Any" in new_content and "from typing import" not in new_content:
-                new_content = "from typing import Any\n" + new_content
-            return new_content
+            return self._ensure_import_any(new_content)
 
+        return content
+
+    def _ensure_import_any(self, content: str) -> str:
+        """Ensure 'Any' is imported from typing if used."""
+        if "Any" in content and "from typing import" in content:
+            match = re.search(r"from typing import ([^\n]+)", content)
+            if match and "Any" not in match.group(1):
+                content = re.sub(r"(from typing import )([^\n]+)", r"\1Any, \2", content, count=1)
+        elif "Any" in content and "from typing import" not in content:
+            content = "from typing import Any\n" + content
         return content
 
     def _fix_no_untyped_def(self, content: str, errors: List[LintError]) -> str:

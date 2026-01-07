@@ -6,7 +6,7 @@ Uses a knowledge base of common imports to auto-resolve undefined names.
 """
 
 import re
-from typing import List
+from typing import List, Optional
 
 from ..core.types import FixResult, LintError
 from .base import BaseStrategy
@@ -64,73 +64,70 @@ class MissingImportFixer(BaseStrategy):
             errors_by_file[err.file].append(err)
 
         for file_path, file_errors in errors_by_file.items():
-            try:
-                with open(file_path, "r") as f:
-                    content = f.read()
-                    lines = content.split("\n")
-
-                imports_to_add: list[str] = []
-
-                for err in file_errors:
-                    # Extract undefined name from message
-                    # Pattern: "Undefined name `XXX`"
-                    match = re.search(r"Undefined name `([^`]+)`", err.message)
-                    if not match:
-                        continue
-
-                    undefined_name = match.group(1)
-
-                    if undefined_name in IMPORT_KNOWLEDGE_BASE:
-                        module = IMPORT_KNOWLEDGE_BASE[undefined_name]
-
-                        # Determine import style based on module
-                        if module.startswith("...."):
-                            # Relative import
-                            import_stmt = f"from {module} import {undefined_name}"
-                        elif "." in module:
-                            # Absolute with submodule
-                            import_stmt = f"from {module} import {undefined_name}"
-                        else:
-                            # Simple import
-                            import_stmt = f"from {module} import {undefined_name}"
-
-                        # Check if already imported
-                        if (
-                            import_stmt not in content
-                            and undefined_name not in content.split("import ")[0]
-                            if "import " in content
-                            else True
-                        ):
-                            imports_to_add.append(import_stmt)
-
-                if imports_to_add:
-                    # Find insertion point (after last import)
-                    insert_line = 0
-                    for i, line in enumerate(lines):
-                        if line.startswith("from ") or line.startswith("import "):
-                            insert_line = i + 1
-
-                    # Insert imports
-                    for imp in imports_to_add:
-                        lines.insert(insert_line, imp)
-                        insert_line += 1
-
-                    # Write back
-                    with open(file_path, "w") as f:
-                        f.write("\n".join(lines))
-
-                    results.append(
-                        FixResult(
-                            file=file_path,
-                            line=0,
-                            fixed=True,
-                            message=f"Added imports: {', '.join(imports_to_add)}",
-                        )
-                    )
-
-            except Exception as e:
-                results.append(
-                    FixResult(file=file_path, line=0, fixed=False, message=f"Error: {e}")
-                )
+            fix_result = self._fix_file(file_path, file_errors)
+            if fix_result:
+                results.append(fix_result)
 
         return results
+
+    def _fix_file(self, file_path: str, file_errors: List[LintError]) -> Optional[FixResult]:
+        try:
+            with open(file_path, "r") as f:
+                content = f.read()
+                lines = content.split("\n")
+
+            imports_to_add: List[str] = []
+
+            for err in file_errors:
+                # Extract undefined name from message
+                # Pattern: "Undefined name `XXX`"
+                match = re.search(r"Undefined name `([^`]+)`", err.message)
+                if not match:
+                    continue
+
+                undefined_name = match.group(1)
+                import_stmt = self._generate_import_statement(undefined_name)
+
+                if import_stmt and import_stmt not in content and import_stmt not in imports_to_add:
+                    imports_to_add.append(import_stmt)
+
+            if imports_to_add:
+                self._apply_imports(file_path, lines, imports_to_add)
+                return FixResult(
+                    file=file_path,
+                    fixed=True,
+                    strategy="missing_import",
+                    details=f"Added imports: {', '.join(imports_to_add)}",
+                )
+
+            return None
+
+        except Exception as e:
+            return FixResult(
+                file=file_path,
+                fixed=False,
+                strategy="missing_import",
+                details=f"Error: {e}",
+            )
+
+    def _generate_import_statement(self, name: str) -> Optional[str]:
+        if name in IMPORT_KNOWLEDGE_BASE:
+            module = IMPORT_KNOWLEDGE_BASE[name]
+            return f"from {module} import {name}"
+        return None
+
+    def _apply_imports(self, file_path: str, lines: List[str], imports: List[str]) -> None:
+        # Find insertion point (after last import)
+        insert_line = 0
+        for i, line in enumerate(lines):
+            if line.startswith("from ") or line.startswith("import "):
+                insert_line = i + 1
+
+        # Insert imports
+        for imp in imports:
+            lines.insert(insert_line, imp)
+            insert_line += 1
+
+        # Write back
+        with open(file_path, "w") as f:
+            f.write("\n".join(lines))

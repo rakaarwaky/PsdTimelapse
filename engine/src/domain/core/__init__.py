@@ -55,7 +55,6 @@ from ..modules.pipeline_manager import (
     DirectorEngine,
     EngineProgress,
     EngineState,
-    PipelineConfig,
     PipelineProgress,
     PipelineState,
     RenderConfig,

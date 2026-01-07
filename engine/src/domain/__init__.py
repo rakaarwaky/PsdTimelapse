@@ -47,7 +47,6 @@ from .modules.pipeline_manager import (
     DirectorEngine,
     EngineProgress,
     EngineState,
-    PipelineConfig,
     PipelineProgress,
     PipelineState,
     RenderConfig,
@@ -58,7 +57,7 @@ from .modules.script_director import (
     SequencingStrategy,
     TimelineEntity,
     estimate_duration,
-    plan_timeline
+    plan_smart_timeline
 )
 
 # ============================================================

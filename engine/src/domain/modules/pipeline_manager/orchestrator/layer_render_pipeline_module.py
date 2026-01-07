@@ -13,9 +13,9 @@ from collections.abc import Callable
 from typing import Any
 
 try:
-    from PIL import Image
+    from PIL import Image as PILImage
 except ImportError:
-    Image = None
+    PILImage: Any = None
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.render_state_value import RenderFrame
@@ -84,7 +84,7 @@ class LayerRenderPipeline:
             os.makedirs(folder_path, exist_ok=True)
 
         blank_count = 0
-        hold_ranges = []
+        hold_ranges: list[tuple[int, int]] = []
 
         # Initialize Controller for this layer
         self.service.initialize_layers([layer])

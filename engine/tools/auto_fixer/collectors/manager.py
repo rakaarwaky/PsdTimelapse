@@ -21,7 +21,7 @@ class CollectorManager:
         print("Running Mypy...")
         try:
             result = subprocess.run(
-                MYPY_CMD + ["--exclude"] + EXCLUDES,
+                [*MYPY_CMD, "--exclude", *EXCLUDES],
                 check=False,
                 capture_output=True,
                 text=True,
@@ -36,7 +36,7 @@ class CollectorManager:
         print("Running Ruff...")
         try:
             result = subprocess.run(
-                RUFF_CMD + ["--exclude"] + EXCLUDES,
+                [*RUFF_CMD, "--exclude", *EXCLUDES],
                 check=False,
                 capture_output=True,
                 text=True,

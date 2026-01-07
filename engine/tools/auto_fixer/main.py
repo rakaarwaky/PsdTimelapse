@@ -12,7 +12,7 @@ from tools.auto_fixer.core.config import ERRORS_FILE
 from tools.auto_fixer.executors.manager import ExecutorManager
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Automated Lint Fixer (Modular)")
     parser.add_argument(
         "--dry-run", action="store_true", help="Simulate fixes without applying them"

@@ -11,7 +11,7 @@ class RuffAutoStrategy(BaseStrategy):
         print("Running Ruff auto-fix...")
         try:
             result = subprocess.run(
-                RUFF_FIX_CMD + ["--exclude"] + EXCLUDES,
+                [*RUFF_FIX_CMD, "--exclude", *EXCLUDES],
                 check=False,
                 capture_output=True,
                 text=True,

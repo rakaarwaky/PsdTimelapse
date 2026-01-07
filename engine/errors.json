@@ -74,7 +74,7 @@
     },
     {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
-      "line": 59,
+      "line": 58,
       "column": 5,
       "code": "F811",
       "message": "Redefinition of unused `TimelineEntity` from line 26",
@@ -83,16 +83,16 @@
     },
     {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
-      "line": 61,
+      "line": 60,
       "column": 5,
       "code": "F401",
-      "message": "`.modules.script_director.plan_timeline` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
+      "message": "`.modules.script_director.plan_smart_timeline` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
       "source": "ruff",
       "severity": "error"
     },
     {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/core/__init__.py",
-      "line": 153,
+      "line": 152,
       "column": 21,
       "code": "F401",
       "message": "`.engine.ProducerConfig` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
@@ -114,6 +114,15 @@
       "column": 101,
       "code": "E501",
       "message": "Line too long (103 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_composition_module.py",
+      "line": 116,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (111 > 100)",
       "source": "ruff",
       "severity": "error"
     }

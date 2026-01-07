@@ -62,7 +62,7 @@ class BlendMode:
         elif self.mode == BlendModeType.OVERLAY:
 
             def overlay_channel(b: float, luminosity: float) -> float:
-                if b < 0.5:
+                if b < BlendMode.HALF.value:
                     return 2 * b * luminosity
                 return 1 - 2 * (1 - b) * (1 - luminosity)
 
