@@ -44,7 +44,7 @@ class EasingCurve:
     easing_type: EasingType
     overshoot: float = 0.0
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not -2.0 <= self.overshoot <= 2.0:
             raise ValueError(f"Overshoot must be -2.0 to 2.0: {self.overshoot}")
 

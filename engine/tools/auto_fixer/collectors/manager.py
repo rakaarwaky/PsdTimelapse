@@ -49,13 +49,15 @@ class CollectorManager:
 
     def _parse_mypy(self, output: str) -> List[LintError]:
         errors = []
-        # Pattern: path:line:col: severity: message [code]
-        pattern = re.compile(r"^([^:]+):(\d+):(\d+):\s+(\w+):\s+(.*)\s+\[(.*)\]$")
+        # Pattern: path:line:[col:] severity: message [code]
+        # Regex handles optional column number
+        pattern = re.compile(r"^([^:]+):(\d+):(?:(\d+):)?\s+(\w+):\s+(.*)\s+\[(.*)\]$")
 
         for line in output.splitlines():
             match = pattern.match(line)
             if match:
-                file_path, line_no, col_no, severity, msg, code = match.groups()
+                file_path, line_no, col_str, severity, msg, code = match.groups()
+                col_no = int(col_str) if col_str else 0
 
                 # Check excludes
                 if any(ex in file_path for ex in EXCLUDES):

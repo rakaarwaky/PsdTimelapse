@@ -68,7 +68,7 @@ class AnimationController:
         self._animate_brush = animate_brush
         self._generate_drag_path = generate_drag_path
 
-    def initialize_layers(self, layers: list[Any]):
+    def initialize_layers(self, layers: list[Any]) -> None:
         """
         Initialize animation state for layers.
         Args:
@@ -92,7 +92,7 @@ class AnimationController:
                         bounds=layer.bounds,
                     )
 
-    def reset_frame_state(self):
+    def reset_frame_state(self) -> None:
         """
         Reset transient per-frame state (like velocity).
         Should be called once at the start of each frame.
@@ -103,7 +103,7 @@ class AnimationController:
     def get_layer_state(self, layer_id: str) -> LayerAnimState | None:
         return self.layer_states.get(layer_id)
 
-    def update(self, action: Action | None, progress: float):
+    def update(self, action: Action | None, progress: float) -> None:
         if not action:
             return
 

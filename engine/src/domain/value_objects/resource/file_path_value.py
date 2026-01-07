@@ -19,7 +19,7 @@ class FilePath:
 
     path: str
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not self.path or not self.path.strip():
             raise ValueError("File path cannot be empty")
 

@@ -31,7 +31,7 @@ class PillowRenderer(RendererPort):
     Composites visible layers based on camera position and zoom.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_PILLOW:
             raise ImportError("Pillow not installed. Run: pip install Pillow")
 

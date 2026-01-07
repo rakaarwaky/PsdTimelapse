@@ -1,6 +1,2508 @@
 {
   "errors": [
     {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/render/gpu_renderer_port.py",
+      "line": 17,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"progress_callback\" (default has type \"None\", argument has type \"Callable[[int, int], None]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 6,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"CompositorPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 7,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 73,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_color_converter.py",
+      "line": 11,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_color_converter.py",
+      "line": 53,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/cache/in_memory_cache_adapter.py",
+      "line": 11,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"CachePort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/cache/in_memory_cache_adapter.py",
+      "line": 17,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/system/notification_port.py",
+      "line": 60,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/system/notification_port.py",
+      "line": 104,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/system/notification_port.py",
+      "line": 107,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/system/notification_port.py",
+      "line": 144,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_time_adapter.py",
+      "line": 11,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"TimePort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/notifications/console_notification_adapter.py",
+      "line": 17,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"NotificationPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/notifications/console_notification_adapter.py",
+      "line": 22,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/notifications/console_notification_adapter.py",
+      "line": 25,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/visual/resolution_value.py",
+      "line": 29,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/visual/color_value.py",
+      "line": 20,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/time_range_value.py",
+      "line": 18,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/time_range_value.py",
+      "line": 74,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[TimeRange]\" has no attribute \"ZERO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/progress_value.py",
+      "line": 17,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/progress_value.py",
+      "line": 61,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Progress]\" has no attribute \"ZERO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/progress_value.py",
+      "line": 62,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Progress]\" has no attribute \"COMPLETE\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/progress_value.py",
+      "line": 63,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Progress]\" has no attribute \"HALF\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/frame_rate_value.py",
+      "line": 19,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/frame_rate_value.py",
+      "line": 57,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[FrameRate]\" has no attribute \"FILM\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/frame_rate_value.py",
+      "line": 58,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[FrameRate]\" has no attribute \"PAL\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/frame_rate_value.py",
+      "line": 59,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[FrameRate]\" has no attribute \"NTSC\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/frame_rate_value.py",
+      "line": 60,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[FrameRate]\" has no attribute \"SMOOTH\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/duration_value.py",
+      "line": 17,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/duration_value.py",
+      "line": 68,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Duration]\" has no attribute \"ZERO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/duration_value.py",
+      "line": 69,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Duration]\" has no attribute \"ONE_SECOND\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/timing/duration_value.py",
+      "line": 70,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Duration]\" has no attribute \"ONE_FRAME_30FPS\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 30,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 89,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[MemoryLimit]\" has no attribute \"MB_512\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 90,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[MemoryLimit]\" has no attribute \"GB_1\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 91,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[MemoryLimit]\" has no attribute \"GB_2\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 92,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[MemoryLimit]\" has no attribute \"GB_4\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/memory_limit_value.py",
+      "line": 93,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[MemoryLimit]\" has no attribute \"GB_8\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/media_output_path_value.py",
+      "line": 33,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/file_path_value.py",
+      "line": 22,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 20,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 38,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 58,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[BatchSize]\" has no attribute \"SMALL\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 59,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[BatchSize]\" has no attribute \"MEDIUM\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 60,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[BatchSize]\" has no attribute \"LARGE\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/batch_size_value.py",
+      "line": 61,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[BatchSize]\" has no attribute \"XLARGE\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/scale_value.py",
+      "line": 20,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/scale_value.py",
+      "line": 69,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Scale]\" has no attribute \"IDENTITY\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/scale_value.py",
+      "line": 70,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Scale]\" has no attribute \"HALF\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/scale_value.py",
+      "line": 71,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Scale]\" has no attribute \"DOUBLE\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/dimensions_value.py",
+      "line": 18,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/dimensions_value.py",
+      "line": 69,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Dimensions]\" has no attribute \"HD\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/dimensions_value.py",
+      "line": 70,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Dimensions]\" has no attribute \"FULL_HD\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/dimensions_value.py",
+      "line": 71,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Dimensions]\" has no attribute \"QHD\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/dimensions_value.py",
+      "line": 72,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Dimensions]\" has no attribute \"UHD_4K\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 47,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 82,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 87,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 110,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 118,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 122,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 124,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 131,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 138,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 140,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 149,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"LINEAR\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 150,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_IN\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 151,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_OUT\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 152,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_IN_OUT\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 153,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_IN_CUBIC\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 154,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_OUT_CUBIC\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 155,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_OUT_EXPO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/animation/easing_curve_value.py",
+      "line": 156,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[EasingCurve]\" has no attribute \"EASE_OUT_BACK\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 31,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"BaseModel\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 43,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"BaseModel\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 52,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"BaseModel\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 76,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 93,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 97,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 122,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 133,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 146,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 157,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 44,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"PsdPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 51,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 78,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/zerocopy_encoder.py",
+      "line": 89,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 12,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"GpuRendererPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 18,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 29,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 37,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"CupyCompositor\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 40,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"CupyColorConverter\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 49,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 79,
+      "column": 0,
+      "code": "index",
+      "message": "Unsupported target for indexed assignment (\"Any | None\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 93,
+      "column": 0,
+      "code": "index",
+      "message": "Unsupported target for indexed assignment (\"Any | None\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 96,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"data\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 97,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"convert\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 108,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"str\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 124,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 124,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 135,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"data\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 139,
+      "column": 0,
+      "code": "index",
+      "message": "Unsupported target for indexed assignment (\"Any | None\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 146,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"blend\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 149,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"convert\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 154,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"encode_frame\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_renderer_adapter.py",
+      "line": 159,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"Any | None\" has no attribute \"release\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/ui/ui_renderer_port.py",
+      "line": 14,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"layers\" (default has type \"None\", argument has type \"list[dict[str, Any]]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/gpu_backend_module.py",
+      "line": 76,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"bool\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_backend.py",
+      "line": 18,
+      "column": 0,
+      "code": "no-redef",
+      "message": "Name \"CompositingBackend\" already defined (possibly by an import)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_backend.py",
+      "line": 39,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"tuple[int, int]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_backend.py",
+      "line": 42,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"bool\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/exr_renderer_adapter.py",
+      "line": 21,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/exr_output_adapter.py",
+      "line": 29,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/exr_output_adapter.py",
+      "line": 40,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"FrameOutputPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/visual/border_value.py",
+      "line": 35,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 22,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type \"Vector2\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 25,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type \"Vector2\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 27,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 29,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 31,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/geometry/transform2d_value.py",
+      "line": 111,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Transform2D]\" has no attribute \"IDENTITY\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_constants_adapter.py",
+      "line": 10,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_constants_adapter.py",
+      "line": 69,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/filesystem/local_asset_provider_adapter.py",
+      "line": 19,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"AssetProviderPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/moviepy_encoder_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"VideoPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/moviepy_encoder_adapter.py",
+      "line": 101,
+      "column": 0,
+      "code": "return-value",
+      "message": "Incompatible return value type (got \"str | None\", expected \"str\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/filesystem/local_file_system_adapter.py",
+      "line": 12,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"FileSystemPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 38,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"VideoPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 100,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 2 to \"build_nvenc_command_from_images\" has incompatible type \"str | None\"; expected \"str\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 102,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 2 to \"build_libx264_command_from_images\" has incompatible type \"str | None\"; expected \"str\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 112,
+      "column": 0,
+      "code": "return-value",
+      "message": "Incompatible return value type (got \"str | None\", expected \"str\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 139,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"write\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+      "line": 141,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"close\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
+      "line": 15,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"RandomPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
+      "line": 18,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"seed\" (default has type \"None\", argument has type \"int\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/logging/std_logger_adapter.py",
+      "line": 12,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"LoggerPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 50,
+      "column": 0,
+      "code": "var-annotated",
+      "message": "Need type annotation for \"write_queue\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 54,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 61,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"write\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 69,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 87,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/mp4_encoder_adapter.py",
+      "line": 99,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"read\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 52,
+      "column": 0,
+      "code": "var-annotated",
+      "message": "Need type annotation for \"write_queue\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 56,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 63,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"write\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 71,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 87,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/ffmpeg_pipe_encoder.py",
+      "line": 99,
+      "column": 0,
+      "code": "union-attr",
+      "message": "Item \"None\" of \"IO[bytes] | None\" has no attribute \"read\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 24,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 27,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"RendererPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/image/pillow_image_adapter.py",
+      "line": 26,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"ImageProcessingPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/image/pillow_image_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/image/pillow_image_adapter.py",
+      "line": 97,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument \"fill\" to \"ellipse\" of \"ImageDraw\" has incompatible type \"tuple[int, ...]\"; expected \"str | int | tuple[int, int, int] | tuple[int, int, int, int] | None\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_base_adapter.py",
+      "line": 11,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_base_adapter.py",
+      "line": 12,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_base_adapter.py",
+      "line": 28,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_base_adapter.py",
+      "line": 40,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_base_adapter.py",
+      "line": 45,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/layout_manager/coordinate_mapper_module.py",
+      "line": 132,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"Rect\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/camera_entity.py",
+      "line": 17,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type \"Vector2\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/camera_entity.py",
+      "line": 22,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/camera_entity.py",
+      "line": 24,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/script_generator_module.py",
+      "line": 12,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"output_path\" (default has type \"None\", argument has type \"str\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_video_adapter.py",
+      "line": 17,
+      "column": 0,
+      "code": "misc",
+      "message": "Cannot assign to a type",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_video_adapter.py",
+      "line": 17,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type \"type[Mp4EncoderAdapter]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_video_adapter.py",
+      "line": 44,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_video_adapter.py",
+      "line": 65,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"release\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+      "line": 30,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+      "line": 89,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+      "line": 102,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+      "line": 104,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+      "line": 113,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 42,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"_load_layer_icons\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 53,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 56,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 65,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 99,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 107,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 128,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 145,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 168,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_header_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_header_adapter.py",
+      "line": 49,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_header_adapter.py",
+      "line": 66,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"putdata\" of \"Image\" has incompatible type \"list[tuple[Any, Any, Any, int]]\"; expected \"Sequence[int]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_header_adapter.py",
+      "line": 75,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_header_adapter.py",
+      "line": 81,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_canvas_adapter.py",
+      "line": 29,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/layout_manager/layout_orchestrator.py",
+      "line": 31,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument \"viewport\" to \"CoordinateMapper\" has incompatible type \"ViewportEntity\"; expected \"ViewportLike\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/strategies/brush_strategy_module.py",
+      "line": 14,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"brush_radius\" (default has type \"None\", argument has type \"float\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/strategies/brush_strategy_module.py",
+      "line": 21,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 23,
+      "column": 0,
+      "code": "misc",
+      "message": "Class cannot subclass \"UIRendererPort\" (has type \"Any\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 29,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 33,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"HeaderRenderer\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 34,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"ToolbarRenderer\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 35,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"CanvasRenderer\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 36,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"LayersPanelRenderer\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 38,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"layers\" (default has type \"None\", argument has type \"list[Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 61,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 70,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible default for argument \"layers\" (default has type \"None\", argument has type \"list[Any]\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 94,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/worker_count_value.py",
+      "line": 18,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/worker_count_value.py",
+      "line": 69,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[WorkerCount]\" has no attribute \"SINGLE\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/resource/worker_count_value.py",
+      "line": 70,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[WorkerCount]\" has no attribute \"AUTO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/asset_entity.py",
+      "line": 32,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"type[Duration]\" has no attribute \"ZERO\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/layer_entity.py",
+      "line": 17,
+      "column": 0,
+      "code": "unreachable",
+      "message": "Statement is unreachable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_service.py",
+      "line": 12,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_service.py",
+      "line": 26,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/io/layer_io_module.py",
+      "line": 17,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/render_states_composition_module.py",
+      "line": 53,
+      "column": 0,
+      "code": "operator",
+      "message": "Unsupported operand types for < (\"int\" and \"Opacity\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/render_states_composition_module.py",
+      "line": 77,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 2 to \"apply_opacity\" has incompatible type \"Opacity\"; expected \"float\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/render_states_composition_module.py",
+      "line": 113,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"Image\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 66,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 70,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 147,
+      "column": 0,
+      "code": "misc",
+      "message": "\"None\" not callable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 154,
+      "column": 0,
+      "code": "misc",
+      "message": "\"None\" not callable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 162,
+      "column": 0,
+      "code": "misc",
+      "message": "\"None\" not callable",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 212,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"draw_brush_cursor_ui\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/psd_composition_module.py",
+      "line": 214,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"Image\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/world_entity.py",
+      "line": 34,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/compositor_module.py",
+      "line": 22,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/compositor_module.py",
+      "line": 38,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"LayerRetrievalService\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/compositor_module.py",
+      "line": 48,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/script_orchestrator.py",
+      "line": 37,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"engine.src.domain.value_objects.animation.sequencing_strategy.SequencingStrategy\", variable has type \"engine.src.domain.value_objects.animation.sequencing_strategy_value.SequencingStrategy | None\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/script_orchestrator.py",
+      "line": 40,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 3 to \"plan_timeline\" has incompatible type \"engine.src.domain.value_objects.animation.sequencing_strategy_value.SequencingStrategy | None\"; expected \"engine.src.domain.value_objects.animation.sequencing_strategy.SequencingStrategy\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/script_orchestrator.py",
+      "line": 99,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 2 to \"generate_python_script\" has incompatible type \"str | None\"; expected \"str\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/compositor_orchestrator.py",
+      "line": 90,
+      "column": 0,
+      "code": "valid-type",
+      "message": "Module \"PIL.Image\" is not valid as a type",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/compositor_orchestrator.py",
+      "line": 105,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"FrameCompositor\" has no attribute \"clear_cache\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/compositor_orchestrator.py",
+      "line": 119,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/__init__.py",
+      "line": 52,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.compositor.orchestrators.layer_compositor_module\" does not explicitly export attribute \"CompositeFrame\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/__init__.py",
+      "line": 52,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.compositor.orchestrators.layer_compositor_module\" does not explicitly export attribute \"CompositeLayer\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/__init__.py",
+      "line": 52,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.compositor.orchestrators.layer_compositor_module\" has no attribute \"RenderLayer\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/__init__.py",
+      "line": 59,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.compositor.services.layer_cache_module\" does not explicitly export attribute \"CachedLayer\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 35,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 71,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 95,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 106,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 148,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"__call__\" of \"PathGenerator\" has incompatible type \"Vector2 | None\"; expected \"Vector2\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/core/animator_controller_module.py",
+      "line": 156,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 2 to \"__call__\" of \"DragAnimator\" has incompatible type \"Vector2 | None\"; expected \"Vector2\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_animation_service_module.py",
+      "line": 7,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_orchestrator_module.py",
+      "line": 23,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_orchestrator_module.py",
+      "line": 190,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/animator_orchestrator.py",
+      "line": 44,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/animator_orchestrator.py",
+      "line": 84,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/animator_orchestrator.py",
+      "line": 91,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/animator_orchestrator.py",
+      "line": 98,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_renderer_service_module.py",
+      "line": 8,
+      "column": 0,
+      "code": "assignment",
+      "message": "Incompatible types in assignment (expression has type \"None\", variable has type Module)",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_renderer_service_module.py",
+      "line": 65,
+      "column": 0,
+      "code": "var-annotated",
+      "message": "Need type annotation for \"hold_ranges\" (hint: \"hold_ranges: list[<type>] = ...\")",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "line": 27,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.pipeline_manager.orchestrator.render_orchestrator_module\" does not explicitly export attribute \"FrameOutputPort\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "line": 39,
+      "column": 0,
+      "code": "type-arg",
+      "message": "Missing type parameters for generic type \"Callable\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "line": 105,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"reset_frame_state\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/__init__.py",
+      "line": 32,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.animator.motion.path_generator_module\" does not explicitly export attribute \"AnimationPath\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/optimized_strategy_module.py",
+      "line": 97,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 65,
+      "column": 0,
+      "code": "call-arg",
+      "message": "Unexpected keyword argument \"center_x\" for \"CameraEntity\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 65,
+      "column": 0,
+      "code": "call-arg",
+      "message": "Unexpected keyword argument \"center_y\" for \"CameraEntity\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 65,
+      "column": 0,
+      "code": "call-arg",
+      "message": "Unexpected keyword argument \"width\" for \"CameraEntity\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 65,
+      "column": 0,
+      "code": "call-arg",
+      "message": "Unexpected keyword argument \"height\" for \"CameraEntity\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 93,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 1 to \"AnimationController\" has incompatible type \"TimelineEntity\"; expected \"int\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 93,
+      "column": 0,
+      "code": "arg-type",
+      "message": "Argument 3 to \"AnimationController\" has incompatible type \"int\"; expected \"DragAnimator | None\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 168,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"reset_frame_state\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 185,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"FrameCompositor\" has no attribute \"compose_frame\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+      "line": 209,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "\"FrameCompositor\" has no attribute \"clear_cache\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/viewport_layer_module.py",
+      "line": 10,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.animator\" has no attribute \"apply_mask_to_layer\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/viewport_layer_module.py",
+      "line": 10,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.animator\" has no attribute \"generate_reveal_mask\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/viewport_centered_module.py",
+      "line": 13,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.animator\" has no attribute \"apply_mask_to_layer\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/ops/viewport_centered_module.py",
+      "line": 13,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.animator\" has no attribute \"generate_reveal_mask\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/director_engine_module.py",
+      "line": 73,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a return type annotation",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/director_engine_module.py",
+      "line": 198,
+      "column": 0,
+      "code": "no-any-return",
+      "message": "Returning Any from function declared to return \"str\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/pipeline_orchestrator.py",
+      "line": 28,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/pipeline_orchestrator.py",
+      "line": 72,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/pipeline_orchestrator.py",
+      "line": 99,
+      "column": 0,
+      "code": "no-untyped-def",
+      "message": "Function is missing a type annotation for one or more arguments",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 40,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"LayerRetrievalService\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 74,
+      "column": 0,
+      "code": "no-untyped-call",
+      "message": "Call to untyped function \"clear_cache\" in typed context",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/__init__.py",
+      "line": 10,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.value_objects.configs\" has no attribute \"CompositeConfig\"; maybe \"CompositorConfig\"?",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/__init__.py",
+      "line": 27,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.pipeline_manager.orchestrator.render_pipeline_module\" does not explicitly export attribute \"PipelineProgress\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/__init__.py",
+      "line": 27,
+      "column": 0,
+      "code": "attr-defined",
+      "message": "Module \"engine.src.domain.modules.pipeline_manager.orchestrator.render_pipeline_module\" does not explicitly export attribute \"PipelineState\"",
+      "source": "mypy",
+      "severity": "error"
+    },
+    {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/alpha_composite_module.py",
       "line": 11,
       "column": 21,
@@ -74,17 +2576,8 @@
     },
     {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
-      "line": 58,
-      "column": 5,
-      "code": "F811",
-      "message": "Redefinition of unused `TimelineEntity` from line 26",
-      "source": "ruff",
-      "severity": "error"
-    },
-    {
-      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
-      "line": 60,
-      "column": 5,
+      "line": 59,
+      "column": 1,
       "code": "F401",
       "message": "`.modules.script_director.plan_smart_timeline` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
       "source": "ruff",
@@ -119,10 +2612,28 @@
     },
     {
       "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_composition_module.py",
-      "line": 116,
+      "line": 5,
+      "column": 15,
+      "code": "F821",
+      "message": "Undefined name `Any`",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/layer_composition_module.py",
+      "line": 6,
+      "column": 19,
+      "code": "F821",
+      "message": "Undefined name `Any`",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/visual/blend_mode_value.py",
+      "line": 77,
       "column": 101,
       "code": "E501",
-      "message": "Line too long (111 > 100)",
+      "message": "Line too long (124 > 100)",
       "source": "ruff",
       "severity": "error"
     }

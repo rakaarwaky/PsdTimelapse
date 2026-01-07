@@ -16,7 +16,7 @@ class FrameRate:
 
     fps: int
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.fps <= 0:
             raise ValueError(f"FPS must be positive: {self.fps}")
         if self.fps > 240:

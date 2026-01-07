@@ -86,5 +86,5 @@ class ZeroCopyEncoder:
             raise e
         return b""
 
-    def close(self):
+    def close(self) -> None:
         pass

@@ -15,7 +15,7 @@ class WorkerCount:
 
     count: int
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.count < 1:
             raise ValueError(f"Worker count must be at least 1: {self.count}")
         max_workers = cpu_count() * 4

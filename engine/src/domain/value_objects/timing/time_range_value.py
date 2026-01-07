@@ -15,7 +15,7 @@ class TimeRange:
     start: float
     end: float
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.start < 0:
             raise ValueError(f"Start cannot be negative: {self.start}")
         if self.end < self.start:

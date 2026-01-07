@@ -24,7 +24,7 @@ class Transform2D:
     rotation: float = 0.0
     anchor: Vector2 = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.position is None:
             object.__setattr__(self, "position", Vector2(0, 0))
         if self.anchor is None:

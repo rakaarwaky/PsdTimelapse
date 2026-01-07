@@ -5,9 +5,13 @@ Part of visual category - layer blending operations.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar
+
+# Constants
+HALF_LUMINOSITY = 0.5
 
 
 class BlendModeType(Enum):
@@ -32,6 +36,62 @@ def _clamp(v: float) -> float:
     return max(0.0, min(1.0, v))
 
 
+# --- Blending Strategy Functions ---
+
+
+def _blend_normal(b: float, a: float) -> float:
+    return a
+
+
+def _blend_multiply(b: float, a: float) -> float:
+    return _clamp(b * a)
+
+
+def _blend_screen(b: float, a: float) -> float:
+    return _clamp(1 - (1 - b) * (1 - a))
+
+
+def _blend_overlay(b: float, a: float) -> float:
+    if b < HALF_LUMINOSITY:
+        return 2 * b * a
+    return 1 - 2 * (1 - b) * (1 - a)
+
+
+def _blend_darken(b: float, a: float) -> float:
+    return min(b, a)
+
+
+def _blend_lighten(b: float, a: float) -> float:
+    return max(b, a)
+
+
+def _blend_difference(b: float, a: float) -> float:
+    return abs(b - a)
+
+
+def _blend_exclusion(b: float, a: float) -> float:
+    return _clamp(b + a - 2 * b * a)
+
+
+# Map modes to per-channel functions (simplification: mostly uniform across channels)
+# NOTE: Some modes like Color Dodge/Burn might need more complex logic, left as TODO/Default for now to match previous impl.
+_BLEND_STRATEGIES: dict[BlendModeType, Callable[[float, float], float]] = {
+    BlendModeType.NORMAL: _blend_normal,
+    BlendModeType.MULTIPLY: _blend_multiply,
+    BlendModeType.SCREEN: _blend_screen,
+    BlendModeType.OVERLAY: _blend_overlay,
+    BlendModeType.DARKEN: _blend_darken,
+    BlendModeType.LIGHTEN: _blend_lighten,
+    BlendModeType.DIFFERENCE: _blend_difference,
+    BlendModeType.EXCLUSION: _blend_exclusion,
+    # Fallbacks
+    BlendModeType.COLOR_DODGE: _blend_normal,
+    BlendModeType.COLOR_BURN: _blend_normal,
+    BlendModeType.HARD_LIGHT: _blend_overlay,
+    BlendModeType.SOFT_LIGHT: _blend_overlay,
+}
+
+
 @dataclass(frozen=True)
 class BlendMode:
     """Immutable blend mode for layer compositing."""
@@ -42,58 +102,18 @@ class BlendMode:
         self, base: tuple[float, float, float], blend: tuple[float, float, float]
     ) -> tuple[float, float, float]:
         """Blend two RGB pixels (values 0.0-1.0)."""
-        if self.mode == BlendModeType.NORMAL:
-            return blend
+        strategy = _BLEND_STRATEGIES.get(self.mode, _blend_normal)
 
-        elif self.mode == BlendModeType.MULTIPLY:
-            return (
-                _clamp(base[0] * blend[0]),
-                _clamp(base[1] * blend[1]),
-                _clamp(base[2] * blend[2]),
-            )
-
-        elif self.mode == BlendModeType.SCREEN:
-            return (
-                _clamp(1 - (1 - base[0]) * (1 - blend[0])),
-                _clamp(1 - (1 - base[1]) * (1 - blend[1])),
-                _clamp(1 - (1 - base[2]) * (1 - blend[2])),
-            )
-
-        elif self.mode == BlendModeType.OVERLAY:
-
-            def overlay_channel(b: float, luminosity: float) -> float:
-                if b < BlendMode.HALF.value:
-                    return 2 * b * luminosity
-                return 1 - 2 * (1 - b) * (1 - luminosity)
-
-            return (
-                _clamp(overlay_channel(base[0], blend[0])),
-                _clamp(overlay_channel(base[1], blend[1])),
-                _clamp(overlay_channel(base[2], blend[2])),
-            )
-
-        elif self.mode == BlendModeType.DARKEN:
-            return (min(base[0], blend[0]), min(base[1], blend[1]), min(base[2], blend[2]))
-
-        elif self.mode == BlendModeType.LIGHTEN:
-            return (max(base[0], blend[0]), max(base[1], blend[1]), max(base[2], blend[2]))
-
-        elif self.mode == BlendModeType.DIFFERENCE:
-            return (abs(base[0] - blend[0]), abs(base[1] - blend[1]), abs(base[2] - blend[2]))
-
-        elif self.mode == BlendModeType.EXCLUSION:
-            return (
-                _clamp(base[0] + blend[0] - 2 * base[0] * blend[0]),
-                _clamp(base[1] + blend[1] - 2 * base[1] * blend[1]),
-                _clamp(base[2] + blend[2] - 2 * base[2] * blend[2]),
-            )
-
-        return blend
+        return (
+            strategy(base[0], blend[0]),
+            strategy(base[1], blend[1]),
+            strategy(base[2], blend[2]),
+        )
 
     def __str__(self) -> str:
         return self.mode.value
 
-    # Class-level presets (assigned after class definition)
+    # Class-level presets
     NORMAL: ClassVar[BlendMode]
     MULTIPLY: ClassVar[BlendMode]
     SCREEN: ClassVar[BlendMode]
@@ -108,7 +128,7 @@ class BlendMode:
     EXCLUSION: ClassVar[BlendMode]
 
 
-# Presets
+# Initialize Presets
 BlendMode.NORMAL = BlendMode(BlendModeType.NORMAL)
 BlendMode.MULTIPLY = BlendMode(BlendModeType.MULTIPLY)
 BlendMode.SCREEN = BlendMode(BlendModeType.SCREEN)

@@ -50,7 +50,7 @@ class LayersPanelRenderer(BaseRenderer):
         # Footer Actions
         self._draw_footer(frame, panel_x, icons)
 
-    def _draw_tabs(self, draw: ImageDraw.ImageDraw, x: int, y: int, w: int):
+    def _draw_tabs(self, draw: ImageDraw.ImageDraw, x: int, y: int, w: int) -> None:
         header_y = y
         tab_h = 36
         draw.rectangle([x, header_y, x + w, header_y + tab_h], fill=PSColors.LAYER_TAB)
@@ -98,7 +98,7 @@ class LayersPanelRenderer(BaseRenderer):
 
     def _draw_lock_status(
         self, draw: ImageDraw.ImageDraw, frame: Image.Image, x: int, y: int, icons: dict[str, Any]
-    ):
+    ) -> None:
         lock_y = y + 50
         draw.text((x + 12, lock_y + 2), "Lock:", fill=PSColors.MUTED, font=self.fonts["sm"])
         if "unlock" in icons:
@@ -113,7 +113,7 @@ class LayersPanelRenderer(BaseRenderer):
         panel_x: int,
         panel_y: int,
         icons: dict[str, Any],
-    ):
+    ) -> None:
         list_y = panel_y + 90
         layer_h = 50
         display_layers = layers[::-1]  # Top visual layer first
@@ -165,7 +165,7 @@ class LayersPanelRenderer(BaseRenderer):
                 fill=PSColors.DIVIDER,
             )
 
-    def _draw_footer(self, frame: Image.Image, panel_x: int, icons: dict[str, Any]):
+    def _draw_footer(self, frame: Image.Image, panel_x: int, icons: dict[str, Any]) -> None:
         # Action Bar at bottom
         action_y = VIDEO_HEIGHT - 36
 

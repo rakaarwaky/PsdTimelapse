@@ -17,7 +17,7 @@ class Scale:
     MIN_SCALE: float = 0.01
     MAX_SCALE: float = 100.0
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not Scale.MIN_SCALE <= self.value <= Scale.MAX_SCALE:
             raise ValueError(
                 f"Scale must be {Scale.MIN_SCALE}-{Scale.MAX_SCALE}, got: {self.value}"

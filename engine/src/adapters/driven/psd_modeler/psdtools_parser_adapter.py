@@ -48,7 +48,7 @@ class PsdToolsAdapter(PsdPort):
     Converts PSD layer hierarchy to WorldEntity domain model.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_PSD_TOOLS:
             raise ImportError("psd-tools not installed. Run: pip install psd-tools")
 

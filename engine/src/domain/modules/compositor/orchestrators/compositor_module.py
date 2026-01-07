@@ -31,7 +31,7 @@ class FrameCompositor:
         get_brush_cursor_pos_fn: Callable[..., Any] | None = None,
         draw_brush_cursor_ui_fn: Callable[..., Any] | None = None,
         cursor_style=None,
-    ):
+    ) -> None:
         self.world = world
         self.viewport = viewport
         self.image_processor = image_processor

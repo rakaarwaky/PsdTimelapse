@@ -9,7 +9,7 @@ class LayerRetrievalService:
     Target Size: < 20 lines.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._layer_cache: dict[str, Image.Image] = {}
         # Scaled cache logic omitted for simplicity/YAGNI
 
@@ -23,5 +23,5 @@ class LayerRetrievalService:
 
         return None
 
-    def clear_cache(self):
+    def clear_cache(self) -> None:
         self._layer_cache.clear()

@@ -70,7 +70,7 @@ class DirectorEngine:
         """Legacy method. Prefer using NotificationPort.subscribe() instead."""
         self._progress_callback = callback
 
-    def _emit(self, state: EngineState, frame: int, total: int, msg: str):
+    def _emit(self, state: EngineState, frame: int, total: int, msg: str) -> None:
         """Emit progress via both NotificationPort and legacy callback."""
         self.state = state
 

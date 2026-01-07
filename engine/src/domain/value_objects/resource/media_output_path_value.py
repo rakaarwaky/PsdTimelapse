@@ -30,7 +30,7 @@ class MediaOutputPath:
     base_path: str
     project_id: str
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not str(self.base_path).strip():
             raise ValueError("Base path cannot be empty")
         if not self.project_id or not self.project_id.strip():

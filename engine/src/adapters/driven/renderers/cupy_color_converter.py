@@ -8,7 +8,7 @@ import cupy as cp
 
 
 class CupyColorConverter:
-    def __init__(self):
+    def __init__(self) -> None:
         # Optimized CUDA C++ Kernel for BT.709 RGB to NV12 (Limited Range)
         self.kernel_code = r"""
         extern "C" __global__

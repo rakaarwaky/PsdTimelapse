@@ -53,7 +53,7 @@ class FfmpegPipeEncoder:
         self.writer_thread = threading.Thread(target=self._writer_worker, daemon=True)
         self.writer_thread.start()
 
-    def _writer_worker(self):
+    def _writer_worker(self) -> None:
         while True:
             data = self.write_queue.get()
             if data is None:
@@ -68,7 +68,7 @@ class FfmpegPipeEncoder:
                 print(f"❌ Writer Error: {e}")
                 break
 
-    def encode_frame(self, nv12_gpu_array):
+    def encode_frame(self, nv12_gpu_array) -> None:
         """
         Takes a CuPy NV12 array, downloads to host, and queues for encoding.
         """
@@ -84,7 +84,7 @@ class FfmpegPipeEncoder:
         except Exception as e:
             print(f"Error encoding frame: {e}")
 
-    def release(self):
+    def release(self) -> None:
         """Finalize encoding"""
         print("💾 Finalizing Video...")
         self.write_queue.put(None)

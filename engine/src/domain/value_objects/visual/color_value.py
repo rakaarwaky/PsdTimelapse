@@ -17,7 +17,7 @@ class Color:
     b: int = 0
     a: int = 255
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         object.__setattr__(self, "r", max(0, min(255, self.r)))
         object.__setattr__(self, "g", max(0, min(255, self.g)))
         object.__setattr__(self, "b", max(0, min(255, self.b)))

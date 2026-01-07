@@ -25,7 +25,7 @@ from .pillow_constants_adapter import load_font
 class BaseRenderer:
     """Base class for all UI renderers."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_PILLOW:
             raise ImportError("Pillow not installed")
 
@@ -37,7 +37,7 @@ class BaseRenderer:
             "xs": load_font(10),
         }
 
-    def draw_icon(self, frame: Image.Image, icon: Image.Image, x: int, y: int):
+    def draw_icon(self, frame: Image.Image, icon: Image.Image, x: int, y: int) -> None:
         """Helper to safely paste RGBA icons."""
         if icon:
             frame.paste(icon, (int(x), int(y)), icon)
@@ -50,7 +50,7 @@ class BaseRenderer:
         y: int,
         size: int = 24,
         color: tuple[int, int, int] = (200, 200, 200),
-    ):
+    ) -> None:
         """Draw MDI icon as fallback."""
         if HAS_MDI:
             try:

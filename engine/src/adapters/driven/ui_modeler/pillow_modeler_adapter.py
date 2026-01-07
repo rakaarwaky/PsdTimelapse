@@ -26,7 +26,7 @@ class UIRendererCore(UIRendererPort):
     Facade that uses sub-renderers to build the UI.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_PILLOW:
             raise ImportError("Pillow not installed")
 

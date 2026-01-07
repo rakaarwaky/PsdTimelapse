@@ -32,7 +32,7 @@ class Border:
     alignment: BorderAlignment = BorderAlignment.INSIDE
     style: BorderStyle = BorderStyle.SOLID
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.width < 0:
             object.__setattr__(self, "width", 0.0)
 

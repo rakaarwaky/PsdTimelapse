@@ -23,6 +23,8 @@ from .base import BaseStrategy
 class ImportOrderFixer(BaseStrategy):
     """Fixes import ordering issues by moving imports to top."""
 
+    _CLOSED_DOCSTRING_QUOTE_COUNT = 2
+
     def fix(self, errors: List[LintError]) -> List[FixResult]:
         results: List[FixResult] = []
 
@@ -73,11 +75,13 @@ class ImportOrderFixer(BaseStrategy):
         for i, line in enumerate(lines):
             stripped = line.strip()
 
-            # Handle docstrings at the start
+            # Handle documentation strings at the start
             if not docstring_done:
                 if stripped.startswith('"""') or stripped.startswith("'''"):
                     in_docstring = (
-                        not in_docstring or stripped.count('"""') >= 2 or stripped.count("'''") >= 2
+                        not in_docstring
+                        or stripped.count('"""') >= self._CLOSED_DOCSTRING_QUOTE_COUNT
+                        or stripped.count("'''") >= self._CLOSED_DOCSTRING_QUOTE_COUNT
                     )
                     docstring_lines.append(line)
                     if not in_docstring:

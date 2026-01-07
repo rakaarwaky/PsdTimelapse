@@ -19,7 +19,7 @@ class CameraEntity:
     min_zoom: float = 0.1
     max_zoom: float = 10.0
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.position is None:
             self.position = Vector2(0.0, 0.0)
 

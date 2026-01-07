@@ -17,7 +17,7 @@ class BatchSize:
     MIN_SIZE: int = 1
     MAX_SIZE: int = 10000
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.size < BatchSize.MIN_SIZE:
             raise ValueError(f"Batch size too small (min {BatchSize.MIN_SIZE}): {self.size}")
         if self.size > BatchSize.MAX_SIZE:

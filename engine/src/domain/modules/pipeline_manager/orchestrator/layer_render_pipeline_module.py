@@ -10,12 +10,13 @@ from __future__ import annotations
 
 import os
 from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Any
 
 try:
     from PIL import Image as PILImage
 except ImportError:
-    PILImage: Any = None
+    PILImage: Any = None  # type: ignore
 
 from ....entities.layer_entity import LayerEntity
 from ....value_objects.animation.render_state_value import RenderFrame
@@ -26,15 +27,22 @@ from ...animator.core.animator_controller_module import AnimationController
 from .render_orchestrator_module import FrameOutputPort
 
 
+@dataclass
+class RenderLoopContext:
+    """Context object for the execution loop to reduce argument count."""
+
+    start: int
+    end: int
+    fps: float
+    layer: LayerEntity
+    action: Any
+    get_layer_image: Callable[..., Any]
+    folder_path: str
+
+
 class LayerRenderPipeline:
     """
     Pipeline responsible for driving the animation generation and writing results to disk.
-
-    Responsibilities:
-    1. Setup output directories.
-    2. Drive the LayerAnimationService (pure state).
-    3. Route frames to appropriate Output Ports (EXR, Video).
-    4. Generate LayerManifest.
     """
 
     def __init__(
@@ -43,7 +51,7 @@ class LayerRenderPipeline:
         animation_service: AnimationController,
         exr_port: FrameOutputPort | None = None,
         video_port: FrameOutputPort | None = None,
-        media_output: MediaOutputPath | None = None,  # New injection
+        media_output: MediaOutputPath | None = None,
     ):
         self.config = config
         self.service = animation_service
@@ -54,6 +62,64 @@ class LayerRenderPipeline:
     def _sanitize_folder_name(self, layer_id: str) -> str:
         """Convert layer ID to safe folder name."""
         return layer_id.replace(" ", "_").replace("/", "_").lower()
+
+    def _setup_output_folder(self, layer: LayerEntity) -> str:
+        """Determine and create the output directory."""
+        if self.media_output:
+            folder_path = str(self.media_output.animation_frames_dir(layer.id))
+        else:
+            folder_name = self._sanitize_folder_name(layer.id)
+            folder_path = os.path.join(self.config.output_dir, folder_name)
+
+        os.makedirs(folder_path, exist_ok=True)
+        return folder_path
+
+    def _process_frame_action(self, time: float, action: Any) -> None:
+        """Update service state based on action progress."""
+        if not action:
+            return
+
+        if time >= action.start_time and time <= (action.start_time + action.duration):
+            p = (time - action.start_time) / action.duration
+            self.service.update(action, p)
+        elif time > (action.start_time + action.duration):
+            self.service.update(action, 1.0)
+
+    def _render_frame(
+        self, f: int, layer: LayerEntity, get_layer_image: Callable[[LayerEntity], Any]
+    ) -> RenderFrame:
+        """Generate the RenderFrame object for a given frame index."""
+        base_image = get_layer_image(layer)
+        if not base_image:
+            return RenderFrame(f, layer.id, None, "blank")
+
+        # Future: apply per-frame transformations from self.service.get_layer_state()
+        return RenderFrame(f, layer.id, base_image, "active")
+
+    def _execution_loop(self, ctx: RenderLoopContext) -> list[tuple[int, int]]:
+        """Run the main render loop."""
+        hold_ranges: list[tuple[int, int]] = []
+
+        for f in range(ctx.start, ctx.end):
+            time = f / ctx.fps
+            self.service.reset_frame_state()
+            self._process_frame_action(time, ctx.action)
+
+            frame_obj = self._render_frame(f, ctx.layer, ctx.get_layer_image)
+
+            # Output
+            if self.media_output:
+                frame_path = str(self.media_output.animation_frame_path(ctx.layer.id, f))
+            else:
+                frame_path = os.path.join(ctx.folder_path, f"frame_{f:04d}.exr")
+
+            if frame_obj.frame_type == "active":
+                if self.exr_port:
+                    self.exr_port.write_frame(frame_obj, frame_path)
+                if self.video_port:
+                    self.video_port.write_frame(frame_obj, frame_path)
+
+        return hold_ranges
 
     def execute(
         self,
@@ -66,99 +132,30 @@ class LayerRenderPipeline:
         """
         start_frame = timeline_info.get("start_frame", 0)
         end_frame = timeline_info.get("end_frame", 100)
-        # total_frames = timeline_info.get("total_frames", 100)
         action = timeline_info.get("action")
 
-        # 1. Determine Output Paths
-        if self.media_output:
-            folder_path = str(self.media_output.animation_frames_dir(layer.id))
-            os.makedirs(folder_path, exist_ok=True)
-
-            if self.video_port:
-                # Video port setup might be needed here if not global
-                pass
-        else:
-            # Legacy Fallback
-            folder_name = self._sanitize_folder_name(layer.id)
-            folder_path = os.path.join(self.config.output_dir, folder_name)
-            os.makedirs(folder_path, exist_ok=True)
-
-        blank_count = 0
-        hold_ranges: list[tuple[int, int]] = []
-
-        # Initialize Controller for this layer
+        # 1. Setup
+        folder_path = self._setup_output_folder(layer)
         self.service.initialize_layers([layer])
 
-        # 2. Drive Animation Loop
-        # Iterate through ALL frames to check for visibility/activity
-        # Optimization: Only render active range?
-        # For now, render active range defined by start_frame to end_frame
+        # 2. Context
+        ctx = RenderLoopContext(
+            start=start_frame,
+            end=end_frame,
+            fps=self.config.fps,
+            layer=layer,
+            action=action,
+            get_layer_image=get_layer_image,
+            folder_path=folder_path,
+        )
 
-        fps = self.config.fps
+        # 3. Loop
+        hold_ranges = self._execution_loop(ctx)
 
-        for f in range(start_frame, end_frame):
-            time = f / fps
-
-            # Reset transient state
-            self.service.reset_frame_state()
-
-            # Update Controller
-            if action:
-                # Calculate progress
-                # Note: Action duration might be different than frame range if we add handles
-                pass
-                # Simple progress for single action
-                if time >= action.start_time and time <= (action.start_time + action.duration):
-                    p = (time - action.start_time) / action.duration
-                    self.service.update(action, p)
-                elif time > (action.start_time + action.duration):
-                    self.service.update(action, 1.0)
-
-            # Get State (Used in real pipeline, mocked here)
-            # state = self.service.get_layer_state(layer.id)
-
-            # Render Frame (Conceptually)
-            # In this pipeline, we are responsible for creating the "RenderFrame" object
-            # which usually contains the pixel data.
-            # But wait, AnimationController produces STATE.
-            # Who produces PIXELS? The Compositor? Or the Renderer?
-            # Creating a RenderFrame usually implies we have the image.
-
-            # If this is "Layer Render", we typically take the raw layer image
-            # and apply the transformations (Affine, Opacity, Mask).
-
-            base_image = get_layer_image(layer)
-            if not base_image:
-                # Blank frame
-                blank_count += 1
-                frame_obj = RenderFrame(f, layer.id, None, "blank")
-            else:
-                # Apply transformations (Mocking this)
-                pass
-                # In real pipeline: transformed_image = image_transformer.apply(base_image, state)
-                transformed_image = base_image  # Pass-through for now
-                frame_obj = RenderFrame(f, layer.id, transformed_image, "active")
-
-            # 3. Output logic
-            if self.media_output:
-                frame_path = str(self.media_output.animation_frame_path(layer.id, f))
-            else:
-                frame_path = os.path.join(folder_path, f"frame_{f:04d}.exr")
-
-            if frame_obj.frame_type == "active":
-                if self.exr_port:
-                    self.exr_port.write_frame(frame_obj, frame_path)
-                if self.video_port:
-                    self.video_port.write_frame(frame_obj, frame_path)
-            else:
-                blank_count += 1
-
-        # 4. Finalize Video
+        # 4. Finalize
         if self.video_port:
             self.video_port.finalize()
 
-        # 5. Build Manifest
-        # 5. Build Manifest
         anim_type = (
             action.action_type.value if action and hasattr(action, "action_type") else "static"
         )

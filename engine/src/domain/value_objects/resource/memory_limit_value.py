@@ -27,7 +27,7 @@ class MemoryLimit:
     MIN_BYTES: int = 1024 * 1024
     MAX_BYTES: int = 64 * 1024 * 1024 * 1024
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.bytes < MemoryLimit.MIN_BYTES:
             raise ValueError(f"Memory limit too small (min 1MB): {self.bytes}")
         if self.bytes > MemoryLimit.MAX_BYTES:

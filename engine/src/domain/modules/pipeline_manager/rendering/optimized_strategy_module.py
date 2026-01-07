@@ -94,7 +94,7 @@ class OptimizedRenderStrategy:
         cursor_overlay = CursorOverlay(icon_size=32)
 
         # 6. Render Loop (Pipeline)
-        def _emit_progress_adapter(current, total):
+        def _emit_progress_adapter(current, total) -> None:
             progress_callback(EngineState.RENDERING, current, total, f"Frame {current}/{total}")
 
         for frame_num, frame in pipeline.iterate_frames(

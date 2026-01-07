@@ -46,7 +46,7 @@ class HeaderRenderer(BaseRenderer):
         # Undo/Redo (Right side)
         self._draw_undo_redo(frame)
 
-    def _draw_logo(self, draw: ImageDraw.ImageDraw, frame: Image.Image):
+    def _draw_logo(self, draw: ImageDraw.ImageDraw, frame: Image.Image) -> None:
         """Draw Ps logo with transparency fix."""
         logo_path = os.path.join(ICONS_DIR, "header", "Ps_logo.png")
         logo_x, logo_y = 8, 6
@@ -78,7 +78,7 @@ class HeaderRenderer(BaseRenderer):
         )
         draw.text((logo_x + 8, logo_y + 10), "Ps", fill=PSColors.ACCENT, font=self.fonts["bold"])
 
-    def _draw_undo_redo(self, frame: Image.Image):
+    def _draw_undo_redo(self, frame: Image.Image) -> None:
         """Draw undo/redo buttons."""
         if not HAS_MDI:
             return

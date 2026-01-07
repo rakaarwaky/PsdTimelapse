@@ -29,7 +29,7 @@ class PipelineOrchestrator:
         self,
         config: PipelineConfig | None = None,
         **port_kwargs,
-    ):
+    ) -> None:
         self.config = config or PipelineConfig()
 
         # Lazy loaded components

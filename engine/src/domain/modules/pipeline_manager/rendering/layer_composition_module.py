@@ -1,9 +1,11 @@
-"""
-Layer Composition Module - Blind Logic Compliant
+try:
+    from PIL import Image as PILImage
+    from PIL import ImageDraw as PILImageDraw
+except ImportError:
+    PILImage: Any = None  # type: ignore
+    PILImageDraw: Any = None  # type: ignore
 
-Renders layers onto canvas. Uses injected image_processor (PIL-agnostic).
-"""
-
+from dataclasses import dataclass
 from typing import Any, Protocol
 
 from ....entities.layer_entity import LayerEntity
@@ -18,37 +20,44 @@ class ImageProcessorProtocol(Protocol):
     def composite(self, im1: Any, im2: Any, mask: Any) -> Any: ...
 
 
+@dataclass
+class RenderContext:
+    """Context object to reduce argument clutter in helper functions."""
+
+    processor: Any
+    cumulative_masks: dict[str, Any]
+    layer_id: str
+    canvas_size: tuple[int, int]
+
+
 def _get_processor(image_processor: Any = None) -> Any:
     """Get image processor or fallback to PIL."""
     if image_processor is not None:
         return image_processor
 
-    try:
-        from PIL import Image as PILImage
-        from PIL import ImageDraw as PILImageDraw
-
-        class PILProcessor:
-            Image = PILImage
-            ImageDraw = PILImageDraw
-
-            def new(self, mode: str, size: tuple[int, int], color: tuple[int, ...] | int) -> Any:
-                return PILImage.new(mode, size, color)  # type: ignore
-
-            def draw(self, image: Any) -> Any:
-                return PILImageDraw.Draw(image)
-
-            def composite(self, im1: Any, im2: Any, mask: Any) -> Any:
-                return PILImage.composite(im1, im2, mask)
-
-        return PILProcessor()
-    except ImportError:
+    if PILImage is None:
         raise RuntimeError("No image_processor provided and PIL not available") from None
 
+    class PILProcessor:
+        Image = PILImage
+        ImageDraw = PILImageDraw
 
-def _create_wipe_mask(processor: Any, size: tuple[int, int], state: LayerAnimState) -> Any:
+        def new(self, mode: str, size: tuple[int, int], color: tuple[int, ...] | int) -> Any:
+            return PILImage.new(mode, size, color)  # type: ignore
+
+        def draw(self, image: Any) -> Any:
+            return PILImageDraw.Draw(image)
+
+        def composite(self, im1: Any, im2: Any, mask: Any) -> Any:
+            return PILImage.composite(im1, im2, mask)
+
+    return PILProcessor()
+
+
+def _create_wipe_mask(ctx: RenderContext, size: tuple[int, int], state: LayerAnimState) -> Any:
     """Create a wipe transition mask."""
-    mask = processor.new("L", size, 0)
-    draw = processor.draw(mask)
+    mask = ctx.processor.new("L", size, 0)
+    draw = ctx.processor.draw(mask)
     w, h = size
 
     if state.reveal_direction == "vertical":
@@ -61,17 +70,15 @@ def _create_wipe_mask(processor: Any, size: tuple[int, int], state: LayerAnimSta
 
 
 def _create_brush_mask(
-    processor: Any,
+    ctx: RenderContext,
     size: tuple[int, int],
     state: LayerAnimState,
-    cumulative_masks: dict[str, Any],
-    layer_id: str,
 ) -> Any:
     """Create or update a brush-based mask."""
-    mask = cumulative_masks.get(layer_id)
+    mask = ctx.cumulative_masks.get(ctx.layer_id)
     if mask:
         # Draw brush TIP at current confirmed brush_position
-        draw = processor.draw(mask)
+        draw = ctx.processor.draw(mask)
         radius = state.brush_size / 2
         draw.ellipse(
             [
@@ -84,17 +91,14 @@ def _create_brush_mask(
         )
     else:
         # Fallback (shouldn't happen if initialized correctly)
-        mask = processor.new("L", size, 255)
+        mask = ctx.processor.new("L", size, 255)
     return mask
 
 
 def _apply_mask_to_image(
-    processor: Any,
+    ctx: RenderContext,
     image: Any,
     state: LayerAnimState,
-    mask: Any,
-    cumulative_masks: dict[str, Any],
-    layer: LayerEntity,
     pos: tuple[int, int],
 ) -> Any:
     """Apply mask to image alpha channel."""
@@ -103,24 +107,21 @@ def _apply_mask_to_image(
     # Logic for specialized masking (Brush vs Wipe)
     if state.brush_size > 0:
         # Circle Brush Global Mask
-        global_mask = cumulative_masks.get(layer.id)
+        global_mask = ctx.cumulative_masks.get(ctx.layer_id)
         if global_mask:
             layer_mask = global_mask.crop((x, y, x + image.width, y + image.height))
             layer_alpha = image.split()[3]
-            final_alpha = processor.composite(
-                layer_alpha, processor.new("L", layer_mask.size, 0), layer_mask
+            final_alpha = ctx.processor.composite(
+                layer_alpha, ctx.processor.new("L", layer_mask.size, 0), layer_mask
             )
             image.putalpha(final_alpha)
     else:
         # Wipe Logic
-        # Note: wipe mask passed in is the general mask, but we might need to recreate it for local application
-        # or use composite.
-        # The original code recreated the wipe mask locally relative to the image size.
-        local_mask = _create_wipe_mask(processor, image.size, state)
+        local_mask = _create_wipe_mask(ctx, image.size, state)
 
         current_alpha = image.split()[3]
-        composite_alpha = processor.composite(
-            current_alpha, processor.new("L", image.size, 0), local_mask
+        composite_alpha = ctx.processor.composite(
+            current_alpha, ctx.processor.new("L", image.size, 0), local_mask
         )
         image.putalpha(composite_alpha)
 
@@ -139,7 +140,7 @@ def render_layer_to_image(
     """
     Renders the layer onto a canvas and returns image.
 
-    Refactored to reduce complexity.
+    Refactored with RenderContext for cleanliness.
     """
     processor = _get_processor(image_processor)
     canvas = processor.new("RGBA", (canvas_width, canvas_height), (0, 0, 0, 0))
@@ -156,23 +157,28 @@ def render_layer_to_image(
     pos_y = state.position.y if state else layer.position.y
     opacity = state.opacity if state else layer.opacity.value
 
+    # Prepare Context
+    ctx = RenderContext(
+        processor=processor,
+        cumulative_masks=cumulative_masks,
+        layer_id=layer.id,
+        canvas_size=(canvas_width, canvas_height),
+    )
+
     # Process Base Image
     processed_img = layer_img.convert("RGBA")
 
     # Handle Reveal State (The most complex part)
     if state and state.reveal_progress < 1.0:
-        # UPADTE MASKS PHASE
+        # UPDATE MASKS PHASE
         if state.brush_size > 0:
-            _create_brush_mask(processor, processed_img.size, state, cumulative_masks, layer.id)
+            _create_brush_mask(ctx, processed_img.size, state)
 
         # APPLY MASKS PHASE
-        # Calculate paste position first as it's needed for cropping global masks
         x = int(pos_x - layer.bounds.width / 2)
         y = int(pos_y - layer.bounds.height / 2)
 
-        processed_img = _apply_mask_to_image(
-            processor, processed_img, state, None, cumulative_masks, layer, (x, y)
-        )
+        processed_img = _apply_mask_to_image(ctx, processed_img, state, (x, y))
     else:
         # Standard positioning
         x = int(pos_x - layer.bounds.width / 2)

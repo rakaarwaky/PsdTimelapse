@@ -18,7 +18,7 @@ class ExrRendererAdapter:
     Adapter for writing OpenEXR files.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # Enable EXR support in OpenCV env
         os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
         self.compression_flags = [cv2.IMWRITE_EXR_TYPE, cv2.IMWRITE_EXR_TYPE_FLOAT]

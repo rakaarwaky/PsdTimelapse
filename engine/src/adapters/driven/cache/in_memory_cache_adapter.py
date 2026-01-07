@@ -14,7 +14,7 @@ class InMemoryCacheAdapter(CachePort):
     No TTL support in this basic version, unbounded size.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._cache: dict[str, Any] = {}
         self._hits = 0
         self._misses = 0

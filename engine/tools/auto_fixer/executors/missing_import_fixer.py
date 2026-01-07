@@ -6,7 +6,6 @@ Uses a knowledge base of common imports to auto-resolve undefined names.
 """
 
 import re
-from typing import List, Optional
 
 from ..core.types import FixResult, LintError
 from .base import BaseStrategy
@@ -50,8 +49,8 @@ class MissingImportFixer(BaseStrategy):
     3. Add import statement at correct position
     """
 
-    def fix(self, errors: List[LintError]) -> List[FixResult]:
-        results: List[FixResult] = []
+    def fix(self, errors: list[LintError]) -> list[FixResult]:
+        results: list[FixResult] = []
 
         # Filter for F821 errors
         f821_errors = [e for e in errors if e.code == "F821"]
@@ -70,13 +69,13 @@ class MissingImportFixer(BaseStrategy):
 
         return results
 
-    def _fix_file(self, file_path: str, file_errors: List[LintError]) -> Optional[FixResult]:
+    def _fix_file(self, file_path: str, file_errors: list[LintError]) -> FixResult | None:
         try:
-            with open(file_path, "r") as f:
+            with open(file_path) as f:
                 content = f.read()
                 lines = content.split("\n")
 
-            imports_to_add: List[str] = []
+            imports_to_add: list[str] = []
 
             for err in file_errors:
                 # Extract undefined name from message
@@ -110,13 +109,13 @@ class MissingImportFixer(BaseStrategy):
                 details=f"Error: {e}",
             )
 
-    def _generate_import_statement(self, name: str) -> Optional[str]:
+    def _generate_import_statement(self, name: str) -> str | None:
         if name in IMPORT_KNOWLEDGE_BASE:
             module = IMPORT_KNOWLEDGE_BASE[name]
             return f"from {module} import {name}"
         return None
 
-    def _apply_imports(self, file_path: str, lines: List[str], imports: List[str]) -> None:
+    def _apply_imports(self, file_path: str, lines: list[str], imports: list[str]) -> None:
         # Find insertion point (after last import)
         insert_line = 0
         for i, line in enumerate(lines):

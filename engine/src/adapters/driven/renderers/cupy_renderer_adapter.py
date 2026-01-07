@@ -15,7 +15,7 @@ class CupyRendererAdapter(GpuRendererPort):
     Implements GpuRendererPort.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         print("Initializing CupyRendererAdapter...")
         # Lazy init resources on first render to avoid overhead if unused
         self.compositor = None
@@ -26,7 +26,7 @@ class CupyRendererAdapter(GpuRendererPort):
         self.width = 0
         self.height = 0
 
-    def _init_resources(self, width: int, height: int, fps: int):
+    def _init_resources(self, width: int, height: int, fps: int) -> None:
         if self.compositor and self.width == width and self.height == height:
             return
 
@@ -128,7 +128,7 @@ class CupyRendererAdapter(GpuRendererPort):
         timeline_actions: list[Any],
         total_frames: int,
         progress_callback=None,
-    ):
+    ) -> None:
         """Execute the render loop entirely on GPU."""
         print(f"Starting GPU Batch Render: {total_frames} frames")
 

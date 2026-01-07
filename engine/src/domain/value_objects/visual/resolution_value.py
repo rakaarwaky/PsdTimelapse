@@ -26,7 +26,7 @@ class Resolution:
     height: int
     name: str | None = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.width <= 0 or self.height <= 0:
             raise ValueError("Resolution dimensions must be positive")
 

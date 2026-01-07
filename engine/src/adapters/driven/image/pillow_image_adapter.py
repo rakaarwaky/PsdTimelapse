@@ -31,7 +31,7 @@ class PillowImageAdapter(ImageProcessingPort):
     For GPU acceleration, use CupyImageAdapter instead.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_PILLOW:
             raise ImportError("Pillow is required: pip install Pillow")
 

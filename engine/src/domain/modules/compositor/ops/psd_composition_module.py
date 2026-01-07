@@ -67,7 +67,7 @@ def get_brush_cursor_position(*args):
     return 0, 0, 0
 
 
-def draw_brush_cursor_ui(*args):
+def draw_brush_cursor_ui(*args) -> None:
     pass
 
 

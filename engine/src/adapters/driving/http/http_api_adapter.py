@@ -119,7 +119,7 @@ def create_api(engine: ProducerEngine) -> FastAPI:
 
         job_id = str(uuid.uuid4())[:8]
 
-        def track_progress(progress: EngineProgress):
+        def track_progress(progress: EngineProgress) -> None:
             _active_jobs[job_id] = progress
 
         engine.set_progress_callback(track_progress)
@@ -143,7 +143,7 @@ def create_api(engine: ProducerEngine) -> FastAPI:
         )
 
     @app.get("/download/{job_id}")
-    async def download_video(job_id: str):
+    async def download_video(job_id: str) -> None:
         if job_id not in _active_jobs:
             raise HTTPException(404, "Job not found")
         progress = _active_jobs[job_id]
@@ -154,7 +154,7 @@ def create_api(engine: ProducerEngine) -> FastAPI:
     return app
 
 
-async def _run_render(engine: ProducerEngine, psd_path: str, config: ProducerConfig, job_id: str):
+async def _run_render(engine: ProducerEngine, psd_path: str, config: ProducerConfig, job_id: str) -> None:
     try:
         engine.load_psd(psd_path)
         engine.generate_timeline(config.strategy)

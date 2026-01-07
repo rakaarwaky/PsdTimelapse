@@ -15,7 +15,7 @@ class Dimensions:
     width: int
     height: int
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.width <= 0:
             raise ValueError(f"Width must be positive: {self.width}")
         if self.height <= 0:

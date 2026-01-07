@@ -14,7 +14,7 @@ class Progress:
 
     value: float
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         clamped = max(0.0, min(1.0, self.value))
         object.__setattr__(self, "value", clamped)
 

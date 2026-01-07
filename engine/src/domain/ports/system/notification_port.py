@@ -101,7 +101,7 @@ class InMemoryEventBus(NotificationPort):
     Suitable for single-process applications.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._subscribers: dict[DomainEvent, list[EventCallback]] = {}
 
     def publish(self, event: DomainEvent, data: dict[str, Any] = None) -> None:

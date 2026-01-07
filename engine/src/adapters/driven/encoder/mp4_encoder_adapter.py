@@ -51,7 +51,7 @@ class Mp4EncoderAdapter:
         self.writer_thread = threading.Thread(target=self._writer_worker, daemon=True)
         self.writer_thread.start()
 
-    def _writer_worker(self):
+    def _writer_worker(self) -> None:
         while True:
             data = self.write_queue.get()
             if data is None:
@@ -66,7 +66,7 @@ class Mp4EncoderAdapter:
                 print(f"❌ Writer Error: {e}")
                 break
 
-    def encode_frame(self, frame_image: Image.Image):
+    def encode_frame(self, frame_image: Image.Image) -> None:
         """
         Takes a PIL Image (RGBA), converts to bytes, and queues for encoding.
         """
@@ -84,7 +84,7 @@ class Mp4EncoderAdapter:
         except Exception as e:
             print(f"Error encoding frame: {e}")
 
-    def release(self):
+    def release(self) -> None:
         """Finalize encoding"""
         print("💾 Finalizing MP4 Video...")
         self.write_queue.put(None)
