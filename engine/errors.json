@@ -1,0 +1,1012 @@
+{
+  "errors": [
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/alpha_composite_module.py",
+      "line": 11,
+      "column": 21,
+      "code": "F401",
+      "message": "`PIL.Image` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 42,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `HEADER_HEIGHT` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 43,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `LEFT_TOOLBAR_WIDTH` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 44,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `RIGHT_TOOLBAR_WIDTH` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 45,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `LAYERS_PANEL_HEIGHT` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 47,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `VIDEO_WIDTH` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+      "line": 48,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `VIDEO_HEIGHT` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/zerocopy_encoder.py",
+      "line": 11,
+      "column": 12,
+      "code": "N813",
+      "message": "Camelcase `PyNvVideoCodec` imported as lowercase `nvc`",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 10,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 14,
+      "column": 38,
+      "code": "F401",
+      "message": "`psd_tools.api.layers.Group` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 14,
+      "column": 45,
+      "code": "F401",
+      "message": "`psd_tools.api.layers.Layer` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 21,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 22,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 23,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 24,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 25,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 26,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 27,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+      "line": 28,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 81,
+      "column": 9,
+      "code": "N806",
+      "message": "Variable `H` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 81,
+      "column": 12,
+      "code": "N806",
+      "message": "Variable `W` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/cupy_compositor.py",
+      "line": 81,
+      "column": 15,
+      "code": "N806",
+      "message": "Variable `C` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/exr_renderer_adapter.py",
+      "line": 59,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (103 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 18,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 19,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 20,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 21,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 22,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 23,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 24,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/pillow_renderer_adapter.py",
+      "line": 127,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (108 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
+      "line": 9,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/system/system_random_adapter.py",
+      "line": 11,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 7,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 9,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 11,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_layers_panel_adapter.py",
+      "line": 12,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 10,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 12,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 13,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 14,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 15,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 16,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/ui_modeler/pillow_modeler_adapter.py",
+      "line": 17,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 12,
+      "column": 35,
+      "code": "F401",
+      "message": "`fastapi.responses.FileResponse` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 72,
+      "column": 5,
+      "code": "N806",
+      "message": "Variable `UPLOADS_DIR` in function should be lowercase",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+      "line": 76,
+      "column": 46,
+      "code": "B008",
+      "message": "Do not perform function call `File` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
+      "line": 59,
+      "column": 5,
+      "code": "F811",
+      "message": "Redefinition of unused `TimelineEntity` from line 26",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
+      "line": 61,
+      "column": 5,
+      "code": "F401",
+      "message": "`.modules.script_director.plan_timeline` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/core/__init__.py",
+      "line": 153,
+      "column": 21,
+      "code": "F401",
+      "message": "`.engine.ProducerConfig` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/layer_entity.py",
+      "line": 15,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (111 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 12,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (145 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 13,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (139 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 15,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (116 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 19,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (141 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 22,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (115 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 33,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (117 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+      "line": 42,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (137 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 11,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 11,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 13,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 15,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 16,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 17,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 18,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/animator/generators/layer_state_generator_module.py",
+      "line": 19,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/layer_compositor_module.py",
+      "line": 9,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/layer_compositor_module.py",
+      "line": 9,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/layer_compositor_module.py",
+      "line": 11,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/layer_compositor_module.py",
+      "line": 20,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 8,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 10,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 12,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 21,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 22,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 23,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 24,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 25,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/orchestrators/viewport_compositor_module.py",
+      "line": 26,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_cache_module.py",
+      "line": 8,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_cache_module.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_cache_module.py",
+      "line": 10,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/compositor/services/layer_cache_module.py",
+      "line": 19,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "line": 45,
+      "column": 23,
+      "code": "F821",
+      "message": "Undefined name `MediaOutputPath`",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "line": 58,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (110 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/pipeline_manager_module.py",
+      "line": 53,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/cpu_strategy_module.py",
+      "line": 73,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (104 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/gpu_backend_module.py",
+      "line": 46,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (103 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/parallel_renderer_module.py",
+      "line": 9,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/parallel_renderer_module.py",
+      "line": 9,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/parallel_renderer_module.py",
+      "line": 11,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/parallel_renderer_module.py",
+      "line": 12,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/rendering/parallel_renderer_module.py",
+      "line": 13,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 12,
+      "column": 1,
+      "code": "F404",
+      "message": "`from __future__` imports must occur at the beginning of the file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 12,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 14,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 16,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 17,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 18,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/script_director/generators/manifest_generator_module.py",
+      "line": 105,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (104 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/overlay_port.py",
+      "line": 59,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (102 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/overlay_port.py",
+      "line": 133,
+      "column": 101,
+      "code": "E501",
+      "message": "Line too long (102 > 100)",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/psd_port.py",
+      "line": 8,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/ports/media/psd_port.py",
+      "line": 10,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    },
+    {
+      "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/io/render_manifest.py",
+      "line": 7,
+      "column": 1,
+      "code": "E402",
+      "message": "Module level import not at top of file",
+      "source": "ruff",
+      "severity": "error"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+   
+    // Vue Development
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    
+    // TypeScript & JavaScript
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    
+    // Tailwind CSS
+    "bradlc.vscode-tailwindcss",
+    
+    // Git
+    "eamodio.gitlens",
+    
+    // Utilities
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens"
+  ]
+}

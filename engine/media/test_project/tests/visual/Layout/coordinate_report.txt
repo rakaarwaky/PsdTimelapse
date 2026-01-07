@@ -1,0 +1,34 @@
+LAYOUT MANAGER COORDINATE MAPPING REPORT
+==================================================
+PSD: test.psd
+PSD Size: 1080 x 1080
+Viewport: 1080 x 1080 (1:1)
+Camera: pos=Vector2(540.00, 540.00), zoom=1.0000x
+
+Layer [0]: FRONT
+  World Position (center): (540, 540)
+  World Bounds: x=145, y=83, w=790, h=914
+  Viewport Position: (540, 540)
+  Viewport Bounds: x=145, y=83, w=790, h=914
+  Is Visible: True
+
+Layer [1]: DISTRESSED EMBROIDERY BY IFGOOD STD
+  World Position (center): (244, 577)
+  World Bounds: x=192, y=283, w=105, h=588
+  Viewport Position: (244, 577)
+  Viewport Bounds: x=192, y=283, w=105, h=588
+  Is Visible: True
+
+Layer [2]: DISTRESSED EMBROIDERY BY IFGOOD STD copy
+  World Position (center): (829, 591)
+  World Bounds: x=776, y=309, w=106, h=564
+  Viewport Position: (829, 591)
+  Viewport Bounds: x=776, y=309, w=106, h=564
+  Is Visible: True
+
+Layer [3]: DISTRESSED EMBROIDERY BY IFGOOD STD
+  World Position (center): (531, 309)
+  World Bounds: x=334, y=263, w=395, h=93
+  Viewport Position: (531, 309)
+  Viewport Bounds: x=334, y=263, w=395, h=93
+  Is Visible: True

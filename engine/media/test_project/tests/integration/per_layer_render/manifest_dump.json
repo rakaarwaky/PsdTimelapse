@@ -1,0 +1,24 @@
+[
+  {
+    "id": "root_0",
+    "name": "Background",
+    "sequence_folder": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/media/test_project/animation/root_0/frames",
+    "animation_type": "static",
+    "visible_range": [
+      0,
+      121
+    ],
+    "hold_frames": []
+  },
+  {
+    "id": "layer_1",
+    "name": "[D] Hero",
+    "sequence_folder": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/media/test_project/animation/layer_1/frames",
+    "animation_type": "drag",
+    "visible_range": [
+      0,
+      49
+    ],
+    "hold_frames": []
+  }
+]

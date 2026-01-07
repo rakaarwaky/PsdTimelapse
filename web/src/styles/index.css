@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1f75cb; /* Adobe Blue */
+  --color-background-dark: #1d1d1d; /* Main BG */
+  --color-panel-dark: #2a2a2a; /* Panel BG */
+  --color-canvas-dark: #121212; /* Canvas Area */
+  --color-border-dark: #3e3e3e; /* Borders */
+  --color-border-light: #454545; /* Lighter dividers */
+  --color-text-normal: #d9d9d9;
+  --color-text-hover: #ffffff;
+  --color-tab-active: #383838;
+  --font-display: "Inter", system-ui, sans-serif;
+}
+
+/* Base Reset for App feel */
+body {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-normal);
+  font-family: var(--font-display);
+  overflow: hidden; /* Prevent body scroll */
+}
+
+/* Custom Scrollbars (Adobe Style) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-panel-dark);
+  border-left: 1px solid var(--color-border-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #484848;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner {
+  background: var(--color-panel-dark);
+}
+
+/* Utilities */
+.text-dense {
+  font-size: 11px;
+}
+.text-xs-adobe {
+  font-size: 12px;
+}
+
+/* UI Elements */
+.ui-button {
+  transition: all 0.1s;
+}
+.ui-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-hover);
+}
+.ui-button:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.material-symbols-outlined {
+  font-size: 18px; /* Standardize icon size */
+  pointer-events: none; /* Prevent icon from capturing clicks often */
+}
+
+.shadow-inset {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled State */
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+/* Tooltips */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  background: #111;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 9999;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}

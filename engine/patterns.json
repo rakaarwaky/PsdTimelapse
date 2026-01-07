@@ -1,0 +1,574 @@
+{
+  "summary": {
+    "total_errors": 505,
+    "auto_fixable": 29,
+    "manual_required": 476,
+    "pattern_count": 12
+  },
+  "patterns": [
+    {
+      "pattern_id": "UNKNOWN",
+      "description": "Pattern: UNKNOWN",
+      "count": 295,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/domain/ports/render/gpu_renderer_port.py",
+          "line": 17,
+          "column": 0,
+          "code": "unknown",
+          "source": "mypy",
+          "message": "PEP 484 prohibits implicit Optional. Accordingly, mypy has changed its default to no_implicit_optional=True",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/ports/render/gpu_renderer_port.py",
+          "line": 17,
+          "column": 0,
+          "code": "unknown",
+          "source": "mypy",
+          "message": "Use https://github.com/hauntsaninja/no_implicit_optional to automatically upgrade your codebase",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/pipeline_manager_module.py",
+          "line": 145,
+          "column": 0,
+          "code": "type-arg",
+          "source": "mypy",
+          "message": "Missing type parameters for generic type \"Callable\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/renderers/cupy_compositor.py",
+          "line": 7,
+          "column": 0,
+          "code": "no-untyped-def",
+          "source": "mypy",
+          "message": "Function is missing a return type annotation",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/renderers/cupy_compositor.py",
+          "line": 7,
+          "column": 0,
+          "code": "unknown",
+          "source": "mypy",
+          "message": "Use \"-> None\" if function does not return a value",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "MISSING_ATTR",
+      "description": "Missing attribute on type",
+      "count": 98,
+      "auto_fixable": false,
+      "fix_strategy": "add_export",
+      "errors": [
+        {
+          "file": "src/domain/value_objects/animation/director_profile_value.py",
+          "line": 48,
+          "column": 0,
+          "code": "attr-defined",
+          "source": "mypy",
+          "message": "\"type[DirectorProfile]\" has no attribute \"DEFAULT\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/value_objects/animation/director_profile_value.py",
+          "line": 49,
+          "column": 0,
+          "code": "attr-defined",
+          "source": "mypy",
+          "message": "\"type[DirectorProfile]\" has no attribute \"FAST_PACED\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/value_objects/animation/director_profile_value.py",
+          "line": 52,
+          "column": 0,
+          "code": "attr-defined",
+          "source": "mypy",
+          "message": "\"type[DirectorProfile]\" has no attribute \"SLOW_CINEMATIC\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/value_objects/visual/resolution_value.py",
+          "line": 87,
+          "column": 0,
+          "code": "attr-defined",
+          "source": "mypy",
+          "message": "\"type[Resolution]\" has no attribute \"HD\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/value_objects/visual/resolution_value.py",
+          "line": 88,
+          "column": 0,
+          "code": "attr-defined",
+          "source": "mypy",
+          "message": "\"type[Resolution]\" has no attribute \"FULL_HD\"",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "ASSIGN_MISMATCH",
+      "description": "Assignment type mismatch",
+      "count": 27,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/domain/ports/render/gpu_renderer_port.py",
+          "line": 17,
+          "column": 0,
+          "code": "assignment",
+          "source": "mypy",
+          "message": "Incompatible default for argument \"progress_callback\" (default has type \"None\", argument has type \"Callable[[int, int], None]\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/ports/system/notification_port.py",
+          "line": 60,
+          "column": 0,
+          "code": "assignment",
+          "source": "mypy",
+          "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/ports/system/notification_port.py",
+          "line": 107,
+          "column": 0,
+          "code": "assignment",
+          "source": "mypy",
+          "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/ports/system/notification_port.py",
+          "line": 144,
+          "column": 0,
+          "code": "assignment",
+          "source": "mypy",
+          "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/notifications/console_notification_adapter.py",
+          "line": 25,
+          "column": 0,
+          "code": "assignment",
+          "source": "mypy",
+          "message": "Incompatible default for argument \"data\" (default has type \"None\", argument has type \"dict[str, Any]\")",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "TYPE_MISMATCH",
+      "description": "Argument type mismatch",
+      "count": 25,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+          "line": 100,
+          "column": 0,
+          "code": "arg-type",
+          "source": "mypy",
+          "message": "Argument 2 to \"build_nvenc_command_from_images\" has incompatible type \"str | None\"; expected \"str\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+          "line": 102,
+          "column": 0,
+          "code": "arg-type",
+          "source": "mypy",
+          "message": "Argument 2 to \"build_libx264_command_from_images\" has incompatible type \"str | None\"; expected \"str\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/image/pillow_image_adapter.py",
+          "line": 97,
+          "column": 0,
+          "code": "arg-type",
+          "source": "mypy",
+          "message": "Argument \"fill\" to \"ellipse\" of \"ImageDraw\" has incompatible type \"tuple[int, ...]\"; expected \"str | int | tuple[int, int, int] | tuple[int, int, int, int] | None\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+          "line": 30,
+          "column": 0,
+          "code": "arg-type",
+          "source": "mypy",
+          "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/ui_modeler/pillow_toolbars_adapter.py",
+          "line": 89,
+          "column": 0,
+          "code": "arg-type",
+          "source": "mypy",
+          "message": "Argument 1 to \"rectangle\" of \"ImageDraw\" has incompatible type \"list[int]\"; expected \"tuple[float, float, float, float] | tuple[tuple[float, float], tuple[float, float]]\"",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "MISC",
+      "description": "Miscellaneous error",
+      "count": 23,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/adapters/driven/renderers/cupy_compositor.py",
+          "line": 6,
+          "column": 0,
+          "code": "misc",
+          "source": "mypy",
+          "message": "Class cannot subclass \"CompositorPort\" (has type \"Any\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/cache/in_memory_cache_adapter.py",
+          "line": 11,
+          "column": 0,
+          "code": "misc",
+          "source": "mypy",
+          "message": "Class cannot subclass \"CachePort\" (has type \"Any\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/system/system_time_adapter.py",
+          "line": 11,
+          "column": 0,
+          "code": "misc",
+          "source": "mypy",
+          "message": "Class cannot subclass \"TimePort\" (has type \"Any\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/notifications/console_notification_adapter.py",
+          "line": 17,
+          "column": 0,
+          "code": "misc",
+          "source": "mypy",
+          "message": "Class cannot subclass \"NotificationPort\" (has type \"Any\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driving/http/http_api_adapter.py",
+          "line": 31,
+          "column": 0,
+          "code": "misc",
+          "source": "mypy",
+          "message": "Class cannot subclass \"BaseModel\" (has type \"Any\")",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "LINE_TOO_LONG",
+      "description": "Line too long",
+      "count": 11,
+      "auto_fixable": true,
+      "fix_strategy": "ruff_auto",
+      "errors": [
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/renderers/exr_renderer_adapter.py",
+          "line": 59,
+          "column": 101,
+          "code": "E501",
+          "source": "ruff",
+          "message": "Line too long (103 > 100)",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/layer_entity.py",
+          "line": 15,
+          "column": 101,
+          "code": "E501",
+          "source": "ruff",
+          "message": "Line too long (111 > 100)",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+          "line": 12,
+          "column": 101,
+          "code": "E501",
+          "source": "ruff",
+          "message": "Line too long (145 > 100)",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+          "line": 13,
+          "column": 101,
+          "code": "E501",
+          "source": "ruff",
+          "message": "Line too long (139 > 100)",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/entities/smart_action_entity.py",
+          "line": 15,
+          "column": 101,
+          "code": "E501",
+          "source": "ruff",
+          "message": "Line too long (116 > 100)",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "LOWERCASE_VAR",
+      "description": "Variable should be lowercase",
+      "count": 10,
+      "auto_fixable": true,
+      "fix_strategy": "rename",
+      "errors": [
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+          "line": 40,
+          "column": 5,
+          "code": "N806",
+          "source": "ruff",
+          "message": "Variable `HEADER_HEIGHT` in function should be lowercase",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+          "line": 41,
+          "column": 5,
+          "code": "N806",
+          "source": "ruff",
+          "message": "Variable `LEFT_TOOLBAR_WIDTH` in function should be lowercase",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+          "line": 42,
+          "column": 5,
+          "code": "N806",
+          "source": "ruff",
+          "message": "Variable `RIGHT_TOOLBAR_WIDTH` in function should be lowercase",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+          "line": 43,
+          "column": 5,
+          "code": "N806",
+          "source": "ruff",
+          "message": "Variable `LAYERS_PANEL_HEIGHT` in function should be lowercase",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/layer_compositor_service.py",
+          "line": 45,
+          "column": 5,
+          "code": "N806",
+          "source": "ruff",
+          "message": "Variable `VIDEO_WIDTH` in function should be lowercase",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "UNUSED_IMPORT",
+      "description": "Unused import",
+      "count": 6,
+      "auto_fixable": true,
+      "fix_strategy": "ruff_auto",
+      "errors": [
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/encoder/alpha_composite_module.py",
+          "line": 11,
+          "column": 21,
+          "code": "F401",
+          "source": "ruff",
+          "message": "`PIL.Image` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+          "line": 12,
+          "column": 38,
+          "code": "F401",
+          "source": "ruff",
+          "message": "`psd_tools.api.layers.Group` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driven/psd_modeler/psdtools_parser_adapter.py",
+          "line": 12,
+          "column": 45,
+          "code": "F401",
+          "source": "ruff",
+          "message": "`psd_tools.api.layers.Layer` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/adapters/driving/http/http_api_adapter.py",
+          "line": 12,
+          "column": 35,
+          "code": "F401",
+          "source": "ruff",
+          "message": "`fastapi.responses.FileResponse` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/__init__.py",
+          "line": 61,
+          "column": 5,
+          "code": "F401",
+          "source": "ruff",
+          "message": "`.modules.script_director.plan_timeline` imported but unused; consider removing, adding to `__all__`, or using a redundant alias",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "CALL_ARG",
+      "description": "Invalid call argument",
+      "count": 4,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+          "line": 65,
+          "column": 0,
+          "code": "call-arg",
+          "source": "mypy",
+          "message": "Unexpected keyword argument \"center_x\" for \"CameraEntity\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+          "line": 65,
+          "column": 0,
+          "code": "call-arg",
+          "source": "mypy",
+          "message": "Unexpected keyword argument \"center_y\" for \"CameraEntity\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+          "line": 65,
+          "column": 0,
+          "code": "call-arg",
+          "source": "mypy",
+          "message": "Unexpected keyword argument \"width\" for \"CameraEntity\"",
+          "severity": "error"
+        },
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/render_pipeline_module.py",
+          "line": 65,
+          "column": 0,
+          "code": "call-arg",
+          "source": "mypy",
+          "message": "Unexpected keyword argument \"height\" for \"CameraEntity\"",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "RETURN_MISMATCH",
+      "description": "Return type mismatch",
+      "count": 2,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "src/adapters/driven/encoder/moviepy_encoder_adapter.py",
+          "line": 101,
+          "column": 0,
+          "code": "return-value",
+          "source": "mypy",
+          "message": "Incompatible return value type (got \"str | None\", expected \"str\")",
+          "severity": "error"
+        },
+        {
+          "file": "src/adapters/driven/encoder/nvenc_encoder_adapter.py",
+          "line": 112,
+          "column": 0,
+          "code": "return-value",
+          "source": "mypy",
+          "message": "Incompatible return value type (got \"str | None\", expected \"str\")",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "UNDEFINED_NAME",
+      "description": "Undefined name",
+      "count": 2,
+      "auto_fixable": true,
+      "fix_strategy": "add_import",
+      "errors": [
+        {
+          "file": "src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+          "line": 45,
+          "column": 0,
+          "code": "name-defined",
+          "source": "mypy",
+          "message": "Name \"MediaOutputPath\" is not defined",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+          "line": 45,
+          "column": 23,
+          "code": "F821",
+          "source": "ruff",
+          "message": "Undefined name `MediaOutputPath`",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "pattern_id": "IMPORT_ORDER",
+      "description": "Import not at top of file",
+      "count": 2,
+      "auto_fixable": false,
+      "fix_strategy": "manual",
+      "errors": [
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/pipeline_manager_module.py",
+          "line": 53,
+          "column": 1,
+          "code": "E402",
+          "source": "ruff",
+          "message": "Module level import not at top of file",
+          "severity": "error"
+        },
+        {
+          "file": "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/value_objects/io/render_manifest.py",
+          "line": 7,
+          "column": 1,
+          "code": "E402",
+          "source": "ruff",
+          "message": "Module level import not at top of file",
+          "severity": "error"
+        }
+      ]
+    }
+  ],
+  "undefined_names": {
+    "MediaOutputPath": [
+      "src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py",
+      "/home/rakaarwaky/Work/App Project/Psd Timelapse/engine/src/domain/modules/pipeline_manager/orchestrator/layer_render_pipeline_module.py"
+    ]
+  }
+}

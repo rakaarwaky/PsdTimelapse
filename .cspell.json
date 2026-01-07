@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "animatable",
+    "putalpha",
+    "testsprite",
+    "modelcontextprotocol",
+    "executeautomation",
+    "AJER",
+    "GZWWH",
+    "OFSCQ",
+    "Rnarqdh"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    ".venv/**",
+    "*.lock",
+    "*.log"
+  ]
+}

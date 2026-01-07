@@ -1,0 +1,14 @@
+#!/bin/bash
+# atom - Redirects to AtomicFlow build script
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check if we're in the right directory
+if [ -f "$SCRIPT_DIR/AtomicFlow/atom" ]; then
+    echo "📁 Redirecting to AtomicFlow directory..."
+    cd "$SCRIPT_DIR/AtomicFlow" && ./atom
+else
+    echo "❌ AtomicFlow/atom not found. Please run from client-app directory."
+    exit 1
+fi

@@ -1,0 +1,295 @@
+{
+  "version": "1.0",
+  "generated_by": "claude_analysis",
+  "description": "LLM-analyzed pattern library for automated lint fixing",
+  "patterns": [
+    {
+      "code": "attr-defined",
+      "count": 85,
+      "source": "mypy",
+      "category": "MISSING_CLASS_MEMBER",
+      "auto_fixable": true,
+      "severity": "high",
+      "description": "Class/Enum missing attribute (e.g., DirectorProfile.DEFAULT)",
+      "fix_strategy": "add_class_member",
+      "fix_details": {
+        "approach": "Parse class name and attribute from message, search for class definition, add missing class variable or enum member",
+        "regex_extract": "\"type\\[([^\\]]+)\\]\"\\s+has no attribute\\s+\"([^\"]+)\"",
+        "fix_type": "insert_code"
+      }
+    },
+    {
+      "code": "no-untyped-def",
+      "count": 84,
+      "source": "mypy",
+      "category": "MISSING_TYPE_ANNOTATION",
+      "auto_fixable": false,
+      "severity": "medium",
+      "description": "Function missing return type annotation",
+      "fix_strategy": "add_return_annotation",
+      "fix_details": {
+        "approach": "Add -> None or -> Any to function signature",
+        "regex_pattern": "def\\s+(\\w+)\\([^)]*\\)\\s*:",
+        "replacement": "def $1(...) -> None:"
+      }
+    },
+    {
+      "code": "type-arg",
+      "count": 70,
+      "source": "mypy",
+      "category": "MISSING_GENERIC_TYPE",
+      "auto_fixable": true,
+      "severity": "medium",
+      "description": "Missing type parameters for generic (dict, list, tuple, Callable)",
+      "fix_strategy": "add_generic_params",
+      "fix_details": {
+        "approach": "Replace bare generic with parameterized version",
+        "mappings": {
+          "dict": "dict[str, Any]",
+          "list": "list[Any]",
+          "tuple": "tuple[Any, ...]",
+          "set": "set[Any]",
+          "Callable": "Callable[..., Any]"
+        }
+      }
+    },
+    {
+      "code": "unknown",
+      "count": 68,
+      "source": "mypy",
+      "category": "IMPLICIT_OPTIONAL",
+      "auto_fixable": true,
+      "severity": "high",
+      "description": "PEP 484 implicit Optional (param: Type = None should be param: Type | None = None)",
+      "fix_strategy": "explicit_optional",
+      "fix_details": {
+        "approach": "Add | None to parameter type when default is None",
+        "regex_pattern": "(\\w+):\\s*([A-Z]\\w+(?:\\[[^\\]]+\\])?)\\s*=\\s*None",
+        "replacement": "$1: $2 | None = None"
+      }
+    },
+    {
+      "code": "assignment",
+      "count": 27,
+      "source": "mypy",
+      "category": "DEFAULT_TYPE_MISMATCH",
+      "auto_fixable": true,
+      "severity": "high",
+      "description": "Incompatible default for argument (default None but type not Optional)",
+      "fix_strategy": "explicit_optional",
+      "fix_details": {
+        "approach": "Same as implicit-optional: add | None to type annotation",
+        "regex_extract": "argument\\s+\"([^\"]+)\".*default has type\\s+\"None\".*argument has type\\s+\"([^\"]+)\""
+      }
+    },
+    {
+      "code": "arg-type",
+      "count": 25,
+      "source": "mypy",
+      "category": "ARGUMENT_TYPE_MISMATCH",
+      "auto_fixable": false,
+      "severity": "high",
+      "description": "Argument type incompatible with function signature",
+      "fix_strategy": "manual_review",
+      "fix_details": {
+        "approach": "Requires understanding of intended types - manual fix"
+      }
+    },
+    {
+      "code": "misc",
+      "count": 23,
+      "source": "mypy",
+      "category": "SUBCLASS_ANY",
+      "auto_fixable": false,
+      "severity": "medium",
+      "description": "Class subclassing something with type Any",
+      "fix_strategy": "add_type_stub",
+      "fix_details": {
+        "approach": "Add proper type annotations to base class or use # type: ignore"
+      }
+    },
+    {
+      "code": "no-any-return",
+      "count": 16,
+      "source": "mypy",
+      "category": "RETURN_ANY",
+      "auto_fixable": false,
+      "severity": "low",
+      "description": "Returning Any from typed function",
+      "fix_strategy": "cast_or_annotate",
+      "fix_details": {
+        "approach": "Cast return value or fix source of Any"
+      }
+    },
+    {
+      "code": "union-attr",
+      "count": 13,
+      "source": "mypy",
+      "category": "NULLABLE_ACCESS",
+      "auto_fixable": false,
+      "severity": "high",
+      "description": "Accessing attribute on potentially None value",
+      "fix_strategy": "null_check",
+      "fix_details": {
+        "approach": "Add if x is not None check before access"
+      }
+    },
+    {
+      "code": "unused-ignore",
+      "count": 12,
+      "source": "mypy",
+      "category": "STALE_IGNORE",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "type: ignore comment no longer needed",
+      "fix_strategy": "remove_ignore",
+      "fix_details": {
+        "approach": "Remove the # type: ignore comment",
+        "regex_pattern": "\\s*#\\s*type:\\s*ignore.*$",
+        "replacement": ""
+      }
+    },
+    {
+      "code": "E501",
+      "count": 11,
+      "source": "ruff",
+      "category": "LINE_TOO_LONG",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "Line too long (>100 chars)",
+      "fix_strategy": "ruff_auto",
+      "fix_details": {
+        "approach": "Run ruff --fix or manually split line"
+      }
+    },
+    {
+      "code": "N806",
+      "count": 10,
+      "source": "ruff",
+      "category": "CONST_IN_FUNCTION",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "Variable in function should be lowercase (but it's a constant)",
+      "fix_strategy": "move_to_module",
+      "fix_details": {
+        "approach": "Move constant to module level or rename to lowercase",
+        "note": "These are often intentional constants, consider # noqa: N806"
+      }
+    },
+    {
+      "code": "E722",
+      "count": 7,
+      "source": "ruff",
+      "category": "BARE_EXCEPT",
+      "auto_fixable": true,
+      "severity": "medium",
+      "description": "Do not use bare except",
+      "fix_strategy": "add_exception_type",
+      "fix_details": {
+        "approach": "Replace except: with except Exception:",
+        "regex_pattern": "\\bexcept\\s*:",
+        "replacement": "except Exception:"
+      }
+    },
+    {
+      "code": "F401",
+      "count": 6,
+      "source": "ruff",
+      "category": "UNUSED_IMPORT",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "Imported but unused",
+      "fix_strategy": "ruff_auto",
+      "fix_details": {
+        "approach": "ruff --fix removes unused imports"
+      }
+    },
+    {
+      "code": "call-arg",
+      "count": 4,
+      "source": "mypy",
+      "category": "UNEXPECTED_KWARG",
+      "auto_fixable": false,
+      "severity": "high",
+      "description": "Unexpected keyword argument for function/class",
+      "fix_strategy": "update_signature_or_call",
+      "fix_details": {
+        "approach": "Either add parameter to function signature or remove from call"
+      }
+    },
+    {
+      "code": "var-annotated",
+      "count": 4,
+      "source": "mypy",
+      "category": "MISSING_VAR_ANNOTATION",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "Need type annotation for variable",
+      "fix_strategy": "add_annotation",
+      "fix_details": {
+        "approach": "Add : list[...] or similar annotation"
+      }
+    },
+    {
+      "code": "I001",
+      "count": 3,
+      "source": "ruff",
+      "category": "UNSORTED_IMPORTS",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "Import block unsorted",
+      "fix_strategy": "ruff_auto",
+      "fix_details": {
+        "approach": "ruff --fix with isort"
+      }
+    },
+    {
+      "code": "W292",
+      "count": 3,
+      "source": "ruff",
+      "category": "NO_NEWLINE_EOF",
+      "auto_fixable": true,
+      "severity": "low",
+      "description": "No newline at end of file",
+      "fix_strategy": "add_newline",
+      "fix_details": {
+        "approach": "Add newline at end of file"
+      }
+    },
+    {
+      "code": "E402",
+      "count": 2,
+      "source": "ruff",
+      "category": "IMPORT_NOT_TOP",
+      "auto_fixable": false,
+      "severity": "medium",
+      "description": "Module level import not at top of file",
+      "fix_strategy": "move_import",
+      "fix_details": {
+        "approach": "Move import to top of file or use lazy import pattern"
+      }
+    },
+    {
+      "code": "F821",
+      "count": 1,
+      "source": "ruff",
+      "category": "UNDEFINED_NAME",
+      "auto_fixable": true,
+      "severity": "high",
+      "description": "Undefined name",
+      "fix_strategy": "add_import",
+      "fix_details": {
+        "approach": "Search codebase for definition and add import"
+      }
+    }
+  ],
+  "priority_order": [
+    "implicit-optional",
+    "type-arg",
+    "attr-defined",
+    "ruff_auto",
+    "bare_except",
+    "unused_ignore"
+  ],
+  "auto_fix_codes": ["type-arg", "unknown", "assignment", "E501", "F401", "I001", "W292", "E722", "unused-ignore"]
+}

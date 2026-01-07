@@ -1,0 +1,535 @@
+/* Photo Editor - Main Styles
+ * Reference: desain ui/pohoto editor/code.html
+ */
+
+:root {
+  /* Background hierarchy */
+  --background-dark: #1d1d1d;
+  --panel-dark: #2a2a2a;
+  --canvas-dark: #121212;
+  --border-dark: #3e3e3e;
+
+  /* Text colors */
+  --text-primary: #f7f7f7;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+  --text-disabled: #5a5a5a;
+
+  /* Accent */
+  --accent-primary: #f7f7f7;
+  --accent-hover: #22d3ee;
+  --accent-active: #0891b2;
+
+  /* Semantic */
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+}
+
+/* Scrollbar */
+.photo-editor ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.photo-editor ::-webkit-scrollbar-track {
+  background: var(--panel-dark);
+}
+.photo-editor ::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+.photo-editor ::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}
+
+/* Base Layout */
+.photo-editor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: var(--background-dark);
+  color: var(--text-primary);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Header */
+.photo-editor-header {
+  height: 32px;
+  background: var(--background-dark);
+  border-bottom: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+.photo-editor-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.photo-editor-menu {
+  display: flex;
+  gap: 12px;
+  margin-left: 8px;
+}
+
+.photo-editor-menu a {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.photo-editor-menu a:hover {
+  color: var(--text-primary);
+}
+
+/* Property Bar */
+.photo-editor-property-bar {
+  height: 40px;
+  background: var(--panel-dark);
+  border-bottom: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 16px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.property-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.property-label {
+  color: var(--text-muted);
+}
+
+/* Main Body */
+.photo-editor-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Toolbar */
+.photo-editor-toolbar {
+  width: 48px;
+  background: var(--panel-dark);
+  border-right: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.tool-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  background: transparent;
+}
+
+.tool-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.tool-button.active {
+  background: rgba(247, 247, 247, 0.2);
+  color: var(--text-primary);
+  border-left: 2px solid var(--accent-primary);
+}
+
+.tool-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-dark);
+  margin: 4px 0;
+}
+
+/* Canvas Area */
+.photo-editor-canvas {
+  flex: 1;
+  background: var(--canvas-dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.canvas-rulers-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: var(--background-dark);
+  border-bottom: 1px solid var(--border-dark);
+  display: flex;
+  align-items: flex-end;
+  padding-left: 48px;
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.canvas-rulers-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 24px;
+  background: var(--background-dark);
+  border-right: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 48px;
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.canvas-viewport {
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(51, 51, 51, 0.5);
+}
+
+.canvas-label {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--background-dark);
+  padding: 2px 8px;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid var(--border-dark);
+  border-bottom: none;
+}
+
+.canvas-content {
+  width: 800px;
+  height: 500px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  cursor: crosshair;
+}
+
+/* AI Magic Button */
+.ai-magic-button {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(247, 247, 247, 0.2);
+  transition: all 0.2s;
+  border: none;
+}
+
+.ai-magic-button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* Right Panel */
+.photo-editor-right-panel {
+  width: 288px;
+  background: var(--panel-dark);
+  border-left: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Panel Section */
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.panel-tabs {
+  display: flex;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.panel-tab {
+  padding: 6px 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-top: 2px solid transparent;
+  transition: all 0.15s;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.panel-tab:hover {
+  color: var(--text-primary);
+}
+
+.panel-tab.active {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border-top-color: var(--accent-primary);
+}
+
+.panel-content {
+  padding: 12px;
+  flex: 1;
+}
+
+/* Layers Panel */
+.layers-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.layers-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border-bottom: 1px solid var(--border-dark);
+  transition: background 0.15s;
+}
+
+.layer-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.layer-item.active {
+  background: rgba(247, 247, 247, 0.2);
+}
+
+.layer-visibility {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border-dark);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.layer-thumbnail {
+  width: 48px;
+  height: 100%;
+  padding: 4px;
+  border-right: 1px solid var(--border-dark);
+}
+
+.layer-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid var(--border-dark);
+}
+
+.layer-info {
+  flex: 1;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layer-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.layer-item.active .layer-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.layers-footer {
+  height: 32px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.layers-footer button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.layers-footer button:hover {
+  color: var(--text-primary);
+}
+
+/* Status Bar */
+.photo-editor-status {
+  height: 32px;
+  background: var(--panel-dark);
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.switch-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--background-dark);
+  border: 1px solid #666;
+  color: var(--text-primary);
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.15s;
+}
+
+.switch-button:hover {
+  border-color: var(--accent-primary);
+}
+
+.switch-button .icon {
+  color: var(--accent-primary);
+}
+
+/* Color Picker Panel */
+.color-picker-area {
+  width: 100%;
+  height: 128px;
+  background: linear-gradient(to right, #000, transparent),
+    linear-gradient(to top, #000, transparent),
+    linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red);
+  border-radius: 4px;
+  position: relative;
+}
+
+.color-picker-cursor {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  top: 25%;
+  right: 25%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.color-bar {
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(
+    to right,
+    red,
+    yellow,
+    lime,
+    cyan,
+    blue,
+    magenta,
+    red
+  );
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+/* Adjustments Grid */
+.adjustments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.adjustment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+}
+
+.adjustment-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.adjustment-item:hover .adjustment-icon {
+  color: var(--accent-primary);
+}
+
+.adjustment-icon {
+  font-size: 20px;
+  transition: color 0.15s;
+}
+
+.adjustment-label {
+  font-size: 9px;
+}

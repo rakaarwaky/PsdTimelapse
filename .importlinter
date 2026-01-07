@@ -1,0 +1,35 @@
+[importlinter]
+root_package = src
+include_external_packages = False
+
+# ========================================
+# HEXAGONAL ARCHITECTURE CONTRACTS
+# ========================================
+
+# Domain layer must not import from adapters
+[importlinter:contract:domain_independence]
+name = Domain Independence (Domain must not import from Adapters)
+type = forbidden
+source_modules = 
+    src.Domain
+forbidden_modules = 
+    src.adapters
+    engine.tools
+
+# Domain must not import from app layer
+[importlinter:contract:domain_app_independence]
+name = Domain must not import from App layer
+type = forbidden
+source_modules = 
+    src.Domain
+forbidden_modules = 
+    src.app
+
+# Infrastructure (Adapters) should not import from Tools (Production code shouldn't rely on dev tools)
+[importlinter:contract:adapters_tools_independence]
+name = Adapters must not import from Tools
+type = forbidden
+source_modules = 
+    src.adapters
+forbidden_modules = 
+    engine.tools
